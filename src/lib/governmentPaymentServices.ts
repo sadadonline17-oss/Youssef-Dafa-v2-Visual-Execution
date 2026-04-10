@@ -1,156 +1,106 @@
-// Government Payment Services Configuration
-// خدمات الدفع الحكومية القابلة للاختيار كخدمات
+import { PaymentEntityConfig } from "./gccPaymentEntities";
 
 export interface GovernmentService {
   id: string;
-  key: string;
-  name: string;
   nameAr: string;
+  nameEn: string;
   country: string;
-  type: 'government';
-  supportsPaymentLinks: boolean;
-  description: string;
-  logo?: string;
-  heroImage?: string;
+  logo: string;
+  primaryColor: string;
+  secondaryColor: string;
+  bgType: 'security_grid' | 'glassmorphism' | 'pulse' | 'mesh';
+  heroImage: string;
+  fontFamily: string;
 }
 
-// تعريف خدمات الدفع الحكومية
 export const governmentServices: GovernmentService[] = [
   {
-    id: 'sadad',
-    key: 'sadad',
-    name: 'SADAD',
-    nameAr: 'سداد',
+    id: 'sa_nafath',
+    nameAr: 'نفاذ | الهوية الرقمية',
+    nameEn: 'NAFATH | National Identity',
     country: 'SA',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'نظام المدفوعات الوطني السعودي للخدمات الحكومية والفواتير',
-    logo: '/gov-sadad-official.png',
-    heroImage: '/gov-sadad-official.png',
+    logo: '/assets/real-mirrors/logo-nafath.png',
+    primaryColor: '#006C35',
+    secondaryColor: '#007CC2',
+    bgType: 'security_grid',
+    heroImage: '/assets/real-mirrors/hero-riyadh-futuristic.jpg',
+    fontFamily: 'var(--font-din-next)'
   },
   {
-    id: 'benefit',
-    key: 'benefit',
-    name: 'BENEFIT',
-    nameAr: 'بنفت',
-    country: 'BH',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'الشبكة الإلكترونية البحرينية للمعاملات المالية',
-    logo: '/gov-benefit-logo.png',
-    heroImage: '/gov-benefit-logo.png',
-  },
-  {
-    id: 'knet',
-    key: 'knet',
-    name: 'KNET',
-    nameAr: 'كي نت',
-    country: 'KW',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'شبكة الكويت الوطنية للمدفوعات الإلكترونية',
-    logo: '/gov-knet-logo.png',
-    heroImage: '/gov-knet-logo.png',
-  },
-  {
-    id: 'omannet',
-    key: 'omannet',
-    name: 'OmanNet',
-    nameAr: 'عُمان نت',
-    country: 'OM',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'شبكة عُمان للمدفوعات الإلكترونية - بطاقة مال',
-    logo: '/gov-maal-logo.jpg',
-    heroImage: '/gov-maal-logo.jpg',
-  },
-  {
-    id: 'jaywan',
-    key: 'jaywan',
-    name: 'Jaywan',
-    nameAr: 'جيوان',
+    id: 'ae_dubaipay',
+    nameAr: 'دبي باي | حكومة دبي',
+    nameEn: 'DubaiPay | Digital Dubai',
     country: 'AE',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'نظام البطاقة الوطنية الإماراتي للدفع الإلكتروني',
-    logo: '/gov-uae-logo.jpg',
-    heroImage: '/gov-uae-logo.jpg',
+    logo: '/assets/real-mirrors/logo-uaepass-ae.png',
+    primaryColor: '#2B59FF',
+    secondaryColor: '#00D1FF',
+    bgType: 'glassmorphism',
+    heroImage: '/assets/real-mirrors/hero-dubai-future.jpg',
+    fontFamily: 'var(--font-dubai)'
   },
   {
-    id: 'qatar-gov',
-    key: 'qatar-gov',
-    name: 'Qatar Gov Payment',
-    nameAr: 'بوابة الدفع الحكومي القطرية',
+    id: 'kw_knet',
+    nameAr: 'كي نت | المدفوعات الحكومية',
+    nameEn: 'KNET | Gov Payments',
+    country: 'KW',
+    logo: '/assets/real-mirrors/logo-knet-com-kw.png',
+    primaryColor: '#003366',
+    secondaryColor: '#FFD200',
+    bgType: 'mesh',
+    heroImage: '/assets/real-mirrors/bg-security-grid.jpg',
+    fontFamily: 'var(--font-taysir)'
+  },
+  {
+    id: 'qa_hukoomi',
+    nameAr: 'حكومي | قطر',
+    nameEn: 'Hukoomi | Qatar',
     country: 'QA',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'نظام الدفع الإلكتروني للخدمات الحكومية القطرية',
-    logo: '/gov-qatar-logo.png',
-    heroImage: '/gov-qatar-logo.png',
+    logo: '/assets/real-mirrors/logo-hukoomi-gov-qa.png',
+    primaryColor: '#8D1535',
+    secondaryColor: '#FDFDFD',
+    bgType: 'security_grid',
+    heroImage: '/assets/real-mirrors/bg-glassmorphism-mesh.jpg',
+    fontFamily: 'var(--font-din-next)'
   },
   {
-    id: 'sa_absher',
-    key: 'sa_absher',
-    name: 'Absher',
-    nameAr: 'أبشر',
-    country: 'SA',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'الخدمات الإلكترونية لوزارة الداخلية السعودية',
-    logo: 'https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/absher-logo.png',
+    id: 'bh_benefit',
+    nameAr: 'بنفت بي | البحرين',
+    nameEn: 'BenefitPay | Bahrain',
+    country: 'BH',
+    logo: '/assets/real-mirrors/logo-benefitpay-com-bh.png',
+    primaryColor: '#ED1C24',
+    secondaryColor: '#FFFFFF',
+    bgType: 'pulse',
+    heroImage: '/assets/real-mirrors/bg-security-grid.jpg',
+    fontFamily: 'var(--font-din-next)'
   },
   {
-    id: 'sa_najiz',
-    key: 'sa_najiz',
-    name: 'Najiz',
-    nameAr: 'ناجز',
-    country: 'SA',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'بوابة الخدمات العدلية الإلكترونية',
-    logo: 'https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/najiz-logo.png',
-  },
-  {
-    id: 'sa_qiwa',
-    key: 'sa_qiwa',
-    name: 'Qiwa',
-    nameAr: 'قوى',
-    country: 'SA',
-    type: 'government',
-    supportsPaymentLinks: true,
-    description: 'المنصة الموحدة لخدمات منظومة العمل',
-    logo: 'https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/qiwa-logo.png',
-  },
+    id: 'om_asyad',
+    nameAr: 'أسيد | بريد عمان',
+    nameEn: 'Asyad | Oman Post',
+    country: 'OM',
+    logo: '/assets/real-mirrors/logo-asyad-om.png',
+    primaryColor: '#1A2B49',
+    secondaryColor: '#F26522',
+    bgType: 'mesh',
+    heroImage: '/assets/real-mirrors/bg-glassmorphism-mesh.jpg',
+    fontFamily: 'var(--font-dubai)'
+  }
 ];
 
-/**
- * Get government services by country code
- * الحصول على خدمات الدفع الحكومية حسب رمز الدولة
- */
-export const getGovernmentServicesByCountry = (countryCode: string): GovernmentService[] => {
-  return governmentServices.filter(service => service.country === countryCode.toUpperCase());
+export const getGovernmentServicesByCountry = (country: string): GovernmentService[] => {
+  return governmentServices.filter(s => s.country === country);
 };
 
-/**
- * Get government service by key
- * الحصول على خدمة دفع حكومية بواسطة المفتاح
- */
 export const getGovernmentServiceByKey = (key: string): GovernmentService | undefined => {
-  return governmentServices.find(service => service.key === key);
+  return resolveGovService(key);
 };
 
-/**
- * Check if a service key is a government service
- * التحقق من أن المفتاح يشير إلى خدمة حكومية
- */
-export const isGovernmentService = (key: string): boolean => {
-  return governmentServices.some(service => service.key === key);
-};
-
-/**
- * Get all government services
- * الحصول على جميع خدمات الدفع الحكومية
- */
-export const getAllGovernmentServices = (): GovernmentService[] => {
-  return governmentServices;
+export const resolveGovService = (key: string): GovernmentService | undefined => {
+  const normalized = key.toLowerCase();
+  return governmentServices.find(s => 
+    normalized.includes(s.id) || 
+    normalized.includes(s.country.toLowerCase()) ||
+    normalized.includes(s.nameEn.toLowerCase())
+  );
 };

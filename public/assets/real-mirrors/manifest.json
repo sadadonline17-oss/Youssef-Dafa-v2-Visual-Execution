@@ -1,0 +1,136 @@
+{
+  "react_icons": [
+    { "brand": "Visa", "export_name": "SiVisa", "usage": "payment_icon", "reason": "Standard high-quality payment mark" },
+    { "brand": "Mastercard", "export_name": "SiMastercard", "usage": "payment_icon", "reason": "Standard high-quality payment mark" },
+    { "brand": "Apple Pay", "export_name": "SiApplepay", "usage": "payment_icon", "reason": "Standard high-quality digital wallet mark" },
+    { "brand": "STC Pay", "export_name": "SiStcpay", "usage": "payment_icon", "reason": "Verified regional digital wallet" }
+  ],
+  "downloaded_assets": [
+    {
+      "id": "hero-riyadh-futuristic",
+      "kind": "photo",
+      "filename": "hero-riyadh-futuristic.jpg",
+      "title": "Futuristic Riyadh 2026",
+      "description": "Dazzling night view of Riyadh's futuristic architectural landscape.",
+      "visual_description": "Wide cinematic shot of modern skyscrapers at night with glowing blue and violet lights, featuring high-tech glass facades and sleek structural designs.",
+      "color_notes": "Dominant: deep blue (#0F2634), vibrant purple (#4A4146), and cool white highlights.",
+      "mood": "futuristic, premium, secure",
+      "placement": "hero",
+      "recommended": true,
+      "dimensions": "1200x600",
+      "source_page_url": "https://www.pexels.com/photo/35579528/",
+      "provider": "Pexels",
+      "photographer": "Kenny Foo",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Perfectly represents the '2026 GCC' vision with futuristic architecture and high-tech lighting."
+    },
+    {
+      "id": "hero-dubai-future",
+      "kind": "photo",
+      "filename": "hero-dubai-future.jpg",
+      "title": "Dubai Museum of the Future",
+      "description": "Iconic futuristic landmark in Dubai for 2026 government portals.",
+      "visual_description": "Daytime shot of the Museum of the Future, showcasing its unique calligraphic facade and silver metallic structure against a bright blue sky.",
+      "color_notes": "Dominant: silver metallic (#ACBEC8) and sky blue (#7E87A4).",
+      "mood": "innovative, official, bold",
+      "placement": "hero",
+      "recommended": false,
+      "dimensions": "1200x600",
+      "source_page_url": "https://www.pexels.com/photo/32690046/",
+      "provider": "Pexels",
+      "photographer": "MAMADO CONF",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Globally recognized symbol of GCC innovation, ideal for a modern government portal."
+    },
+    {
+      "id": "bg-security-grid",
+      "kind": "photo",
+      "filename": "bg-security-grid.jpg",
+      "title": "Digital Security Grid",
+      "description": "High-tech matrix background for secure payment surfaces.",
+      "visual_description": "A dense grid of glowing blue digital code and geometric patterns on a dark background.",
+      "color_notes": "Dominant: deep tech blue (#0F81B3) on black.",
+      "mood": "secure, technical, official",
+      "placement": "background",
+      "recommended": true,
+      "dimensions": "1920x1080",
+      "source_page_url": "https://www.pexels.com/photo/33158875/",
+      "provider": "Pexels",
+      "photographer": "The Six",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Provides the 'Security Grid' requested for KSA/UAE portals, creating a sense of trust."
+    },
+    {
+      "id": "bg-glassmorphism-mesh",
+      "kind": "photo",
+      "filename": "bg-glassmorphism-mesh.jpg",
+      "title": "Glassmorphism Soft Mesh",
+      "description": "Soft mesh gradient background for modern card UI overlays.",
+      "visual_description": "Dreamy blend of soft blue and white lights in a smooth, blurred mesh gradient.",
+      "color_notes": "Dominant: pale blue (#D9E8FF) and white.",
+      "mood": "clean, modern, ethereal",
+      "placement": "background",
+      "recommended": true,
+      "dimensions": "1920x1080",
+      "source_page_url": "https://www.pexels.com/photo/7130505/",
+      "provider": "Pexels",
+      "photographer": "Gradienta",
+      "verified_via": "read_image",
+      "why_it_was_chosen": "Perfect base for glassmorphism UI components and high-res textures."
+    },
+    {
+      "id": "logo-nafath",
+      "kind": "downloaded_logo",
+      "filename": "logo-nafath.png",
+      "title": "NAFATH New Logo",
+      "description": "Official Saudi National Digital Identity logo.",
+      "placement": "auth_header",
+      "recommended": true,
+      "provider": "Google Favicon / Official Domain",
+      "verified_via": "file_size_check_only",
+      "why_it_was_chosen": "Official mark for KSA NAFATH services."
+    },
+    {
+      "id": "logo-stcpay",
+      "kind": "downloaded_logo",
+      "filename": "logo-stcpay-com-sa.png",
+      "title": "STC Pay Official",
+      "description": "Official branding for the STC Pay digital wallet.",
+      "placement": "payment_chip",
+      "recommended": true,
+      "provider": "get_logos",
+      "verified_via": "file_size_check_only",
+      "why_it_was_chosen": "Verified official logo via brand domain."
+    },
+    {
+      "id": "flag-sa",
+      "kind": "downloaded_logo",
+      "filename": "flag-sa.svg",
+      "title": "Saudi Arabia Flag",
+      "description": "Official SVG flag for KSA.",
+      "placement": "country_selector",
+      "recommended": true,
+      "dimensions": "intrinsic",
+      "provider": "FlagCDN",
+      "verified_via": "official_source_plus_svg_header"
+    }
+  ],
+  "css_textures": [
+    {
+      "class_name": "bg-dot-grid",
+      "placement": "portal_background",
+      "description": "Subtle dot grid for a technical/government feel."
+    },
+    {
+      "class_name": "bg-mesh",
+      "placement": "hero_overlay",
+      "description": "Soft mesh radial gradients to layer over cityscape heroes."
+    }
+  ],
+  "usage_notes": [
+    "Place 'hero-riyadh-futuristic.jpg' as the main landing hero for KSA-specific flows.",
+    "Use 'bg-security-grid.jpg' as a fixed background with low opacity (0.1-0.2) to simulate an encrypted portal.",
+    "The flags in 'real-mirrors/' should be used for the country selection dropdowns to ensure official 2026 accuracy.",
+    "Logos downloaded via 'get_logos' (knet, benefit, stcpay) are the highest quality official versions available."
+  ]
+}
