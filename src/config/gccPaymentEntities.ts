@@ -323,7 +323,7 @@ const baseEntities: Partial<Record<EntityId, PaymentEntityConfig>> = {
     id: 'DHL',
     name: 'DHL Express',
     nameAr: 'دي اتش ال إكسبريس',
-    primary: '#D40511',
+    primary: '#FFCC00',
     accent: '#FFCC00',
     bg: '#FFFFFF',
     surface: '#FFCC00',
