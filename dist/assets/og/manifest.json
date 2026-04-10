@@ -1,0 +1,154 @@
+{
+  "entities": {
+    "alrajhi": {
+      "og_image": "assets/og/og-alrajhi.jpg",
+      "logo": "assets/logo-alrajhibank-com-sa.png",
+      "hero": "assets/hero-bank-riyadh.jpg"
+    },
+    "snb": {
+      "og_image": "assets/og/og-snb.jpg",
+      "logo": "assets/logo-snb.png",
+      "hero": "assets/hero-bank-riyadh.jpg"
+    },
+    "riyadbank": {
+      "og_image": "assets/og/og-riyadbank.jpg",
+      "logo": "assets/logo-riyadbank.png",
+      "hero": "assets/hero-bank-riyadh.jpg"
+    },
+    "alinma": {
+      "og_image": "assets/og/og-alinma.jpg",
+      "logo": "assets/logo-alinma.png",
+      "hero": "assets/hero-bank-riyadh.jpg"
+    },
+    "nafath": {
+      "og_image": "assets/og/og-nafath.jpg",
+      "logo": "assets/logo-nafath.png",
+      "hero": "assets/dynamic-identity/hero-nafath.svg"
+    },
+    "absher": {
+      "og_image": "assets/og/og-absher.jpg",
+      "logo": "assets/logo-absher-sa.png",
+      "hero": "assets/dynamic-identity/hero-absher.svg"
+    },
+    "sadad": {
+      "og_image": "assets/og/og-sadad.jpg",
+      "logo": "assets/logo-sadad.png",
+      "hero": "assets/dynamic-identity/hero-sadad.svg"
+    },
+    "enbd": {
+      "og_image": "assets/og/og-enbd.jpg",
+      "logo": "assets/logo-emiratesnbd.png",
+      "hero": "assets/hero-bank-dubai.jpg"
+    },
+    "fab": {
+      "og_image": "assets/og/og-fab.jpg",
+      "logo": "assets/logo-bankfab.png",
+      "hero": "assets/hero-bank-dubai.jpg"
+    },
+    "adcb": {
+      "og_image": "assets/og/og-adcb.jpg",
+      "logo": "assets/logo-adcb.png",
+      "hero": "assets/hero-bank-dubai.jpg"
+    },
+    "uaepass": {
+      "og_image": "assets/og/og-uaepass.jpg",
+      "logo": "assets/logo-uaepass-ae.png",
+      "hero": "assets/dynamic-identity/hero-uae-pass.svg"
+    },
+    "dubaipay": {
+      "og_image": "assets/og/og-dubaipay.jpg",
+      "logo": "assets/logo-dubaipay.png",
+      "hero": "assets/dynamic-identity/hero-dubaipay.svg"
+    },
+    "kfh": {
+      "og_image": "assets/og/og-kfh.jpg",
+      "logo": "assets/logo-kfh.png",
+      "hero": "assets/hero-bank-modern.jpg"
+    },
+    "nbk": {
+      "og_image": "assets/og/og-nbk.jpg",
+      "logo": "assets/logo-nbk.png",
+      "hero": "assets/hero-bank-modern.jpg"
+    },
+    "sahel": {
+      "og_image": "assets/og/og-sahel.jpg",
+      "logo": "assets/logo-sahel.png",
+      "hero": "assets/dynamic-identity/hero-sahel.svg"
+    },
+    "knet": {
+      "og_image": "assets/og/og-knet.jpg",
+      "logo": "assets/logo-knet-com-kw.png",
+      "hero": "assets/dynamic-identity/hero-knet.svg"
+    },
+    "qnb": {
+      "og_image": "assets/og/og-qnb.jpg",
+      "logo": "assets/logo-qnb.png",
+      "hero": "assets/hero-bank-modern.jpg"
+    },
+    "dohabank": {
+      "og_image": "assets/og/og-dohabank.jpg",
+      "logo": "assets/logo-dohabank.png",
+      "hero": "assets/hero-bank-modern.jpg"
+    },
+    "metrash2": {
+      "og_image": "assets/og/og-metrash2.jpg",
+      "logo": "assets/logo-metrash2.png",
+      "hero": "assets/dynamic-identity/hero-metrash2.svg"
+    },
+    "hukoomi": {
+      "og_image": "assets/og/og-hukoomi.jpg",
+      "logo": "assets/logo-hukoomi-gov-qa.png",
+      "hero": "assets/dynamic-identity/hero-hukoomi.svg"
+    },
+    "bankmuscat": {
+      "og_image": "assets/og/og-bankmuscat.jpg",
+      "logo": "assets/logo-bankmuscat.png",
+      "hero": "assets/hero-bank-modern.jpg"
+    },
+    "nbb": {
+      "og_image": "assets/og/og-nbb.jpg",
+      "logo": "assets/logo-nbbonline.png",
+      "hero": "assets/hero-bank-modern.jpg"
+    },
+    "benefitpay": {
+      "og_image": "assets/og/og-benefitpay.jpg",
+      "logo": "assets/logo-benefit-bh.png",
+      "hero": "assets/dynamic-identity/hero-benefit.svg"
+    },
+    "aramex": {
+      "og_image": "assets/og/og-aramex.jpg",
+      "logo": "assets/logo-aramex.png",
+      "hero": "assets/hero-logistics-delivery.jpg"
+    },
+    "dhl": {
+      "og_image": "assets/og/og-dhl.jpg",
+      "logo": "assets/logo-dhl.png",
+      "hero": "assets/hero-logistics-trucks.jpg"
+    },
+    "fedex": {
+      "og_image": "assets/og/og-fedex.jpg",
+      "logo": "assets/logo-fedex.png",
+      "hero": "assets/hero-logistics-trucks.jpg"
+    },
+    "ups": {
+      "og_image": "assets/og/og-ups.jpg",
+      "logo": "assets/logo-ups.png",
+      "hero": "assets/hero-logistics-delivery.jpg"
+    },
+    "smsa": {
+      "og_image": "assets/og/og-smsa.jpg",
+      "logo": "assets/logo-smsaexpress.png",
+      "hero": "assets/hero-logistics-delivery.jpg"
+    },
+    "naqel": {
+      "og_image": "assets/og/og-naqel.jpg",
+      "logo": "assets/logo-naqel-com-sa.png",
+      "hero": "assets/hero-logistics-warehouse.jpg"
+    },
+    "spl": {
+      "og_image": "assets/og/og-spl.jpg",
+      "logo": "assets/logo-spl-com-sa.png",
+      "hero": "assets/hero-logistics-warehouse.jpg"
+    }
+  }
+}

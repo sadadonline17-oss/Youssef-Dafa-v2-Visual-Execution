@@ -91,7 +91,7 @@ export const ARAMEX_SPEC: EntityVisualSpec = {
   category: 'shipping',
   countryCode: 'AE',
   colors: {
-    primary: '#DC291E',
+    primary: '#D71920',
     secondary: '#FFFFFF',
     accent: '#333333',
     background: '#F8F8F8',
@@ -157,7 +157,7 @@ export const DHL_SPEC: EntityVisualSpec = {
   category: 'shipping',
   countryCode: 'DE',
   colors: {
-    primary: '#D40511',
+    primary: '#FFCC00',
     secondary: '#FFCC00',
     accent: '#000000',
     background: '#FFFFFF',
