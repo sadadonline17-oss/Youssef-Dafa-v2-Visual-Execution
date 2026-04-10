@@ -20,6 +20,17 @@ export type EntityId =
   | 'DHL' 
   | 'SMSA' 
   | 'FEDEX'
+  | 'SA_NAFATH'
+  | 'AE_UAE_PASS'
+  | 'KW_SAHEL'
+  | 'SA_SADAD'
+  | 'KW_KNET'
+  | 'BH_BENEFIT_PAY'
+  | 'AE_DIRHAM_DUBAI_PAY'
+  | 'ARAMEX_GLOBAL'
+  | 'DHL_EXPRESS'
+  | 'SA_SPL'
+  | 'SA_SMSA'
   | 'DEFAULT';
 
 export interface PaymentEntityConfig {
@@ -52,7 +63,7 @@ export interface PaymentEntityConfig {
   showShipment?: boolean;
 }
 
-export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
+const baseEntities: Partial<Record<EntityId, PaymentEntityConfig>> = {
   SADAD: {
     id: 'SADAD',
     name: 'SADAD',
@@ -519,9 +530,23 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
   },
 };
 
+export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
+  ...(baseEntities as Record<EntityId, PaymentEntityConfig>),
+  SA_NAFATH: baseEntities.NAFATH!,
+  AE_UAE_PASS: baseEntities.UAE_PASS!,
+  KW_SAHEL: baseEntities.SAHEL!,
+  SA_SADAD: baseEntities.SADAD!,
+  KW_KNET: baseEntities.KNET!,
+  BH_BENEFIT_PAY: baseEntities.BENEFIT!,
+  AE_DIRHAM_DUBAI_PAY: baseEntities.DUBAI_PAY!,
+  ARAMEX_GLOBAL: baseEntities.ARAMEX!,
+  DHL_EXPRESS: baseEntities.DHL!,
+  SA_SPL: baseEntities.SPL!,
+  SA_SMSA: baseEntities.SMSA!,
+};
+
 /**
  * Convert a ChameleonTheme to PaymentEntityConfig for use with ThemedButton/Card/Header
- * This bridges the Chameleon V50 visual system with existing themed components
  */
 const chameleonToEntityConfig = (theme: ChameleonTheme): PaymentEntityConfig => ({
   id: theme.entityKey.toUpperCase().replace(/[^A-Z0-9_]/g, '') as EntityId,
@@ -548,39 +573,37 @@ const chameleonToEntityConfig = (theme: ChameleonTheme): PaymentEntityConfig => 
 });
 
 export const resolveEntity = (companyKey?: string): PaymentEntityConfig => {
-  // If no key, default
   if (!companyKey) return paymentEntities.DEFAULT;
 
-  // Normalize key
   const key = companyKey.toLowerCase().replace(/[^a-z0-9_]/g, '');
 
-  // 1. Direct match in logic config (PaymentEntityConfig)
+  // 1. Direct match in logic config
   if (paymentEntities[key.toUpperCase() as EntityId]) {
     return paymentEntities[key.toUpperCase() as EntityId];
   }
 
-  // 2. Chameleon V50: Try official GCC theme lookup
+  // 2. Chameleon V50
   const chameleonTheme = gccChameleonThemes[key];
   if (chameleonTheme) {
     return chameleonToEntityConfig(chameleonTheme);
   }
 
-  // 3. Logic-based partial matching
-  if (key.includes('sadad')) return paymentEntities.SADAD;
-  if (key.includes('nafath') || key.includes('iam')) return paymentEntities.NAFATH;
-  if (key.includes('knet')) return paymentEntities.KNET;
-  if (key.includes('aramex')) return paymentEntities.ARAMEX;
-  if (key.includes('spl') || key.includes('post')) return paymentEntities.SPL;
-  if (key.includes('sahel')) return paymentEntities.SAHEL;
-  if (key.includes('dubai')) return paymentEntities.DUBAI_PAY;
+  // 3. Logic-based partial matching & Aliases
+  if (key.includes('sadad') || key.includes('sa_sadad')) return paymentEntities.SADAD;
+  if (key.includes('nafath') || key.includes('iam') || key.includes('sa_nafath')) return paymentEntities.NAFATH;
+  if (key.includes('knet') || key.includes('kw_knet')) return paymentEntities.KNET;
+  if (key.includes('aramex') || key.includes('aramex_global')) return paymentEntities.ARAMEX;
+  if (key.includes('spl') || key.includes('post') || key.includes('sa_spl')) return paymentEntities.SPL;
+  if (key.includes('sahel') || key.includes('kw_sahel')) return paymentEntities.SAHEL;
+  if (key.includes('dubai') || key.includes('ae_dirham')) return paymentEntities.DUBAI_PAY;
   if (key.includes('stc')) return paymentEntities.STC_PAY;
   if (key.includes('mada')) return paymentEntities.MADA;
   if (key.includes('alrajhi')) return paymentEntities.ALRAJHI;
   if (key.includes('alahli') || key.includes('snb')) return paymentEntities.SNB;
-  if (key.includes('dhl')) return paymentEntities.DHL;
-  if (key.includes('smsa')) return paymentEntities.SMSA;
+  if (key.includes('dhl') || key.includes('dhl_express')) return paymentEntities.DHL;
+  if (key.includes('smsa') || key.includes('sa_smsa')) return paymentEntities.SMSA;
   if (key.includes('fedex')) return paymentEntities.FEDEX;
-  if (key.includes('uae') || key.includes('gov_ae')) return paymentEntities.UAE_PASS;
+  if (key.includes('uae') || key.includes('gov_ae') || key.includes('uae_pass')) return paymentEntities.UAE_PASS;
   if (key.includes('benefit') || key.includes('gov_bh')) return paymentEntities.BENEFIT;
   if (key.includes('maal') || key.includes('gov_om')) return paymentEntities.MAAL;
   if (key.includes('jaywan') || key.includes('dirham')) return paymentEntities.JAYWAN;

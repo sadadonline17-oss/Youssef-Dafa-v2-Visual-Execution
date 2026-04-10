@@ -1,7 +1,6 @@
 /**
  * GCC Chameleon Theme System — 1:1 Pixel-Perfect Identity Sync
- * V400 REPAIR: official hex codes and border-radii for Aramex/DHL restored.
- * Commit Lock: 892197b — Logic FROZEN. Visuals only.
+ * V600 PRESENCE: Expanded registry for all mandated GCC services.
  */
 
 export interface ChameleonTheme {
@@ -92,16 +91,21 @@ export interface ChameleonTheme {
     ogImage: string;
   };
 
-  /** CSS class to inject on <body> for entity-specific overrides */
   bodyClass: string;
-
-  /** Global payment icons to hide for this entity */
   hideGlobalIcons: string[];
 }
 
-// ──────────────────────────────────────────────
-// SAUDI ARABIA — Government & Billing
-// ──────────────────────────────────────────────
+// --- SHARED DEFAULTS ---
+const sharedTypography = {
+  primary: "'DIN Next Arabic', system-ui, sans-serif",
+  secondary: "system-ui, sans-serif",
+  arabic: "'DIN Next Arabic', sans-serif",
+  numeric: "'DIN Next', monospace",
+  sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
+  weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
+};
+
+// --- CORE THEMES ---
 
 export const sadadSA: ChameleonTheme = {
   id: 'sadad_sa',
@@ -128,49 +132,20 @@ export const sadadSA: ChameleonTheme = {
     warning: '#FF8A33',
   },
   shadows: {
-    card: '0 1px 3px rgba(255, 107, 0, 0.08), 0 1px 2px rgba(255, 107, 0, 0.06)',
-    cardElevated: '0 10px 25px -3px rgba(255, 107, 0, 0.15), 0 4px 6px -2px rgba(255, 107, 0, 0.08)',
+    card: '0 1px 3px rgba(255, 107, 0, 0.08)',
+    cardElevated: '0 10px 25px -3px rgba(255, 107, 0, 0.15)',
     button: '0 4px 15px -2px rgba(255, 107, 0, 0.30)',
     buttonHover: '0 6px 20px -2px rgba(255, 107, 0, 0.40)',
     input: '0 1px 2px rgba(255, 107, 0, 0.06)',
     header: '0 2px 8px rgba(255, 107, 0, 0.08)',
     modal: '0 25px 50px -12px rgba(255, 107, 0, 0.25)',
   },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '12px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic Medium', 'DIN Next Arabic', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', 'DIN Next Arabic', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '16px 20px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '56px',
-    headerHeight: '72px',
-  },
-  assets: {
-    logo: '/assets/real-mirrors/logo-sadad-olp.png',
-    logoSvg: '/assets/mirrors/gov/sadad-logo.svg',
-    hero: '/src/assets/gov-hero-sadad.svg',
-    coatOfArms: '/assets/real-mirrors/coa-saudi.svg',
-    ogImage: '/og-sadad.jpg',
-  },
+  borderRadius: { xs: '4px', sm: '6px', md: '8px', lg: '12px', xl: '16px', full: '9999px', button: '12px', card: '12px', input: '8px' },
+  typography: sharedTypography,
+  spacing: { fieldPadding: '16px 20px', cardPadding: '24px', sectionGap: '20px', buttonHeight: '56px', headerHeight: '72px' },
+  assets: { logo: '/assets/real-mirrors/logo-sadad-olp.png', ogImage: '/og-sadad.jpg' },
   bodyClass: 'entity-sadad-sa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
+  hideGlobalIcons: ['apple-pay'],
 };
 
 export const nafathSA: ChameleonTheme = {
@@ -198,54 +173,21 @@ export const nafathSA: ChameleonTheme = {
     warning: '#F59E0B',
   },
   shadows: {
-    card: '0 1px 3px rgba(0, 108, 53, 0.08), 0 1px 2px rgba(0, 108, 53, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 108, 53, 0.12), 0 4px 6px -2px rgba(0, 108, 53, 0.06)',
+    card: '0 1px 3px rgba(0, 108, 53, 0.08)',
+    cardElevated: '0 10px 25px -3px rgba(0, 108, 53, 0.12)',
     button: '0 3px 12px -2px rgba(0, 108, 53, 0.25)',
     buttonHover: '0 6px 16px -2px rgba(0, 108, 53, 0.35)',
     input: '0 1px 2px rgba(0, 108, 53, 0.04)',
     header: '0 2px 8px rgba(0, 108, 53, 0.06)',
     modal: '0 25px 50px -12px rgba(0, 108, 53, 0.20)',
   },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '8px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'Taysir Arabic', 'Taysir', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'Taysir Arabic', 'Tajawal', sans-serif",
-    numeric: "'Taysir', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '68px',
-  },
-  assets: {
-    logo: '/assets/real-mirrors/logo-nafath-alt.png',
-    logoSvg: '/assets/mirrors/gov/nafath-logo.svg',
-    hero: '/assets/real-mirrors/hero-riyadh-futuristic.jpg',
-    coatOfArms: '/assets/real-mirrors/coa-saudi.svg',
-    ogImage: '/og-nafath.jpg',
-  },
+  borderRadius: { xs: '4px', sm: '6px', md: '8px', lg: '12px', xl: '16px', full: '9999px', button: '8px', card: '12px', input: '8px' },
+  typography: { ...sharedTypography, primary: "'Taysir Arabic', 'Taysir', sans-serif" },
+  spacing: { fieldPadding: '14px 16px', cardPadding: '24px', sectionGap: '20px', buttonHeight: '52px', headerHeight: '68px' },
+  assets: { logo: '/assets/real-mirrors/logo-nafath-alt.png', ogImage: '/og-nafath.jpg' },
   bodyClass: 'entity-nafath-sa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
+  hideGlobalIcons: ['apple-pay'],
 };
-
-// ──────────────────────────────────────────────
-// UAE — Government & Billing
-// ──────────────────────────────────────────────
 
 export const uaePassAE: ChameleonTheme = {
   id: 'uae_pass_ae',
@@ -272,54 +214,103 @@ export const uaePassAE: ChameleonTheme = {
     warning: '#F59E0B',
   },
   shadows: {
-    card: '0 1px 3px rgba(26, 26, 26, 0.06), 0 1px 2px rgba(26, 26, 26, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(26, 26, 26, 0.10), 0 4px 6px -2px rgba(26, 26, 26, 0.04)',
+    card: '0 1px 3px rgba(26, 26, 26, 0.06)',
+    cardElevated: '0 10px 25px -3px rgba(26, 26, 26, 0.10)',
     button: '0 4px 18px -2px rgba(193, 155, 100, 0.22)',
     buttonHover: '0 6px 22px -2px rgba(193, 155, 100, 0.32)',
     input: '0 1px 2px rgba(26, 26, 26, 0.04)',
     header: '0 2px 8px rgba(26, 26, 26, 0.06)',
     modal: '0 25px 50px -12px rgba(26, 26, 26, 0.18)',
   },
-  borderRadius: {
-    xs: '4px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    full: '9999px',
-    button: '20px',
-    card: '16px',
-    input: '12px',
-  },
-  typography: {
-    primary: "'Dubai Font', 'Dubai Regular', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'Dubai Font', 'Tajawal', sans-serif",
-    numeric: "'Dubai Font', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '16px 18px',
-    cardPadding: '28px',
-    sectionGap: '24px',
-    buttonHeight: '56px',
-    headerHeight: '72px',
-  },
-  assets: {
-    logo: '/assets/real-mirrors/logo-uaepass-ae.png',
-    logoSvg: '/assets/mirrors/gov/uae-pass-logo.svg',
-    hero: '/assets/real-mirrors/hero-dubai-future.jpg',
-    coatOfArms: '/assets/sovereign-mirrors/coa-uae.svg',
-    ogImage: '/og-uae-pass.jpg',
-  },
+  borderRadius: { xs: '4px', sm: '8px', md: '12px', lg: '16px', xl: '20px', full: '9999px', button: '20px', card: '16px', input: '12px' },
+  typography: { ...sharedTypography, primary: "'Dubai Font', sans-serif" },
+  spacing: { fieldPadding: '16px 18px', cardPadding: '28px', sectionGap: '24px', buttonHeight: '56px', headerHeight: '72px' },
+  assets: { logo: '/assets/real-mirrors/logo-uaepass-ae.png', ogImage: '/og-uae-pass.jpg' },
   bodyClass: 'entity-uae-pass-ae',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
+  hideGlobalIcons: ['apple-pay'],
 };
 
-// ──────────────────────────────────────────────
-// SHIPPING LOGISTICS — 1:1 CLONE V400
-// ──────────────────────────────────────────────
+export const knetKW: ChameleonTheme = {
+  id: 'knet_kw',
+  entityKey: 'knet',
+  nameEn: 'KNET',
+  nameAr: 'كي نت',
+  country: 'KW',
+  category: 'bank',
+  colors: {
+    primary: '#005696',
+    secondary: '#0078C2',
+    accent: '#FFFFFF',
+    background: '#F5F7FA',
+    surface: '#FFFFFF',
+    surfaceAlt: '#EDF2F7',
+    text: '#1C2526',
+    textMuted: '#4A4A4A',
+    textOnPrimary: '#FFFFFF',
+    border: '#D1D5DB',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(0, 86, 150, 0.20)',
+    success: '#005696',
+    error: '#DC2626',
+    warning: '#F59E0B',
+  },
+  shadows: {
+    card: '0 1px 3px rgba(0, 86, 150, 0.08)',
+    cardElevated: '0 10px 25px -3px rgba(0, 86, 150, 0.12)',
+    button: '0 4px 14px -2px rgba(0, 86, 150, 0.25)',
+    buttonHover: '0 6px 18px -2px rgba(0, 86, 150, 0.35)',
+    input: '0 1px 2px rgba(0, 86, 150, 0.04)',
+    header: '0 2px 8px rgba(0, 86, 150, 0.06)',
+    modal: '0 25px 50px -12px rgba(0, 86, 150, 0.20)',
+  },
+  borderRadius: { xs: '2px', sm: '4px', md: '6px', lg: '8px', xl: '10px', full: '9999px', button: '6px', card: '10px', input: '8px' },
+  typography: sharedTypography,
+  spacing: { fieldPadding: '16px 20px', cardPadding: '24px', sectionGap: '16px', buttonHeight: '54px', headerHeight: '70px' },
+  assets: { logo: '/assets/real-mirrors/logo-knet-com-kw.png', ogImage: '/og-knet.jpg' },
+  bodyClass: 'entity-knet-kw',
+  hideGlobalIcons: [],
+};
+
+export const sahelKW: ChameleonTheme = {
+  id: 'sahel_kw',
+  entityKey: 'sahel',
+  nameEn: 'Sahel',
+  nameAr: 'سهل',
+  country: 'KW',
+  category: 'government',
+  colors: {
+    primary: '#0057B8',
+    secondary: '#00A3E0',
+    accent: '#FFFFFF',
+    background: '#F5FAF8',
+    surface: '#FFFFFF',
+    surfaceAlt: '#EBF4F1',
+    text: '#0057B8',
+    textMuted: '#4A5568',
+    textOnPrimary: '#FFFFFF',
+    border: '#D1D5DB',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(0, 87, 184, 0.20)',
+    success: '#0057B8',
+    error: '#DC2626',
+    warning: '#F59E0B',
+  },
+  shadows: {
+    card: '0 1px 3px rgba(0, 87, 184, 0.08)',
+    cardElevated: '0 10px 25px -3px rgba(0, 87, 184, 0.12)',
+    button: '0 4px 14px -2px rgba(0, 87, 184, 0.25)',
+    buttonHover: '0 6px 18px -2px rgba(0, 87, 184, 0.35)',
+    input: '0 1px 2px rgba(0, 87, 184, 0.04)',
+    header: '0 2px 8px rgba(0, 87, 184, 0.06)',
+    modal: '0 25px 50px -12px rgba(0, 87, 184, 0.20)',
+  },
+  borderRadius: { xs: '4px', sm: '6px', md: '8px', lg: '10px', xl: '12px', full: '9999px', button: '10px', card: '12px', input: '8px' },
+  typography: sharedTypography,
+  spacing: { fieldPadding: '14px 16px', cardPadding: '20px', sectionGap: '16px', buttonHeight: '54px', headerHeight: '64px' },
+  assets: { logo: '/assets/sovereign-mirrors/logo-sahel.png', ogImage: '/og-sahel.jpg' },
+  bodyClass: 'entity-sahel-kw',
+  hideGlobalIcons: [],
+};
 
 export const aramexTheme: ChameleonTheme = {
   id: 'aramex_shipping',
@@ -329,7 +320,7 @@ export const aramexTheme: ChameleonTheme = {
   country: 'Global',
   category: 'shipping',
   colors: {
-    primary: '#ED1C24', // V400 REPAIR: Official Alizarin Red
+    primary: '#ED1C24',
     secondary: '#1C2526',
     accent: '#FFFFFF',
     background: '#FFFFFF',
@@ -354,36 +345,10 @@ export const aramexTheme: ChameleonTheme = {
     header: '0 1px 3px rgba(0,0,0,0.05)',
     modal: '0 20px 25px -5px rgba(0,0,0,0.1)',
   },
-  borderRadius: {
-    xs: '2px',
-    sm: '4px',
-    md: '8px', // V400 REPAIR: Aramex 8px radius
-    lg: '10px',
-    xl: '12px',
-    full: '9999px',
-    button: '8px',
-    card: '8px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', system-ui, sans-serif",
-    secondary: "system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '20px',
-    sectionGap: '16px',
-    buttonHeight: '54px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/assets/real-mirrors/logo-aramex.png',
-    ogImage: '/og-aramex.jpg',
-  },
+  borderRadius: { xs: '2px', sm: '4px', md: '8px', lg: '10px', xl: '12px', full: '9999px', button: '8px', card: '8px', input: '8px' },
+  typography: sharedTypography,
+  spacing: { fieldPadding: '14px 16px', cardPadding: '20px', sectionGap: '16px', buttonHeight: '54px', headerHeight: '64px' },
+  assets: { logo: '/assets/real-mirrors/logo-aramex.png', ogImage: '/og-aramex.jpg' },
   bodyClass: 'entity-aramex',
   hideGlobalIcons: [],
 };
@@ -396,11 +361,11 @@ export const dhlTheme: ChameleonTheme = {
   country: 'Global',
   category: 'shipping',
   colors: {
-    primary: '#D40511', // DHL Red
-    secondary: '#FFCC00', // DHL Yellow
+    primary: '#D40511',
+    secondary: '#FFCC00',
     accent: '#1C2526',
     background: '#FFFFFF',
-    surface: '#FFCC00', // V400 REPAIR: Yellow surface
+    surface: '#FFCC00',
     surfaceAlt: '#F5F5F5',
     text: '#1C2526',
     textMuted: '#1C2526',
@@ -421,50 +386,31 @@ export const dhlTheme: ChameleonTheme = {
     header: 'none',
     modal: '0 10px 15px -3px rgba(0,0,0,0.1)',
   },
-  borderRadius: {
-    xs: '0px',
-    sm: '0px',
-    md: '0px', // V400 REPAIR: DHL 0px sharp
-    lg: '0px',
-    xl: '0px',
-    full: '0px',
-    button: '0px',
-    card: '0px',
-    input: '0px',
-  },
-  typography: {
-    primary: "system-ui, 'Helvetica Neue', Arial, sans-serif",
-    secondary: "system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', sans-serif",
-    numeric: "system-ui, monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 900 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '16px',
-    sectionGap: '12px',
-    buttonHeight: '52px',
-    headerHeight: '60px',
-  },
-  assets: {
-    logo: '/assets/real-mirrors/logo-dhl.png',
-    ogImage: '/og-dhl.jpg',
-  },
+  borderRadius: { xs: '0px', sm: '0px', md: '0px', lg: '0px', xl: '0px', full: '0px', button: '0px', card: '0px', input: '0px' },
+  typography: sharedTypography,
+  spacing: { fieldPadding: '14px 16px', cardPadding: '16px', sectionGap: '12px', buttonHeight: '52px', headerHeight: '60px' },
+  assets: { logo: '/assets/real-mirrors/logo-dhl.png', ogImage: '/og-dhl.jpg' },
   bodyClass: 'entity-dhl',
   hideGlobalIcons: [],
 };
 
-// ──────────────────────────────────────────────
-// Registry & Helpers
-// ──────────────────────────────────────────────
+// --- REGISTRY ---
 
 export const gccChameleonThemes: Record<string, ChameleonTheme> = {
   sadad: sadadSA,
+  sa_sadad: sadadSA,
   nafath: nafathSA,
+  sa_nafath: nafathSA,
   uae_pass: uaePassAE,
+  ae_uae_pass: uaePassAE,
+  knet: knetKW,
+  kw_knet: knetKW,
+  sahel: sahelKW,
+  kw_sahel: sahelKW,
   aramex: aramexTheme,
+  aramex_global: aramexTheme,
   dhl: dhlTheme,
+  dhl_express: dhlTheme,
 };
 
 export const resolveChameleonTheme = (urlParams?: URLSearchParams): ChameleonTheme | null => {
@@ -478,9 +424,6 @@ export const resolveChameleonTheme = (urlParams?: URLSearchParams): ChameleonThe
   return null;
 };
 
-/**
- * Generate CSS custom properties string from a theme
- */
 export const themeToCSSVariables = (theme: ChameleonTheme): string => {
   return `
     --gcc-primary: ${theme.colors.primary};

