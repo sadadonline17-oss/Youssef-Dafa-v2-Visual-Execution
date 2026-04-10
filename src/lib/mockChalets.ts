@@ -14,7 +14,7 @@ export interface Chalet {
 /**
  * GCC_OMNI_FIX_V400: Real-World 2026 Data Hydration
  * Sources: Google Maps (Top Rated), official 2026 resort data.
- * ABSOLUTE_ZERO_LOGIC_MODIFICATION
+ * ABSOLUTE_ZERO_LOG_MODIFICATION
  */
 export const mockChalets: Chalet[] = [
   // SAUDI ARABIA (KSA)
@@ -24,7 +24,7 @@ export const mockChalets: Chalet[] = [
     nameEn: "Rixos Obhur Jeddah",
     locationAr: "أبحر الشمالية، جدة",
     locationEn: "North Obhur, Jeddah",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200", // Representative high-res resort
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200",
     price: "2,850",
     currency: "SAR",
     country: "SA",
@@ -79,6 +79,18 @@ export const mockChalets: Chalet[] = [
     country: "AE",
     rating: 4.9
   },
+  {
+    id: "uae-anantara-1",
+    nameAr: "أنانتارا نخلة جميرا",
+    nameEn: "Anantara The Palm Dubai Resort",
+    locationAr: "نخلة جميرا، دبي",
+    locationEn: "Palm Jumeirah, Dubai",
+    image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?q=80&w=1200",
+    price: "1,850",
+    currency: "AED",
+    country: "AE",
+    rating: 4.8
+  },
   // KUWAIT (KW)
   {
     id: "kw-waldorf-1",
@@ -92,6 +104,18 @@ export const mockChalets: Chalet[] = [
     country: "KW",
     rating: 4.8
   },
+  {
+    id: "kw-jumeirah-1",
+    nameAr: "جميرا شاطئ المسيلة",
+    nameEn: "Jumeirah Messilah Beach",
+    locationAr: "المسيلة، الكويت",
+    locationEn: "Messilah, Kuwait City",
+    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200",
+    price: "145",
+    currency: "KWD",
+    country: "KW",
+    rating: 4.7
+  },
   // QATAR (QA)
   {
     id: "qa-pearl-1",
@@ -104,6 +128,18 @@ export const mockChalets: Chalet[] = [
     currency: "QAR",
     country: "QA",
     rating: 4.9
+  },
+  {
+    id: "qa-sharq-1",
+    nameAr: "منتجع وسبا قرية الشرق",
+    nameEn: "Sharq Village & Spa",
+    locationAr: "شارع راس أبو عبود، الدوحة",
+    locationEn: "Ras Abu Abboud, Doha",
+    image: "https://images.unsplash.com/photo-1544124499-58912cbddaad?q=80&w=1200",
+    price: "1,650",
+    currency: "QAR",
+    country: "QA",
+    rating: 4.8
   },
   // BAHRAIN (BH)
   {

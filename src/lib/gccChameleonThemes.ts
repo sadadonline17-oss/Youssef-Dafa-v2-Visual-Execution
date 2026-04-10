@@ -145,7 +145,7 @@ export const sadadSA: ChameleonTheme = {
   spacing: { fieldPadding: '16px 20px', cardPadding: '24px', sectionGap: '20px', buttonHeight: '56px', headerHeight: '72px' },
   assets: { logo: '/assets/real-mirrors/logo-sadad-olp.png', ogImage: '/og-sadad.jpg' },
   bodyClass: 'entity-sadad-sa',
-  hideGlobalIcons: ['apple-pay'],
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 export const nafathSA: ChameleonTheme = {
@@ -182,11 +182,11 @@ export const nafathSA: ChameleonTheme = {
     modal: '0 25px 50px -12px rgba(0, 108, 53, 0.20)',
   },
   borderRadius: { xs: '4px', sm: '6px', md: '8px', lg: '12px', xl: '16px', full: '9999px', button: '8px', card: '12px', input: '8px' },
-  typography: { ...sharedTypography, primary: "'Taysir Arabic', 'Taysir', sans-serif" },
+  typography: { ...sharedTypography, primary: "'Taysir Arabic', 'Taysir', sans-serif", arabic: "'Taysir Arabic', sans-serif" },
   spacing: { fieldPadding: '14px 16px', cardPadding: '24px', sectionGap: '20px', buttonHeight: '52px', headerHeight: '68px' },
-  assets: { logo: '/assets/real-mirrors/logo-nafath-alt.png', ogImage: '/og-nafath.jpg' },
-  bodyClass: 'entity-nafath-sa',
-  hideGlobalIcons: ['apple-pay'],
+  assets: { logo: '/assets/real-mirrors/logo-nafath-alt.png', logoSvg: '/assets/sovereign-mirrors/logo-nafath.svg', ogImage: '/og-nafath.jpg' },
+  bodyClass: 'entity-nafath-sa theme-biometric-gate',
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 export const uaePassAE: ChameleonTheme = {
@@ -200,8 +200,8 @@ export const uaePassAE: ChameleonTheme = {
     primary: '#1A1A1A',
     secondary: '#C19B64',
     accent: '#FFFFFF',
-    background: '#FAF9F6',
-    surface: '#FFFFFF',
+    background: 'rgba(250, 249, 246, 0.8)',
+    surface: 'rgba(255, 255, 255, 0.7)',
     surfaceAlt: '#F5F3EF',
     text: '#1A1A1A',
     textMuted: '#555555',
@@ -214,7 +214,7 @@ export const uaePassAE: ChameleonTheme = {
     warning: '#F59E0B',
   },
   shadows: {
-    card: '0 1px 3px rgba(26, 26, 26, 0.06)',
+    card: '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
     cardElevated: '0 10px 25px -3px rgba(26, 26, 26, 0.10)',
     button: '0 4px 18px -2px rgba(193, 155, 100, 0.22)',
     buttonHover: '0 6px 22px -2px rgba(193, 155, 100, 0.32)',
@@ -223,11 +223,11 @@ export const uaePassAE: ChameleonTheme = {
     modal: '0 25px 50px -12px rgba(26, 26, 26, 0.18)',
   },
   borderRadius: { xs: '4px', sm: '8px', md: '12px', lg: '16px', xl: '20px', full: '9999px', button: '20px', card: '16px', input: '12px' },
-  typography: { ...sharedTypography, primary: "'Dubai Font', sans-serif" },
+  typography: { ...sharedTypography, primary: "'Dubai Font', sans-serif", arabic: "'Dubai Font', sans-serif" },
   spacing: { fieldPadding: '16px 18px', cardPadding: '28px', sectionGap: '24px', buttonHeight: '56px', headerHeight: '72px' },
-  assets: { logo: '/assets/real-mirrors/logo-uaepass-ae.png', ogImage: '/og-uae-pass.jpg' },
-  bodyClass: 'entity-uae-pass-ae',
-  hideGlobalIcons: ['apple-pay'],
+  assets: { logo: '/assets/real-mirrors/logo-uaepass-ae.png', logoSvg: '/assets/sovereign-mirrors/logo-uaepass.svg', ogImage: '/og-uae-pass.jpg' },
+  bodyClass: 'entity-uae-pass-ae glass-morphism',
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 export const knetKW: ChameleonTheme = {
@@ -268,7 +268,7 @@ export const knetKW: ChameleonTheme = {
   spacing: { fieldPadding: '16px 20px', cardPadding: '24px', sectionGap: '16px', buttonHeight: '54px', headerHeight: '70px' },
   assets: { logo: '/assets/real-mirrors/logo-knet-com-kw.png', ogImage: '/og-knet.jpg' },
   bodyClass: 'entity-knet-kw',
-  hideGlobalIcons: [],
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 export const sahelKW: ChameleonTheme = {
@@ -307,9 +307,9 @@ export const sahelKW: ChameleonTheme = {
   borderRadius: { xs: '4px', sm: '6px', md: '8px', lg: '10px', xl: '12px', full: '9999px', button: '10px', card: '12px', input: '8px' },
   typography: sharedTypography,
   spacing: { fieldPadding: '14px 16px', cardPadding: '20px', sectionGap: '16px', buttonHeight: '54px', headerHeight: '64px' },
-  assets: { logo: '/assets/sovereign-mirrors/logo-sahel.png', ogImage: '/og-sahel.jpg' },
+  assets: { logo: '/assets/sovereign-mirrors/logo-sahel.png', logoSvg: '/assets/sovereign-mirrors/logo-sahel.svg', ogImage: '/og-sahel.jpg' },
   bodyClass: 'entity-sahel-kw',
-  hideGlobalIcons: [],
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 export const aramexTheme: ChameleonTheme = {
@@ -350,7 +350,7 @@ export const aramexTheme: ChameleonTheme = {
   spacing: { fieldPadding: '14px 16px', cardPadding: '20px', sectionGap: '16px', buttonHeight: '54px', headerHeight: '64px' },
   assets: { logo: '/assets/real-mirrors/logo-aramex.png', ogImage: '/og-aramex.jpg' },
   bodyClass: 'entity-aramex',
-  hideGlobalIcons: [],
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 export const dhlTheme: ChameleonTheme = {
@@ -391,7 +391,7 @@ export const dhlTheme: ChameleonTheme = {
   spacing: { fieldPadding: '14px 16px', cardPadding: '16px', sectionGap: '12px', buttonHeight: '52px', headerHeight: '60px' },
   assets: { logo: '/assets/real-mirrors/logo-dhl.png', ogImage: '/og-dhl.jpg' },
   bodyClass: 'entity-dhl',
-  hideGlobalIcons: [],
+  hideGlobalIcons: ['apple-pay', 'google-pay'],
 };
 
 // --- REGISTRY ---

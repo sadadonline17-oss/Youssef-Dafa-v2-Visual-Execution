@@ -31,6 +31,7 @@ export type EntityId =
   | 'DHL_EXPRESS'
   | 'SA_SPL'
   | 'SA_SMSA'
+  | 'UAE_DIRHAM'
   | 'DEFAULT';
 
 export interface PaymentEntityConfig {
@@ -137,7 +138,7 @@ const baseEntities: Partial<Record<EntityId, PaymentEntityConfig>> = {
     id: 'ARAMEX',
     name: 'Aramex',
     nameAr: 'أرامكس',
-    primary: '#E31837',
+    primary: '#ED1C24',
     accent: '#1C2526',
     bg: '#FFFFFF',
     surface: '#FAFAFA',
@@ -145,13 +146,13 @@ const baseEntities: Partial<Record<EntityId, PaymentEntityConfig>> = {
     textMuted: '#555555',
     font: "system-ui, sans-serif",
     logo: '/assets/real-mirrors/logo-aramex.png',
-    btnRadius: '10px',
+    btnRadius: '8px',
     btnHeight: '56px',
-    btnShadow: '0 4px 16px -2px rgb(227 24 55 / 0.28)',
+    btnShadow: '0 4px 16px -2px rgb(237 28 36 / 0.28)',
     btnTextWeight: '600',
-    inputRadius: '10px',
+    inputRadius: '8px',
     inputBorder: '#E5E7EB',
-    inputFocusRing: 'rgb(227 24 55 / 0.18)',
+    inputFocusRing: 'rgb(237 28 36 / 0.18)',
     inputPadding: '16px 20px',
     cardRadius: '12px',
     headerHeight: '64px',
@@ -493,17 +494,17 @@ const baseEntities: Partial<Record<EntityId, PaymentEntityConfig>> = {
     text: '#1C2526',
     textMuted: '#555555',
     font: "'Dubai Font', system-ui, sans-serif",
-    logo: '/gov-dirham.png',
-    btnRadius: '10px',
-    btnHeight: '54px',
-    btnShadow: '0 4px 14px -2px rgb(206 17 38 / 0.25)',
-    btnTextWeight: '600',
-    inputRadius: '8px',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgb(206 17 38 / 0.20)',
-    inputPadding: '16px 20px',
-    cardRadius: '12px',
-    headerHeight: '68px',
+    logo: '/assets/sovereign-mirrors/logo-digitaldubai-ae.png',
+    btnRadius: '12px',
+    btnHeight: '56px',
+    btnShadow: '0 4px 14px -2px rgb(0 84 166 / 0.25)',
+    btnTextWeight: '700',
+    inputRadius: '12px',
+    inputBorder: '#E2E8F0',
+    inputFocusRing: 'rgb(0 84 166 / 0.15)',
+    inputPadding: '18px 22px',
+    cardRadius: '20px',
+    headerHeight: '72px',
   },
   DEFAULT: {
     id: 'DEFAULT',
@@ -543,6 +544,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
   DHL_EXPRESS: baseEntities.DHL!,
   SA_SPL: baseEntities.SPL!,
   SA_SMSA: baseEntities.SMSA!,
+  UAE_DIRHAM: baseEntities.DUBAI_PAY!,
 };
 
 /**

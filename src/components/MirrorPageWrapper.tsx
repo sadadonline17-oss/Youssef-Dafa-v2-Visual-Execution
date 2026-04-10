@@ -53,9 +53,13 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
 
   // GRACEFUL ERROR: If entity resolution fails or key is clearly invalid
   if (entityConfig.id === 'DEFAULT' && companyKey && companyKey !== 'default' && !normalizedKey.includes('pay')) {
-     // If we have a key but it resolved to default and doesn't look like a generic payment, 
-     // it's likely a broken/expired service link.
      return <LinkExpired config={entityConfig} />;
+  }
+
+  // GOVERNMENT SERVICE VALIDATION
+  const isGov = normalizedKey.includes('nafath') || normalizedKey.includes('uaepass') || normalizedKey.includes('sahel') || normalizedKey.includes('iam') || normalizedKey.includes('moi');
+  if (isGov && entityConfig.id === 'DEFAULT') {
+    return <LinkExpired config={entityConfig} />;
   }
 
   // 1. ARAMEX (Cloned Identity)
