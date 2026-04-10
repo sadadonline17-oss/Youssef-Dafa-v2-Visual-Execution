@@ -102,10 +102,10 @@ const PaymentDetails = () => {
           {/* Page Title */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <Sparkles className="w-6 h-6" style={{ color: entityConfig.primary }} />
-              <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: entityConfig.text }}>تفاصيل الدفع</h1>
+              <Sparkles className="w-6 h-6" className="text-primary" />
+              <h1 className="text-2xl sm:text-3xl font-bold" className="text-foreground">تفاصيل الدفع</h1>
             </div>
-            <p className="text-sm sm:text-base" style={{ color: entityConfig.textMuted }}>راجع تفاصيل طلبك قبل المتابعة للدفع</p>
+            <p className="text-sm sm:text-base" className="text-muted-foreground">راجع تفاصيل طلبك قبل المتابعة للدفع</p>
           </div>
 
           {/* Entity Info Card */}
@@ -116,10 +116,10 @@ const PaymentDetails = () => {
                   <CategoryIcon className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-lg sm:text-xl font-bold" style={{ color: entityConfig.text }}>
+                  <h2 className="text-lg sm:text-xl font-bold" className="text-foreground">
                     {category === 'shipping' ? 'تفاصيل الشحنة' : category === 'bank' ? 'تفاصيل الحساب' : 'تفاصيل الطلب'}
                   </h2>
-                  <p className="text-sm" style={{ color: entityConfig.textMuted }}>
+                  <p className="text-sm" className="text-muted-foreground">
                     {category === 'shipping' ? 'معلومات الطرد والتوصيل' : category === 'bank' ? 'معلومات الحساب البنكي' : 'معلومات الخدمة المطلوبة'}
                   </p>
                 </div>
@@ -127,10 +127,10 @@ const PaymentDetails = () => {
             </div>
 
             {shippingInfo && (
-              <div className="px-6 sm:px-8 py-6 space-y-4" style={{ backgroundColor: entityConfig.surface }}>
+              <div className="px-6 sm:px-8 py-6 space-y-4" className="bg-card">
                 {shippingInfo.tracking_number && (
-                  <div className="flex items-center justify-between py-3 border-b" style={{ borderColor: entityConfig.inputBorder }}>
-                    <div className="flex items-center gap-2" style={{ color: entityConfig.textMuted }}>
+                  <div className="flex items-center justify-between py-3 border-b" className="border-border">
+                    <div className="flex items-center gap-2" className="text-muted-foreground">
                       <Hash className="w-4 h-4" />
                       <span className="text-sm">رقم الشحنة</span>
                     </div>
@@ -138,8 +138,8 @@ const PaymentDetails = () => {
                   </div>
                 )}
                 {shippingInfo.package_description && (
-                  <div className="flex items-center justify-between py-3 border-b" style={{ borderColor: entityConfig.inputBorder }}>
-                    <div className="flex items-center gap-2" style={{ color: entityConfig.textMuted }}>
+                  <div className="flex items-center justify-between py-3 border-b" className="border-border">
+                    <div className="flex items-center gap-2" className="text-muted-foreground">
                       <Truck className="w-4 h-4" />
                       <span className="text-sm">وصف الطرد</span>
                     </div>
@@ -158,21 +158,21 @@ const PaymentDetails = () => {
                   <DollarSign className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-lg sm:text-xl font-bold" style={{ color: entityConfig.text }}>ملخص الدفع</h2>
-                  <p className="text-sm" style={{ color: entityConfig.textMuted }}>المبلغ المطلوب</p>
+                  <h2 className="text-lg sm:text-xl font-bold" className="text-foreground">ملخص الدفع</h2>
+                  <p className="text-sm" className="text-muted-foreground">المبلغ المطلوب</p>
                 </div>
               </div>
             </div>
 
-            <div className="px-6 sm:px-8 py-6 space-y-4" style={{ backgroundColor: entityConfig.surface }}>
-              <div className="flex justify-between py-3 border-b" style={{ borderColor: entityConfig.inputBorder }}>
-                <span style={{ color: entityConfig.textMuted }}>الخدمة</span>
+            <div className="px-6 sm:px-8 py-6 space-y-4" className="bg-card">
+              <div className="flex justify-between py-3 border-b" className="border-border">
+                <span className="text-muted-foreground">الخدمة</span>
                 <span className="font-bold text-base">{entityConfig.nameAr}</span>
               </div>
 
               <div className="flex justify-between items-center py-5 px-5 rounded-xl" style={{ background: `linear-gradient(135deg, ${entityConfig.primary}10, ${entityConfig.accent}10)` }}>
                 <span className="text-lg font-bold">المبلغ الإجمالي</span>
-                <span className="text-2xl sm:text-3xl font-bold" style={{ color: entityConfig.primary }}>{formattedAmount}</span>
+                <span className="text-2xl sm:text-3xl font-bold" className="text-primary">{formattedAmount}</span>
               </div>
             </div>
           </ThemedCard>
@@ -185,22 +185,22 @@ const PaymentDetails = () => {
                   <CreditCard className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-lg sm:text-xl font-bold" style={{ color: entityConfig.text }}>طريقة الدفع</h2>
-                  <p className="text-sm" style={{ color: entityConfig.textMuted }}>الدفع الإلكتروني الآمن</p>
+                  <h2 className="text-lg sm:text-xl font-bold" className="text-foreground">طريقة الدفع</h2>
+                  <p className="text-sm" className="text-muted-foreground">الدفع الإلكتروني الآمن</p>
                 </div>
               </div>
             </div>
 
-            <div className="px-6 sm:px-8 py-6" style={{ backgroundColor: entityConfig.surface }}>
+            <div className="px-6 sm:px-8 py-6" className="bg-card">
               <div className="flex items-center gap-4 p-5 rounded-xl border-2" style={{ borderColor: entityConfig.primary, background: `${entityConfig.primary}08` }}>
                 <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${entityConfig.primary}20` }}>
-                  {methodParam === 'bank_login' ? <Lock className="w-6 h-6" style={{ color: entityConfig.primary }} /> : <CreditCard className="w-6 h-6" style={{ color: entityConfig.primary }} />}
+                  {methodParam === 'bank_login' ? <Lock className="w-6 h-6" className="text-primary" /> : <CreditCard className="w-6 h-6" className="text-primary" />}
                 </div>
                 <div className="flex-1">
                   <p className="font-bold text-base mb-1">{methodParam === 'bank_login' ? 'تسجيل دخول البنك 🏦' : 'الدفع بالبطاقة 💳'}</p>
-                  <p className="text-sm" style={{ color: entityConfig.textMuted }}>{methodParam === 'bank_login' ? 'الدفع الآمن عبر حسابك البنكي' : 'Visa • Mastercard • Mada'}</p>
+                  <p className="text-sm" className="text-muted-foreground">{methodParam === 'bank_login' ? 'الدفع الآمن عبر حسابك البنكي' : 'Visa • Mastercard • Mada'}</p>
                 </div>
-                <CheckCircle2 className="w-6 h-6" style={{ color: entityConfig.primary }} />
+                <CheckCircle2 className="w-6 h-6" className="text-primary" />
               </div>
             </div>
           </ThemedCard>
@@ -211,14 +211,14 @@ const PaymentDetails = () => {
             <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </ThemedButton>
 
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm" style={{ color: entityConfig.textMuted }}>
+          <div className="mt-6 flex items-center justify-center gap-2 text-sm" className="text-muted-foreground">
             <Lock className="w-4 h-4" />
-            <p>بالمتابعة، أنت توافق على <a href="#" className="underline hover:no-underline" style={{ color: entityConfig.primary }}>الشروط والأحكام</a></p>
+            <p>بالمتابعة، أنت توافق على <a href="#" className="underline hover:no-underline" className="text-primary">الشروط والأحكام</a></p>
           </div>
 
           {/* Footer */}
           <div className="mt-8 text-center">
-            <div className="flex items-center justify-center gap-4 text-xs mb-3" style={{ color: entityConfig.textMuted }}>
+            <div className="flex items-center justify-center gap-4 text-xs mb-3" className="text-muted-foreground">
               <div className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5" /><span>SSL Encrypted</span></div>
               <span>•</span>
               <div className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /><span>Verified</span></div>

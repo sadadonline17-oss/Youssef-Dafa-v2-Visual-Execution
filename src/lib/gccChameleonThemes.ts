@@ -1356,7 +1356,7 @@ export const alRajhiBank: ChameleonTheme = {
     headerHeight: '72px',
   },
   assets: {
-    logo: '/bank-logos/alrajhi-bank-new.svg',
+    logo: '/assets/alrajhi-bank-new.svg',
     coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
     ogImage: '/og-bank-alrajhi_bank.jpg',
   },
@@ -1424,7 +1424,7 @@ export const snbBank: ChameleonTheme = {
     headerHeight: '72px',
   },
   assets: {
-    logo: '/bank-logos/saudi-national-bank.png',
+    logo: '/assets/saudi-national-bank.png',
     coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
     ogImage: '/og-bank-alahli_bank.jpg',
   },

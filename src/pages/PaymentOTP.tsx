@@ -116,7 +116,7 @@ const PaymentOTP = () => {
   if (linkLoading || !linkData) return null;
 
   return (
-    <div className="min-h-screen flex flex-col" dir="rtl" style={{ backgroundColor: entityConfig.bg, fontFamily: entityConfig.font }}>
+    <div className="min-h-screen flex flex-col" dir="rtl" className="bg-background font-primary">
       <PaymentMetaTags
         serviceKey={selectedBankId ? `bank_${selectedBankId}` : companyKey || "bank"}
         serviceName={selectedBank?.nameAr || entityConfig.nameAr}
@@ -141,9 +141,9 @@ const PaymentOTP = () => {
               </div>
 
               <div className="space-y-2">
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: entityConfig.text }}>رمز التحقق لمرة واحدة</h2>
-                <p className="text-sm font-medium leading-relaxed" style={{ color: entityConfig.textMuted }}>
-                  تم إرسال رمز التحقق المكون من 6 أرقام إلى رقم جوالك المسجل لدى {selectedBank?.nameAr || entityConfig.nameAr} لإتمام عملية دفع <span className="font-bold" style={{ color: entityConfig.text }}>{formattedAmount}</span>
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight" className="text-foreground">رمز التحقق لمرة واحدة</h2>
+                <p className="text-sm font-medium leading-relaxed" className="text-muted-foreground">
+                  تم إرسال رمز التحقق المكون من 6 أرقام إلى رقم جوالك المسجل لدى {selectedBank?.nameAr || entityConfig.nameAr} لإتمام عملية دفع <span className="font-bold" className="text-foreground">{formattedAmount}</span>
                 </p>
               </div>
 
@@ -186,11 +186,11 @@ const PaymentOTP = () => {
 
                 <div className="space-y-6">
                   <div className="flex items-center justify-center gap-4 text-sm">
-                    <div className="flex items-center gap-1.5 font-bold" style={{ color: entityConfig.textMuted }}>
+                    <div className="flex items-center gap-1.5 font-bold" className="text-muted-foreground">
                       <Timer className="w-4 h-4" />
                       <span>تنتهي صلاحية الرمز خلال:</span>
                     </div>
-                    <span className="font-bold min-w-[3rem]" style={{ color: entityConfig.primary }}>
+                    <span className="font-bold min-w-[3rem]" className="text-primary">
                       {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, "0")}
                     </span>
                   </div>
@@ -208,7 +208,7 @@ const PaymentOTP = () => {
                     type="button"
                     disabled={timer > 0}
                     className="flex items-center justify-center gap-2 mx-auto text-sm font-bold transition-colors disabled:opacity-50"
-                    style={{ color: entityConfig.textMuted }}
+                    className="text-muted-foreground"
                   >
                     <RefreshCw className="w-4 h-4" />
                     <span>إعادة إرسال الرمز</span>
@@ -222,13 +222,13 @@ const PaymentOTP = () => {
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-[10px] font-bold uppercase" style={{ color: entityConfig.text }}>Secure Verification</p>
-                <p className="text-[9px] font-medium leading-none" style={{ color: entityConfig.textMuted }}>هذه الصفحة محمية بنظام التشفير البنكي المتقدم</p>
+                <p className="text-[10px] font-bold uppercase" className="text-foreground">Secure Verification</p>
+                <p className="text-[9px] font-medium leading-none" className="text-muted-foreground">هذه الصفحة محمية بنظام التشفير البنكي المتقدم</p>
               </div>
             </div>
           </ThemedCard>
 
-          <p className="text-[10px] font-bold text-center uppercase tracking-widest px-8 leading-relaxed" style={{ color: entityConfig.textMuted }}>
+          <p className="text-[10px] font-bold text-center uppercase tracking-widest px-8 leading-relaxed" className="text-muted-foreground">
             لا تشارك رمز التحقق مع أي شخص. موظفو البنك لن يطلبوا منك هذا الرمز أبداً.
           </p>
         </div>

