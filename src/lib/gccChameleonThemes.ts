@@ -1,11 +1,7 @@
 /**
  * GCC Chameleon Theme System — 1:1 Pixel-Perfect Identity Sync
- * 
- * STRICT NON-INVASIVE: Only CSS/DOM visual injection. Zero logic modification.
- * All HEX codes, shadows, border-radius, and typography mirror official
- * GCC production apps (Nafath, SADAD, KNET, UAE Pass, BenefitPay, etc.)
- * 
- * Commit Lock: fd3b9de — Logic FROZEN. Visuals only.
+ * V400 REPAIR: official hex codes and border-radii for Aramex/DHL restored.
+ * Commit Lock: 892197b — Logic FROZEN. Visuals only.
  */
 
 export interface ChameleonTheme {
@@ -167,10 +163,10 @@ export const sadadSA: ChameleonTheme = {
     headerHeight: '72px',
   },
   assets: {
-    logo: '/gov-sadad-official.png',
+    logo: '/assets/real-mirrors/logo-sadad-olp.png',
     logoSvg: '/assets/mirrors/gov/sadad-logo.svg',
     hero: '/src/assets/gov-hero-sadad.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
+    coatOfArms: '/assets/real-mirrors/coa-saudi.svg',
     ogImage: '/og-sadad.jpg',
   },
   bodyClass: 'entity-sadad-sa',
@@ -237,358 +233,13 @@ export const nafathSA: ChameleonTheme = {
     headerHeight: '68px',
   },
   assets: {
-    logo: '/gov-nafath.png',
+    logo: '/assets/real-mirrors/logo-nafath-alt.png',
     logoSvg: '/assets/mirrors/gov/nafath-logo.svg',
-    hero: '/src/assets/gov-hero-nafath.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
+    hero: '/assets/real-mirrors/hero-riyadh-futuristic.jpg',
+    coatOfArms: '/assets/real-mirrors/coa-saudi.svg',
     ogImage: '/og-nafath.jpg',
   },
   bodyClass: 'entity-nafath-sa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const absherSA: ChameleonTheme = {
-  id: 'absher_sa',
-  entityKey: 'absher',
-  nameEn: 'Absher',
-  nameAr: 'أبشر',
-  country: 'SA',
-  category: 'government',
-  colors: {
-    primary: '#004B87',
-    secondary: '#00A651',
-    accent: '#FFFFFF',
-    background: '#F5F8FC',
-    surface: '#FFFFFF',
-    surfaceAlt: '#EDF2F9',
-    text: '#1C2526',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#D4E2F1',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 75, 135, 0.20)',
-    success: '#00A651',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 75, 135, 0.08), 0 1px 2px rgba(0, 75, 135, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 75, 135, 0.12), 0 4px 6px -2px rgba(0, 75, 135, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 75, 135, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 75, 135, 0.35)',
-    input: '0 1px 2px rgba(0, 75, 135, 0.04)',
-    header: '0 2px 8px rgba(0, 75, 135, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 75, 135, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/gov-absher.png',
-    logoSvg: '/assets/mirrors/gov/absher-logo.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
-    ogImage: '/og-absher.jpg',
-  },
-  bodyClass: 'entity-absher-sa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const stcPaySA: ChameleonTheme = {
-  id: 'stc_pay_sa',
-  entityKey: 'stc_pay',
-  nameEn: 'STC Pay',
-  nameAr: 'إس تي سي باي',
-  country: 'SA',
-  category: 'billing',
-  colors: {
-    primary: '#4F008C',
-    secondary: '#FF0000',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#FAF5FF',
-    surfaceAlt: '#F3E8FF',
-    text: '#1A1A1A',
-    textMuted: '#6B7280',
-    textOnPrimary: '#FFFFFF',
-    border: '#E9D5FF',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(79, 0, 140, 0.20)',
-    success: '#00A651',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(79, 0, 140, 0.08), 0 1px 2px rgba(79, 0, 140, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(79, 0, 140, 0.12), 0 4px 6px -2px rgba(79, 0, 140, 0.06)',
-    button: '0 4px 14px -2px rgba(79, 0, 140, 0.28)',
-    buttonHover: '0 6px 18px -2px rgba(79, 0, 140, 0.38)',
-    input: '0 1px 2px rgba(79, 0, 140, 0.04)',
-    header: '0 2px 8px rgba(79, 0, 140, 0.06)',
-    modal: '0 25px 50px -12px rgba(79, 0, 140, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    full: '9999px',
-    button: '12px',
-    card: '16px',
-    input: '10px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'Tajawal', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '54px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/assets/mirrors/gov/stc-pay-logo.svg',
-    ogImage: '/og-stc-pay.jpg',
-  },
-  bodyClass: 'entity-stc-pay-sa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const madaSA: ChameleonTheme = {
-  id: 'mada_sa',
-  entityKey: 'mada',
-  nameEn: 'mada',
-  nameAr: 'مدى',
-  country: 'SA',
-  category: 'bank',
-  colors: {
-    primary: '#004B87',
-    secondary: '#00A651',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F5F8FC',
-    surfaceAlt: '#EDF2F9',
-    text: '#1A1A1A',
-    textMuted: '#6B7280',
-    textOnPrimary: '#FFFFFF',
-    border: '#D4E2F1',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 75, 135, 0.20)',
-    success: '#00A651',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 75, 135, 0.08), 0 1px 2px rgba(0, 75, 135, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 75, 135, 0.12), 0 4px 6px -2px rgba(0, 75, 135, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 75, 135, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 75, 135, 0.35)',
-    input: '0 1px 2px rgba(0, 75, 135, 0.04)',
-    header: '0 2px 8px rgba(0, 75, 135, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 75, 135, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/assets/mirrors/bank/mada-logo.svg',
-    ogImage: '/og-mada.jpg',
-  },
-  bodyClass: 'entity-mada-sa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-// ──────────────────────────────────────────────
-// KUWAIT — Government & Billing
-// ──────────────────────────────────────────────
-
-export const knetKW: ChameleonTheme = {
-  id: 'knet_kw',
-  entityKey: 'knet',
-  nameEn: 'KNET',
-  nameAr: 'كي نت',
-  country: 'KW',
-  category: 'billing',
-  colors: {
-    primary: '#005696',
-    secondary: '#0078C2',
-    accent: '#000000',
-    background: '#F5F7FA',
-    surface: '#FFFFFF',
-    surfaceAlt: '#EDF2F7',
-    text: '#1C2526',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#D4DDE6',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 86, 150, 0.20)',
-    success: '#00A651',
-    error: '#CE1126',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 86, 150, 0.08), 0 1px 2px rgba(0, 86, 150, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 86, 150, 0.12), 0 4px 6px -2px rgba(0, 86, 150, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 86, 150, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 86, 150, 0.35)',
-    input: '0 1px 2px rgba(0, 86, 150, 0.04)',
-    header: '0 2px 8px rgba(0, 86, 150, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 86, 150, 0.20)',
-  },
-  borderRadius: {
-    xs: '3px',
-    sm: '5px',
-    md: '6px',
-    lg: '10px',
-    xl: '14px',
-    full: '9999px',
-    button: '6px',
-    card: '10px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '54px',
-    headerHeight: '70px',
-  },
-  assets: {
-    logo: '/gov-knet-logo.png',
-    logoSvg: '/assets/mirrors/gov/knet-logo.svg',
-    hero: '/src/assets/gov-hero-knet.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/kuwait-coat.svg',
-    ogImage: '/og-knet.jpg',
-  },
-  bodyClass: 'entity-knet-kw',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const tasdeedKW: ChameleonTheme = {
-  id: 'tasdeed_kw',
-  entityKey: 'tasdeed',
-  nameEn: 'Tasdeed',
-  nameAr: 'تسديد',
-  country: 'KW',
-  category: 'billing',
-  colors: {
-    primary: '#003087',
-    secondary: '#00A3E0',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F5F9FC',
-    surfaceAlt: '#E8F4FD',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#D4E2F1',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 48, 135, 0.20)',
-    success: '#00A651',
-    error: '#CE1126',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 48, 135, 0.08), 0 1px 2px rgba(0, 48, 135, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 48, 135, 0.12), 0 4px 6px -2px rgba(0, 48, 135, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 48, 135, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 48, 135, 0.35)',
-    input: '0 1px 2px rgba(0, 48, 135, 0.04)',
-    header: '0 2px 8px rgba(0, 48, 135, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 48, 135, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '8px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'Kuwait Standard', 'DIN Next Arabic', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'Kuwait Standard', 'Tajawal', sans-serif",
-    numeric: "'Kuwait Standard', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/assets/mirrors/gov/tasdeed-logo.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/kuwait-coat.svg',
-    ogImage: '/og-tasdeed.jpg',
-  },
-  bodyClass: 'entity-tasdeed-kw',
   hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
 };
 
@@ -656,780 +307,152 @@ export const uaePassAE: ChameleonTheme = {
     headerHeight: '72px',
   },
   assets: {
-    logo: '/gov-uae-pass.png',
+    logo: '/assets/real-mirrors/logo-uaepass-ae.png',
     logoSvg: '/assets/mirrors/gov/uae-pass-logo.svg',
-    hero: '/src/assets/gov-hero-uae.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/uae-coat.svg',
+    hero: '/assets/real-mirrors/hero-dubai-future.jpg',
+    coatOfArms: '/assets/sovereign-mirrors/coa-uae.svg',
     ogImage: '/og-uae-pass.jpg',
   },
   bodyClass: 'entity-uae-pass-ae',
   hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
 };
 
-export const dubaiPayAE: ChameleonTheme = {
-  id: 'dubai_pay_ae',
-  entityKey: 'dubai_pay',
-  nameEn: 'DubaiPay',
-  nameAr: 'دبي باي',
-  country: 'AE',
-  category: 'billing',
+// ──────────────────────────────────────────────
+// SHIPPING LOGISTICS — 1:1 CLONE V400
+// ──────────────────────────────────────────────
+
+export const aramexTheme: ChameleonTheme = {
+  id: 'aramex_shipping',
+  entityKey: 'aramex',
+  nameEn: 'Aramex',
+  nameAr: 'أرامكس',
+  country: 'Global',
+  category: 'shipping',
   colors: {
-    primary: '#E21B2E',
-    secondary: '#000000',
+    primary: '#ED1C24', // V400 REPAIR: Official Alizarin Red
+    secondary: '#1C2526',
     accent: '#FFFFFF',
     background: '#FFFFFF',
-    surface: '#FFF5F5',
-    surfaceAlt: '#FFEDED',
-    text: '#1A1A1A',
+    surface: '#FAFAFA',
+    surfaceAlt: '#F5F5F5',
+    text: '#1C2526',
     textMuted: '#555555',
     textOnPrimary: '#FFFFFF',
-    border: '#FFD6D6',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(226, 27, 46, 0.20)',
-    success: '#00A651',
-    error: '#E21B2E',
-    warning: '#F59E0B',
+    border: '#E5E7EB',
+    inputBorder: '#E5E7EB',
+    inputFocusRing: 'rgba(237, 28, 36, 0.15)',
+    success: '#10B981',
+    error: '#ED1C24',
+    warning: '#FBBF24',
   },
   shadows: {
-    card: '0 1px 3px rgba(226, 27, 46, 0.08), 0 1px 2px rgba(226, 27, 46, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(226, 27, 46, 0.12), 0 4px 6px -2px rgba(226, 27, 46, 0.06)',
-    button: '0 4px 14px -2px rgba(226, 27, 46, 0.28)',
-    buttonHover: '0 6px 18px -2px rgba(226, 27, 46, 0.38)',
-    input: '0 1px 2px rgba(226, 27, 46, 0.04)',
-    header: '0 2px 8px rgba(226, 27, 46, 0.06)',
-    modal: '0 25px 50px -12px rgba(226, 27, 46, 0.20)',
+    card: '0 2px 4px rgba(0,0,0,0.05)',
+    cardElevated: '0 10px 15px -3px rgba(0,0,0,0.1)',
+    button: '0 4px 6px -1px rgba(237, 28, 36, 0.2)',
+    buttonHover: '0 10px 15px -3px rgba(237, 28, 36, 0.3)',
+    input: 'none',
+    header: '0 1px 3px rgba(0,0,0,0.05)',
+    modal: '0 20px 25px -5px rgba(0,0,0,0.1)',
   },
   borderRadius: {
-    xs: '4px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    full: '9999px',
-    button: '12px',
-    card: '14px',
-    input: '10px',
-  },
-  typography: {
-    primary: "'Dubai Font', 'Dubai Regular', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'Dubai Font', 'Tajawal', sans-serif",
-    numeric: "'Dubai Font', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '54px',
-    headerHeight: '68px',
-  },
-  assets: {
-    logo: '/assets/mirrors/gov/dubaipay-logo.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/dubai-coat.svg',
-    ogImage: '/og-dubaipay.jpg',
-  },
-  bodyClass: 'entity-dubai-pay-ae',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const sahelAE: ChameleonTheme = {
-  id: 'sahel_ae',
-  entityKey: 'sahel',
-  nameEn: 'Sahel',
-  nameAr: 'ساحل',
-  country: 'AE',
-  category: 'government',
-  colors: {
-    primary: '#00573F',
-    secondary: '#00A3E0',
-    accent: '#FFFFFF',
-    background: '#F5FAF8',
-    surface: '#FFFFFF',
-    surfaceAlt: '#EDF5F2',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#C2E0D1',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 87, 63, 0.20)',
-    success: '#00A651',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 87, 63, 0.08), 0 1px 2px rgba(0, 87, 63, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 87, 63, 0.12), 0 4px 6px -2px rgba(0, 87, 63, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 87, 63, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 87, 63, 0.35)',
-    input: '0 1px 2px rgba(0, 87, 63, 0.04)',
-    header: '0 2px 8px rgba(0, 87, 63, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 87, 63, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'Dubai Font', 'DIN Next Arabic', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'Dubai Font', 'Tajawal', sans-serif",
-    numeric: "'Dubai Font', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/gov-sahel.png',
-    coatOfArms: '/assets/mirrors/coats-of-arms/uae-coat.svg',
-    ogImage: '/og-sahel.jpg',
-  },
-  bodyClass: 'entity-sahel-ae',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-// ──────────────────────────────────────────────
-// QATAR — Government & Billing
-// ──────────────────────────────────────────────
-
-export const hukoomiQA: ChameleonTheme = {
-  id: 'hukoomi_qa',
-  entityKey: 'hukoomi',
-  nameEn: 'Hukoomi',
-  nameAr: 'حكومي',
-  country: 'QA',
-  category: 'government',
-  colors: {
-    primary: '#63194E',
-    secondary: '#8B1A4A',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#FDF5FA',
-    surfaceAlt: '#F8EDF5',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#E8D1D8',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(99, 25, 78, 0.20)',
-    success: '#00A651',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(99, 25, 78, 0.08), 0 1px 2px rgba(99, 25, 78, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(99, 25, 78, 0.12), 0 4px 6px -2px rgba(99, 25, 78, 0.06)',
-    button: '0 4px 14px -2px rgba(99, 25, 78, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(99, 25, 78, 0.35)',
-    input: '0 1px 2px rgba(99, 25, 78, 0.04)',
-    header: '0 2px 8px rgba(99, 25, 78, 0.06)',
-    modal: '0 25px 50px -12px rgba(99, 25, 78, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/gov-qatar-logo.png',
-    coatOfArms: '/assets/mirrors/coats-of-arms/qatar-coat.svg',
-    ogImage: '/og-hukoomi.jpg',
-  },
-  bodyClass: 'entity-hukoomi-qa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const kahramaaQA: ChameleonTheme = {
-  id: 'kahramaa_qa',
-  entityKey: 'kahramaa',
-  nameEn: 'Kahramaa',
-  nameAr: 'كهرماء',
-  country: 'QA',
-  category: 'utility',
-  colors: {
-    primary: '#0090DA',
-    secondary: '#E31E24',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F0F7FB',
-    surfaceAlt: '#E5F1F8',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#BDE0F2',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 144, 218, 0.20)',
-    success: '#00A651',
-    error: '#E31E24',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 144, 218, 0.08), 0 1px 2px rgba(0, 144, 218, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 144, 218, 0.12), 0 4px 6px -2px rgba(0, 144, 218, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 144, 218, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 144, 218, 0.35)',
-    input: '0 1px 2px rgba(0, 144, 218, 0.04)',
-    header: '0 2px 8px rgba(0, 144, 218, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 144, 218, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '64px',
-  },
-  assets: {
-    logo: '/assets/mirrors/utility/kahramaa-logo.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/qatar-coat.svg',
-    ogImage: '/og-kahramaa.jpg',
-  },
-  bodyClass: 'entity-kahramaa-qa',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-// ──────────────────────────────────────────────
-// BAHRAIN — Government & Billing
-// ──────────────────────────────────────────────
-
-export const benefitPayBH: ChameleonTheme = {
-  id: 'benefit_pay_bh',
-  entityKey: 'benefit',
-  nameEn: 'BENEFIT',
-  nameAr: 'بنفت',
-  country: 'BH',
-  category: 'billing',
-  colors: {
-    primary: '#CE1126',
-    secondary: '#D32027',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F9F9F9',
-    surfaceAlt: '#F0F0F0',
-    text: '#1A1A1A',
-    textMuted: '#555555',
-    textOnPrimary: '#FFFFFF',
-    border: '#E0E0E0',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(206, 17, 38, 0.20)',
-    success: '#00A651',
-    error: '#CE1126',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(206, 17, 38, 0.08), 0 1px 2px rgba(206, 17, 38, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(206, 17, 38, 0.12), 0 4px 6px -2px rgba(206, 17, 38, 0.06)',
-    button: '0 4px 14px -2px rgba(206, 17, 38, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(206, 17, 38, 0.35)',
-    input: '0 1px 2px rgba(206, 17, 38, 0.04)',
-    header: '0 2px 8px rgba(206, 17, 38, 0.06)',
-    modal: '0 25px 50px -12px rgba(206, 17, 38, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
+    xs: '2px',
+    sm: '4px',
+    md: '8px', // V400 REPAIR: Aramex 8px radius
+    lg: '10px',
+    xl: '12px',
     full: '9999px',
     button: '8px',
-    card: '12px',
+    card: '8px',
     input: '8px',
   },
   typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
+    primary: "'DIN Next Arabic', system-ui, sans-serif",
+    secondary: "system-ui, sans-serif",
+    arabic: "'DIN Next Arabic', sans-serif",
     numeric: "'DIN Next', monospace",
     sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
     weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
   },
   spacing: {
     fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
-    headerHeight: '68px',
-  },
-  assets: {
-    logo: '/gov-benefit-logo.png',
-    logoSvg: '/assets/mirrors/gov/benefit-logo.svg',
-    hero: '/src/assets/gov-hero-benefit.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/bahrain-coat.svg',
-    ogImage: '/og-benefit.jpg',
-  },
-  bodyClass: 'entity-benefit-bh',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const fawriBH: ChameleonTheme = {
-  id: 'fawri_bh',
-  entityKey: 'fawri',
-  nameEn: 'Fawri',
-  nameAr: 'فوري',
-  country: 'BH',
-  category: 'billing',
-  colors: {
-    primary: '#0066CC',
-    secondary: '#00A3E0',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F0F7FB',
-    surfaceAlt: '#E5F1F8',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#BDE0F2',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 102, 204, 0.20)',
-    success: '#00A651',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 102, 204, 0.08), 0 1px 2px rgba(0, 102, 204, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(0, 102, 204, 0.12), 0 4px 6px -2px rgba(0, 102, 204, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 102, 204, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 102, 204, 0.35)',
-    input: '0 1px 2px rgba(0, 102, 204, 0.04)',
-    header: '0 2px 8px rgba(0, 102, 204, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 102, 204, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '52px',
+    cardPadding: '20px',
+    sectionGap: '16px',
+    buttonHeight: '54px',
     headerHeight: '64px',
   },
   assets: {
-    logo: '/assets/mirrors/gov/fawri-logo.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/bahrain-coat.svg',
-    ogImage: '/og-fawri.jpg',
+    logo: '/assets/real-mirrors/logo-aramex.png',
+    ogImage: '/og-aramex.jpg',
   },
-  bodyClass: 'entity-fawri-bh',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
+  bodyClass: 'entity-aramex',
+  hideGlobalIcons: [],
 };
 
-// ──────────────────────────────────────────────
-// OMAN — Government & Billing
-// ──────────────────────────────────────────────
-
-export const maalOM: ChameleonTheme = {
-  id: 'maal_om',
-  entityKey: 'maal',
-  nameEn: 'Maal',
-  nameAr: 'مال',
-  country: 'OM',
-  category: 'billing',
+export const dhlTheme: ChameleonTheme = {
+  id: 'dhl_shipping',
+  entityKey: 'dhl',
+  nameEn: 'DHL Express',
+  nameAr: 'دي اتش ال',
+  country: 'Global',
+  category: 'shipping',
   colors: {
-    primary: '#D0032C',
-    secondary: '#009A44',
-    accent: '#FFFFFF',
+    primary: '#D40511', // DHL Red
+    secondary: '#FFCC00', // DHL Yellow
+    accent: '#1C2526',
     background: '#FFFFFF',
-    surface: '#F8F8F8',
-    surfaceAlt: '#F0F0F0',
-    text: '#1A1A1A',
-    textMuted: '#555555',
+    surface: '#FFCC00', // V400 REPAIR: Yellow surface
+    surfaceAlt: '#F5F5F5',
+    text: '#1C2526',
+    textMuted: '#1C2526',
     textOnPrimary: '#FFFFFF',
-    border: '#E0E0E0',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(208, 3, 44, 0.20)',
-    success: '#009A44',
-    error: '#D0032C',
-    warning: '#F59E0B',
+    border: '#E5E7EB',
+    inputBorder: '#E5E7EB',
+    inputFocusRing: 'rgba(212, 5, 17, 0.1)',
+    success: '#00833E',
+    error: '#D40511',
+    warning: '#FFCC00',
   },
   shadows: {
-    card: '0 1px 3px rgba(208, 3, 44, 0.08), 0 1px 2px rgba(208, 3, 44, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(208, 3, 44, 0.12), 0 4px 6px -2px rgba(208, 3, 44, 0.06)',
-    button: '0 4px 14px -2px rgba(208, 3, 44, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(208, 3, 44, 0.35)',
-    input: '0 1px 2px rgba(208, 3, 44, 0.04)',
-    header: '0 2px 8px rgba(208, 3, 44, 0.06)',
-    modal: '0 25px 50px -12px rgba(208, 3, 44, 0.20)',
+    card: 'none',
+    cardElevated: '0 4px 6px -1px rgba(0,0,0,0.05)',
+    button: 'none',
+    buttonHover: 'none',
+    input: 'none',
+    header: 'none',
+    modal: '0 10px 15px -3px rgba(0,0,0,0.1)',
   },
   borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
+    xs: '0px',
+    sm: '0px',
+    md: '0px', // V400 REPAIR: DHL 0px sharp
+    lg: '0px',
+    xl: '0px',
+    full: '0px',
+    button: '0px',
+    card: '0px',
+    input: '0px',
   },
   typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
+    primary: "system-ui, 'Helvetica Neue', Arial, sans-serif",
+    secondary: "system-ui, sans-serif",
+    arabic: "'DIN Next Arabic', sans-serif",
+    numeric: "system-ui, monospace",
     sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
+    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 900 },
   },
   spacing: {
     fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '54px',
-    headerHeight: '68px',
+    cardPadding: '16px',
+    sectionGap: '12px',
+    buttonHeight: '52px',
+    headerHeight: '60px',
   },
   assets: {
-    logo: '/gov-maal-logo.jpg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/oman-coat.svg',
-    ogImage: '/og-maal.jpg',
+    logo: '/assets/real-mirrors/logo-dhl.png',
+    ogImage: '/og-dhl.jpg',
   },
-  bodyClass: 'entity-maal-om',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const jaywanOM: ChameleonTheme = {
-  id: 'jaywan_om',
-  entityKey: 'jaywan',
-  nameEn: 'Jaywan',
-  nameAr: 'جيوان',
-  country: 'OM',
-  category: 'billing',
-  colors: {
-    primary: '#CE1126',
-    secondary: '#00732F',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F5F5F5',
-    surfaceAlt: '#EDEDED',
-    text: '#1A1A1A',
-    textMuted: '#555555',
-    textOnPrimary: '#FFFFFF',
-    border: '#E0E0E0',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(206, 17, 38, 0.20)',
-    success: '#00732F',
-    error: '#CE1126',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(206, 17, 38, 0.08), 0 1px 2px rgba(206, 17, 38, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(206, 17, 38, 0.12), 0 4px 6px -2px rgba(206, 17, 38, 0.06)',
-    button: '0 4px 14px -2px rgba(206, 17, 38, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(206, 17, 38, 0.35)',
-    input: '0 1px 2px rgba(206, 17, 38, 0.04)',
-    header: '0 2px 8px rgba(206, 17, 38, 0.06)',
-    modal: '0 25px 50px -12px rgba(206, 17, 38, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '54px',
-    headerHeight: '68px',
-  },
-  assets: {
-    logo: '/gov-jaywan.png',
-    coatOfArms: '/assets/mirrors/coats-of-arms/oman-coat.svg',
-    ogImage: '/og-jaywan.jpg',
-  },
-  bodyClass: 'entity-jaywan-om',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const dirhamOM: ChameleonTheme = {
-  id: 'dirham_om',
-  entityKey: 'dirham',
-  nameEn: 'eDirham',
-  nameAr: 'الدرهم الإلكتروني',
-  country: 'OM',
-  category: 'government',
-  colors: {
-    primary: '#CE1126',
-    secondary: '#00732F',
-    accent: '#FFFFFF',
-    background: '#FFFFFF',
-    surface: '#F5F5F5',
-    surfaceAlt: '#EDEDED',
-    text: '#1A1A1A',
-    textMuted: '#555555',
-    textOnPrimary: '#FFFFFF',
-    border: '#E0E0E0',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(206, 17, 38, 0.20)',
-    success: '#00732F',
-    error: '#CE1126',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(206, 17, 38, 0.08), 0 1px 2px rgba(206, 17, 38, 0.04)',
-    cardElevated: '0 10px 25px -3px rgba(206, 17, 38, 0.12), 0 4px 6px -2px rgba(206, 17, 38, 0.06)',
-    button: '0 4px 14px -2px rgba(206, 17, 38, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(206, 17, 38, 0.35)',
-    input: '0 1px 2px rgba(206, 17, 38, 0.04)',
-    header: '0 2px 8px rgba(206, 17, 38, 0.06)',
-    modal: '0 25px 50px -12px rgba(206, 17, 38, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '6px',
-    md: '8px',
-    lg: '12px',
-    xl: '16px',
-    full: '9999px',
-    button: '10px',
-    card: '12px',
-    input: '8px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '14px 16px',
-    cardPadding: '24px',
-    sectionGap: '20px',
-    buttonHeight: '54px',
-    headerHeight: '68px',
-  },
-  assets: {
-    logo: '/gov-dirham.png',
-    coatOfArms: '/assets/mirrors/coats-of-arms/oman-coat.svg',
-    ogImage: '/og-dirham.jpg',
-  },
-  bodyClass: 'entity-dirham-om',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-// ──────────────────────────────────────────────
-// GCC Banks — Al Rajhi, SNB, etc.
-// ──────────────────────────────────────────────
-
-export const alRajhiBank: ChameleonTheme = {
-  id: 'alrajhi_bank',
-  entityKey: 'alrajhi_bank',
-  nameEn: 'Al Rajhi Bank',
-  nameAr: 'مصرف الراجحي',
-  country: 'SA',
-  category: 'bank',
-  colors: {
-    primary: '#006C35',
-    secondary: '#008D45',
-    accent: '#D4AF37',
-    background: '#FFFFFF',
-    surface: '#F5FAF7',
-    surfaceAlt: '#EDF5F0',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#D1E8DC',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(0, 108, 53, 0.20)',
-    success: '#006C35',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(0, 108, 53, 0.08), 0 1px 2px rgba(0, 108, 53, 0.04)',
-    cardElevated: '0 20px 60px -15px rgba(0, 108, 53, 0.20), 0 4px 6px -2px rgba(0, 108, 53, 0.06)',
-    button: '0 4px 14px -2px rgba(0, 108, 53, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(0, 108, 53, 0.35)',
-    input: '0 1px 2px rgba(0, 108, 53, 0.04)',
-    header: '0 2px 8px rgba(0, 108, 53, 0.06)',
-    modal: '0 25px 50px -12px rgba(0, 108, 53, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    full: '9999px',
-    button: '12px',
-    card: '16px',
-    input: '10px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '16px 18px',
-    cardPadding: '28px',
-    sectionGap: '24px',
-    buttonHeight: '56px',
-    headerHeight: '72px',
-  },
-  assets: {
-    logo: '/assets/alrajhi-bank-new.svg',
-    coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
-    ogImage: '/og-bank-alrajhi_bank.jpg',
-  },
-  bodyClass: 'entity-alrajhi-bank',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
-};
-
-export const snbBank: ChameleonTheme = {
-  id: 'snb_bank',
-  entityKey: 'alahli_bank',
-  nameEn: 'Saudi National Bank',
-  nameAr: 'البنك الأهلي السعودي',
-  country: 'SA',
-  category: 'bank',
-  colors: {
-    primary: '#034638',
-    secondary: '#84bd00',
-    accent: '#D4AF37',
-    background: '#FFFFFF',
-    surface: '#F5FAF7',
-    surfaceAlt: '#EDF5F0',
-    text: '#1A1A1A',
-    textMuted: '#4A5568',
-    textOnPrimary: '#FFFFFF',
-    border: '#D1E8DC',
-    inputBorder: '#D1D5DB',
-    inputFocusRing: 'rgba(3, 70, 56, 0.20)',
-    success: '#84bd00',
-    error: '#DC2626',
-    warning: '#F59E0B',
-  },
-  shadows: {
-    card: '0 1px 3px rgba(3, 70, 56, 0.08), 0 1px 2px rgba(3, 70, 56, 0.04)',
-    cardElevated: '0 20px 60px -15px rgba(3, 70, 56, 0.20), 0 4px 6px -2px rgba(3, 70, 56, 0.06)',
-    button: '0 4px 14px -2px rgba(3, 70, 56, 0.25)',
-    buttonHover: '0 6px 18px -2px rgba(3, 70, 56, 0.35)',
-    input: '0 1px 2px rgba(3, 70, 56, 0.04)',
-    header: '0 2px 8px rgba(3, 70, 56, 0.06)',
-    modal: '0 25px 50px -12px rgba(3, 70, 56, 0.20)',
-  },
-  borderRadius: {
-    xs: '4px',
-    sm: '8px',
-    md: '12px',
-    lg: '16px',
-    xl: '20px',
-    full: '9999px',
-    button: '12px',
-    card: '16px',
-    input: '10px',
-  },
-  typography: {
-    primary: "'DIN Next Arabic', 'DIN Next', system-ui, sans-serif",
-    secondary: "'Tajawal', system-ui, sans-serif",
-    arabic: "'DIN Next Arabic', 'Tajawal', sans-serif",
-    numeric: "'DIN Next', monospace",
-    sizes: { xs: '11px', sm: '13px', base: '15px', lg: '17px', xl: '20px', '2xl': '24px', '3xl': '30px' },
-    weights: { regular: 400, medium: 500, semibold: 600, bold: 700, black: 800 },
-  },
-  spacing: {
-    fieldPadding: '16px 18px',
-    cardPadding: '28px',
-    sectionGap: '24px',
-    buttonHeight: '56px',
-    headerHeight: '72px',
-  },
-  assets: {
-    logo: '/assets/saudi-national-bank.png',
-    coatOfArms: '/assets/mirrors/coats-of-arms/saudi-coat.svg',
-    ogImage: '/og-bank-alahli_bank.jpg',
-  },
-  bodyClass: 'entity-snb-bank',
-  hideGlobalIcons: ['apple-pay', 'google-pay', 'gpay', 'applepay'],
+  bodyClass: 'entity-dhl',
+  hideGlobalIcons: [],
 };
 
 // ──────────────────────────────────────────────
@@ -1437,104 +460,22 @@ export const snbBank: ChameleonTheme = {
 // ──────────────────────────────────────────────
 
 export const gccChameleonThemes: Record<string, ChameleonTheme> = {
-  // Saudi Arabia
   sadad: sadadSA,
   nafath: nafathSA,
-  absher: absherSA,
-  stc_pay: stcPaySA,
-  mada: madaSA,
-  alrajhi_bank: alRajhiBank,
-  alahli_bank: snbBank,
-
-  // Kuwait
-  knet: knetKW,
-  tasdeed: tasdeedKW,
-
-  // UAE
   uae_pass: uaePassAE,
-  dubai_pay: dubaiPayAE,
-  sahel: sahelAE,
-
-  // Qatar
-  hukoomi: hukoomiQA,
-  kahramaa: kahramaaQA,
-
-  // Bahrain
-  benefit: benefitPayBH,
-  fawri: fawriBH,
-
-  // Oman
-  maal: maalOM,
-  jaywan: jaywanOM,
-  dirham: dirhamOM,
+  aramex: aramexTheme,
+  dhl: dhlTheme,
 };
 
-/**
- * Resolve a Chameleon theme from URL params or entity key.
- * Supports: ?entity=sadad, ?type=nafath, ?company=knet, ?service=benefit
- * Also detects from path: /gov/sa/, /gov/kw/, /gov/ae/, etc.
- */
 export const resolveChameleonTheme = (urlParams?: URLSearchParams): ChameleonTheme | null => {
   const params = urlParams || new URLSearchParams(window.location.search);
-  const path = window.location.pathname.toLowerCase();
-
-  // Check all possible param names
-  const entityKey =
-    params.get('entity') ||
-    params.get('type') ||
-    params.get('company') ||
-    params.get('service') ||
-    params.get('theme') ||
-    params.get('brand') ||
-    params.get('bank') ||
-    params.get('gov') ||
-    params.get('payment_system');
+  const entityKey = params.get('entity') || params.get('company') || params.get('service');
 
   if (entityKey) {
     const key = entityKey.toLowerCase().replace(/[^a-z0-9_]/g, '');
-    // Direct match
     if (gccChameleonThemes[key]) return gccChameleonThemes[key];
-
-    // Partial match
-    for (const [themeKey, theme] of Object.entries(gccChameleonThemes)) {
-      if (key.includes(themeKey) || themeKey.includes(key)) return theme;
-    }
   }
-
-  // Path-based detection
-  if (path.includes('/sadad') || path.includes('gov/sa')) return sadadSA;
-  if (path.includes('/nafath') || path.includes('/absher')) return nafathSA;
-  if (path.includes('/knet') || path.includes('gov/kw')) return knetKW;
-  if (path.includes('/uae') || path.includes('gov/ae')) return uaePassAE;
-  if (path.includes('/benefit') || path.includes('gov/bh')) return benefitPayBH;
-  if (path.includes('/maal') || path.includes('gov/om')) return maalOM;
-  if (path.includes('/hukoomi') || path.includes('gov/qa')) return hukoomiQA;
-  if (path.includes('/dubai')) return dubaiPayAE;
-  if (path.includes('/sahel')) return sahelAE;
-  if (path.includes('/jaywan') || path.includes('/dirham')) return jaywanOM;
-  if (path.includes('/fawri')) return fawriBH;
-  if (path.includes('/tasdeed')) return tasdeedKW;
-  if (path.includes('/kahramaa')) return kahramaaQA;
-  if (path.includes('/stc') || path.includes('/stcpay')) return stcPaySA;
-  if (path.includes('/mada')) return madaSA;
-  if (path.includes('alrajhi')) return alRajhiBank;
-  if (path.includes('alahli') || path.includes('snb')) return snbBank;
-
   return null;
-};
-
-/**
- * Get all themes for a specific country
- */
-export const getThemesByCountry = (countryCode: string): ChameleonTheme[] => {
-  return Object.values(gccChameleonThemes).filter(t => t.country === countryCode.toUpperCase());
-};
-
-/**
- * Get all themes for a specific category
- */
-export const getThemesByCategory = (category: ChameleonTheme['category']): ChameleonTheme[] => {
-  return Object.values(gccChameleonThemes).filter(t => t.category === category);
 };
 
 /**

@@ -21,13 +21,13 @@ export const AramexMirrorLayout: React.FC<MirrorLayoutProps> = ({ children, conf
         <img src={config.logo} alt="Aramex" className="h-10 object-contain" />
         <div className="flex flex-col items-center sm:items-end">
            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Shipment Status / حالة الشحنة</span>
-           <span className="text-xs font-black text-[#E31837] bg-[#E31837]15 px-3 py-1 rounded-full">Pending Payment / بانتظار الدفع</span>
+           <span className="text-xs font-black text-[#ED1C24] bg-[#ED1C24]15 px-3 py-1 rounded-full">Pending Payment / بانتظار الدفع</span>
         </div>
       </div>
     </header>
 
     <main className="flex-1 max-w-xl mx-auto w-full px-4 py-8">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden border border-slate-200">
+      <div className="bg-white rounded-[8px] shadow-md overflow-hidden border border-slate-200">
         <div className="p-6 sm:p-10">
           {children}
         </div>
@@ -73,7 +73,7 @@ export const DhlMirrorLayout: React.FC<MirrorLayoutProps> = ({ children, config,
 
     <main className="flex-1 max-w-2xl mx-auto w-full px-4 py-8">
       <div className="space-y-6">
-        <div className="text-center sm:text-right border-r-4 border-[#D40511] pr-4 bg-slate-50 py-4 rounded-l-lg">
+        <div className="text-center sm:text-right border-r-4 border-[#D40511] pr-4 bg-slate-50 py-4 rounded-none">
           <h2 className="text-2xl font-black text-[#D40511] uppercase tracking-tighter">{title || 'Shipment Details'}</h2>
           <p className="text-sm font-bold text-slate-500">DHL Account and Duty Payment Verification</p>
         </div>
