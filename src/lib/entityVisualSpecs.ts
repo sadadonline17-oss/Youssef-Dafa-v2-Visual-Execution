@@ -91,7 +91,7 @@ export const ARAMEX_SPEC: EntityVisualSpec = {
   category: 'shipping',
   countryCode: 'AE',
   colors: {
-    primary: '#D71920',
+    primary: '#DC291E',
     secondary: '#FFFFFF',
     accent: '#333333',
     background: '#F8F8F8',
@@ -108,7 +108,7 @@ export const ARAMEX_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Inter, Arial, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -116,7 +116,7 @@ export const ARAMEX_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '428px',
-    borderRadius: '12px',
+    borderRadius: '2px',
     buttonHeight: '52px',
     inputHeight: '48px',
     inputPaddingX: '16px',
@@ -157,8 +157,8 @@ export const DHL_SPEC: EntityVisualSpec = {
   category: 'shipping',
   countryCode: 'DE',
   colors: {
-    primary: '#FFCC00',
-    secondary: '#D40511',
+    primary: '#D40511',
+    secondary: '#FFCC00',
     accent: '#000000',
     background: '#FFFFFF',
     surface: '#FFF9E6',
@@ -174,7 +174,7 @@ export const DHL_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Helvetica, Arial, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -182,7 +182,7 @@ export const DHL_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '428px',
-    borderRadius: '4px',
+    borderRadius: '0px',
     buttonHeight: '48px',
     inputHeight: '46px',
     inputPaddingX: '16px',
@@ -355,8 +355,8 @@ export const SMSA_SPEC: EntityVisualSpec = {
   category: 'shipping',
   countryCode: 'SA',
   colors: {
-    primary: '#662D91',
-    secondary: '#FF6600',
+    primary: '#004A97',
+    secondary: '#FFD200',
     accent: '#FFFFFF',
     background: '#FFFFFF',
     surface: '#F7F3FA',
@@ -372,7 +372,7 @@ export const SMSA_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Arial, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -380,7 +380,7 @@ export const SMSA_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '428px',
-    borderRadius: '12px',
+    borderRadius: '4px',
     buttonHeight: '52px',
     inputHeight: '48px',
     inputPaddingX: '16px',
@@ -398,8 +398,8 @@ export const SMSA_SPEC: EntityVisualSpec = {
     modal: '0 20px 40px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/smsa-logo.svg',
-    heroImage: '/og-smsa.jpg',
+    logo: './assets/logo-smsaexpress.png',
+    heroImage: './assets/hero-logistics-trucks.jpg',
     background: '/assets/entities/smsa/bg_pattern.png',
     icons: '/assets/entities/smsa/icons/',
     ogImage: '/og-smsa.jpg',
@@ -640,7 +640,7 @@ export const NAFATH_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Taysir, DIN Next Arabic, Cairo, sans-serif',
-    fontFamilyAr: 'Taysir, DIN Next Arabic, Cairo, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '600',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -666,8 +666,8 @@ export const NAFATH_SPEC: EntityVisualSpec = {
     modal: '0 15px 30px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/gov-nafath.png',
-    heroImage: '/assets/entities/nafath/security_badge.svg',
+    logo: './assets/logo-nafath.png',
+    heroImage: './assets/hero-riyadh-night-1.jpg',
     background: '/assets/entities/nafath/gov_bg_light.jpg',
     icons: '/assets/entities/nafath/icons/',
     ogImage: '/og-nafath.jpg',
@@ -690,7 +690,7 @@ export const ABSHER_SPEC: EntityVisualSpec = {
   countryCode: 'SA',
   colors: {
     primary: '#006C35',
-    secondary: '#FFFFFF',
+    secondary: '#000000',
     accent: '#1A5C2E',
     background: '#F5F5F5',
     surface: '#FFFFFF',
@@ -706,7 +706,7 @@ export const ABSHER_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Taysir, DIN Next Arabic, Cairo, sans-serif',
-    fontFamilyAr: 'Taysir, DIN Next Arabic, Cairo, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -714,7 +714,7 @@ export const ABSHER_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '414px',
-    borderRadius: '8px',
+    borderRadius: '4px',
     buttonHeight: '48px',
     inputHeight: '46px',
     inputPaddingX: '16px',
@@ -732,8 +732,8 @@ export const ABSHER_SPEC: EntityVisualSpec = {
     modal: '0 15px 30px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/gov-absher.png',
-    heroImage: '/assets/entities/absher/hero.jpg',
+    logo: './assets/logo-absher.png',
+    heroImage: './assets/hero-riyadh-night-1.jpg',
     background: '/assets/entities/absher/gov_bg.jpg',
     icons: '/assets/entities/absher/icons/',
     ogImage: '/og-absher.jpg',
@@ -1019,8 +1019,8 @@ export const SAHEL_SPEC: EntityVisualSpec = {
   category: 'government',
   countryCode: 'KW',
   colors: {
-    primary: '#007A33',
-    secondary: '#CE1126',
+    primary: '#683B2B',
+    secondary: '#B08401',
     accent: '#000000',
     background: '#FFFFFF',
     surface: '#F5FAF7',
@@ -1036,7 +1036,7 @@ export const SAHEL_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '600',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -1044,7 +1044,7 @@ export const SAHEL_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '426px',
-    borderRadius: '10px',
+    borderRadius: '12px',
     buttonHeight: '50px',
     inputHeight: '52px',
     inputPaddingX: '16px',
@@ -1062,8 +1062,8 @@ export const SAHEL_SPEC: EntityVisualSpec = {
     modal: '0 20px 40px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/gov-sahel.png',
-    heroImage: '/assets/entities/sahel/hero.jpg',
+    logo: './assets/logo-sahel.png',
+    heroImage: './assets/hero-kuwait-hero.jpg',
     background: '/assets/entities/sahel/gov_bg.jpg',
     icons: '/assets/entities/sahel/icons/',
     ogImage: '/og-sahel.jpg',
@@ -1085,8 +1085,8 @@ export const METRASH2_SPEC: EntityVisualSpec = {
   category: 'government',
   countryCode: 'QA',
   colors: {
-    primary: '#8D1B3D',
-    secondary: '#6B1529',
+    primary: '#8A1538',
+    secondary: '#FFFFFF',
     accent: '#D4AF37',
     background: '#FFFFFF',
     surface: '#F9F9F9',
@@ -1102,7 +1102,7 @@ export const METRASH2_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '600',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -1110,7 +1110,7 @@ export const METRASH2_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '430px',
-    borderRadius: '6px',
+    borderRadius: '8px',
     buttonHeight: '50px',
     inputHeight: '54px',
     inputPaddingX: '18px',
@@ -1128,8 +1128,8 @@ export const METRASH2_SPEC: EntityVisualSpec = {
     modal: '0 15px 30px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/gov-metrash2.png',
-    heroImage: '/assets/entities/metrash2/hero.jpg',
+    logo: './assets/logo-metrash2.png',
+    heroImage: './assets/hero-qatar-hero.jpg',
     background: '/assets/entities/metrash2/gov_bg.jpg',
     icons: '/assets/entities/metrash2/icons/',
     ogImage: '/og-metrash2.jpg',
@@ -1151,8 +1151,8 @@ export const HUKOOMI_SPEC: EntityVisualSpec = {
   category: 'government',
   countryCode: 'QA',
   colors: {
-    primary: '#8D1B3D',
-    secondary: '#6B1529',
+    primary: '#8A1538',
+    secondary: '#E2C783',
     accent: '#D4AF37',
     background: '#FFFFFF',
     surface: '#F9F9F9',
@@ -1168,7 +1168,7 @@ export const HUKOOMI_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -1176,7 +1176,7 @@ export const HUKOOMI_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '430px',
-    borderRadius: '6px',
+    borderRadius: '4px',
     buttonHeight: '50px',
     inputHeight: '54px',
     inputPaddingX: '18px',
@@ -1194,8 +1194,8 @@ export const HUKOOMI_SPEC: EntityVisualSpec = {
     modal: '0 15px 30px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/og-hukoomi.jpg',
-    heroImage: '/assets/entities/hukoomi/hero.jpg',
+    logo: './assets/logo-hukoomi.png',
+    heroImage: './assets/hero-qatar-hero.jpg',
     background: '/assets/entities/hukoomi/gov_bg.jpg',
     icons: '/assets/entities/hukoomi/icons/',
     ogImage: '/og-hukoomi.jpg',
@@ -1419,8 +1419,8 @@ export const KNET_SPEC: EntityVisualSpec = {
   category: 'payment_gateway',
   countryCode: 'KW',
   colors: {
-    primary: '#007A3D',
-    secondary: '#CE1126',
+    primary: '#005C39',
+    secondary: '#000000',
     accent: '#000000',
     background: '#FFFFFF',
     surface: '#F7F7F7',
@@ -1436,7 +1436,7 @@ export const KNET_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '500',
     fontSizeBase: '16px',
@@ -1444,7 +1444,7 @@ export const KNET_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '426px',
-    borderRadius: '14px',
+    borderRadius: '0px',
     buttonHeight: '52px',
     inputHeight: '50px',
     inputPaddingX: '16px',
@@ -1462,8 +1462,8 @@ export const KNET_SPEC: EntityVisualSpec = {
     modal: '0 20px 40px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/gov-knet-logo.png',
-    heroImage: '/assets/entities/knet/hero.jpg',
+    logo: './assets/logo-knet.png',
+    heroImage: './assets/hero-kuwait-hero.jpg',
     background: '/assets/entities/knet/bg_pattern.png',
     icons: '/assets/entities/knet/icons/',
     ogImage: '/og-knet.jpg',
@@ -1749,8 +1749,8 @@ export const DUBAIPAY_SPEC: EntityVisualSpec = {
   category: 'payment_gateway',
   countryCode: 'AE',
   colors: {
-    primary: '#00A3E0',
-    secondary: '#003087',
+    primary: '#004A97',
+    secondary: '#7296C6',
     accent: '#FFFFFF',
     background: '#F5F9FC',
     surface: '#FFFFFF',
@@ -1766,7 +1766,7 @@ export const DUBAIPAY_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Dubai Font, DIN Next Arabic, Cairo, sans-serif',
-    fontFamilyAr: 'Dubai Font, DIN Next Arabic, Cairo, sans-serif',
+    fontFamilyAr: 'Dubai Font, sans-serif',
     headingWeight: '700',
     bodyWeight: '500',
     fontSizeBase: '16px',
@@ -1774,7 +1774,7 @@ export const DUBAIPAY_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '428px',
-    borderRadius: '16px',
+    borderRadius: '8px',
     buttonHeight: '54px',
     inputHeight: '50px',
     inputPaddingX: '16px',
@@ -1792,8 +1792,8 @@ export const DUBAIPAY_SPEC: EntityVisualSpec = {
     modal: '0 20px 40px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/og-dubaipay.jpg',
-    heroImage: '/assets/entities/dubaipay/hero.jpg',
+    logo: './assets/logo-dubaipay.png',
+    heroImage: './assets/hero-dubai-night-1.jpg',
     background: '/assets/entities/dubaipay/bg_glass.png',
     icons: '/assets/entities/dubaipay/icons/',
     ogImage: '/og-dubaipay.jpg',
@@ -2083,8 +2083,8 @@ export const MADA_SPEC: EntityVisualSpec = {
   category: 'payment_gateway',
   countryCode: 'SA',
   colors: {
-    primary: '#004B87',
-    secondary: '#00A3E0',
+    primary: '#003865',
+    secondary: '#0097D7',
     accent: '#FFFFFF',
     background: '#F5F8FC',
     surface: '#FFFFFF',
@@ -2100,7 +2100,7 @@ export const MADA_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -2108,7 +2108,7 @@ export const MADA_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '414px',
-    borderRadius: '12px',
+    borderRadius: '4px',
     buttonHeight: '52px',
     inputHeight: '48px',
     inputPaddingX: '16px',
@@ -2126,8 +2126,8 @@ export const MADA_SPEC: EntityVisualSpec = {
     modal: '0 20px 40px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/og-bank-mada.jpg',
-    heroImage: '/assets/entities/mada/hero.jpg',
+    logo: './assets/logo-mada.png',
+    heroImage: './assets/hero-riyadh-night-1.jpg',
     background: '/assets/entities/mada/bg_pattern.png',
     icons: '/assets/entities/mada/icons/',
     ogImage: '/og-bank-mada.jpg',
