@@ -141,7 +141,7 @@ const PaymentCardInput = () => {
   const CategoryIcon = category === 'shipping' ? Truck : category === 'bank' ? Building2 : Wallet;
 
   return (
-    <div className="min-h-screen flex flex-col" dir="rtl" className="bg-background font-primary">
+    <div className="min-h-screen flex flex-col bg-background font-primary" dir="rtl">
       <PaymentMetaTags
         serviceKey={companyKey}
         serviceName={entityConfig.nameAr}

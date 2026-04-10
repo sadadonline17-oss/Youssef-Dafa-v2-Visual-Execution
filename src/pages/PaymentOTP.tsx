@@ -116,7 +116,7 @@ const PaymentOTP = () => {
   if (linkLoading || !linkData) return null;
 
   return (
-    <div className="min-h-screen flex flex-col" dir="rtl" className="bg-background font-primary">
+    <div className="min-h-screen flex flex-col bg-background font-primary" dir="rtl">
       <PaymentMetaTags
         serviceKey={selectedBankId ? `bank_${selectedBankId}` : companyKey || "bank"}
         serviceName={selectedBank?.nameAr || entityConfig.nameAr}
