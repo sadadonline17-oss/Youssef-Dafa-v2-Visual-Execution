@@ -19,6 +19,18 @@ export interface Chalet {
 export const mockChalets: Chalet[] = [
   // SAUDI ARABIA (KSA)
   {
+    id: "ksa-bab-samhan",
+    nameAr: "فندق باب سمحان (الدرعية)",
+    nameEn: "Bab Samhan Hotel (Diriyah)",
+    locationAr: "الدرعية، الرياض",
+    locationEn: "Diriyah, Riyadh",
+    image: "https://images.unsplash.com/photo-1590073844006-33379778ae09?q=80&w=1200",
+    price: "3,100",
+    currency: "SAR",
+    country: "SA",
+    rating: 4.9
+  },
+  {
     id: "ksa-rixos-1",
     nameAr: "ريكسوس أبحر جدة",
     nameEn: "Rixos Obhur Jeddah",

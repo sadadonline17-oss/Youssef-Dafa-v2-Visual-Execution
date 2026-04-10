@@ -361,7 +361,7 @@ export const dhlTheme: ChameleonTheme = {
   country: 'Global',
   category: 'shipping',
   colors: {
-    primary: '#D40511',
+    primary: '#FFCC00',
     secondary: '#FFCC00',
     accent: '#1C2526',
     background: '#FFFFFF',
