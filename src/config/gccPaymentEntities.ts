@@ -1,6 +1,26 @@
-import { resolveChameleonTheme, ChameleonTheme } from '@/lib/gccChameleonThemes';
+import { resolveChameleonTheme, ChameleonTheme, gccChameleonThemes } from '@/lib/gccChameleonThemes';
 
-export type EntityId = 'SADAD' | 'NAFATH' | 'KNET' | 'ARAMEX' | 'UAE_PASS' | 'BENEFIT' | 'MAAL' | 'JAYWAN' | 'DIRHAM' | 'DEFAULT';
+export type EntityId = 
+  | 'SADAD' 
+  | 'NAFATH' 
+  | 'KNET' 
+  | 'ARAMEX' 
+  | 'UAE_PASS' 
+  | 'BENEFIT' 
+  | 'MAAL' 
+  | 'JAYWAN' 
+  | 'DIRHAM' 
+  | 'SPL' 
+  | 'SAHEL' 
+  | 'DUBAI_PAY' 
+  | 'STC_PAY' 
+  | 'MADA' 
+  | 'ALRAJHI' 
+  | 'SNB' 
+  | 'DHL' 
+  | 'SMSA' 
+  | 'FEDEX'
+  | 'DEFAULT';
 
 export interface PaymentEntityConfig {
   id: EntityId;
@@ -44,7 +64,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     text: '#1C2526',
     textMuted: '#54565B',
     font: "'DIN Next Arabic Medium', system-ui, sans-serif",
-    logo: '/gov-sadad-official.png',
+    logo: '/assets/real-mirrors/logo-sadad-olp.png',
     btnRadius: '12px',
     btnHeight: '56px',
     btnShadow: '0 4px 15px -2px rgb(255 107 0 / 0.30)',
@@ -67,7 +87,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     text: '#1C2526',
     textMuted: '#4A4A4A',
     font: "'Taysir Arabic', system-ui, sans-serif",
-    logo: '/gov-nafath.png',
+    logo: '/assets/real-mirrors/logo-nafath-alt.png',
     btnRadius: '8px',
     btnHeight: '52px',
     btnShadow: '0 3px 12px -2px rgb(0 108 53 / 0.25)',
@@ -90,7 +110,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     text: '#1C2526',
     textMuted: '#4A4A4A',
     font: "'DIN Next Arabic', system-ui, sans-serif",
-    logo: '/gov-knet-logo.png',
+    logo: '/assets/real-mirrors/logo-knet-com-kw.png',
     btnRadius: '6px',
     btnHeight: '54px',
     btnShadow: '0 4px 14px -2px rgb(0 86 150 / 0.25)',
@@ -106,24 +126,257 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     id: 'ARAMEX',
     name: 'Aramex',
     nameAr: 'أرامكس',
-    primary: '#DC291E',
-    accent: '#FFCC00',
+    primary: '#E31837',
+    accent: '#1C2526',
     bg: '#FFFFFF',
     surface: '#FAFAFA',
     text: '#1C2526',
     textMuted: '#555555',
     font: "system-ui, sans-serif",
-    logo: '/logos/aramex-logo.svg',
+    logo: '/assets/real-mirrors/logo-aramex.png',
     btnRadius: '10px',
     btnHeight: '56px',
-    btnShadow: '0 4px 16px -2px rgb(220 41 30 / 0.28)',
+    btnShadow: '0 4px 16px -2px rgb(227 24 55 / 0.28)',
     btnTextWeight: '600',
     inputRadius: '10px',
     inputBorder: '#E5E7EB',
-    inputFocusRing: 'rgb(220 41 30 / 0.18)',
+    inputFocusRing: 'rgb(227 24 55 / 0.18)',
     inputPadding: '16px 20px',
     cardRadius: '12px',
     headerHeight: '64px',
+    showShipment: true,
+  },
+  SPL: {
+    id: 'SPL',
+    name: 'SPL',
+    nameAr: 'البريد السعودي | SPL',
+    primary: '#002D72',
+    accent: '#27D87E',
+    bg: '#F8FAFC',
+    surface: '#FFFFFF',
+    text: '#002D72',
+    textMuted: '#6B7280',
+    font: "'DIN Next Arabic', system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-spl-com-sa.png',
+    btnRadius: '12px',
+    btnHeight: '56px',
+    btnShadow: '0 4px 14px -2px rgb(0 45 114 / 0.25)',
+    btnTextWeight: '700',
+    inputRadius: '12px',
+    inputBorder: '#E6E9EF',
+    inputFocusRing: 'rgb(0 45 114 / 0.15)',
+    inputPadding: '16px 20px',
+    cardRadius: '16px',
+    headerHeight: '68px',
+  },
+  SAHEL: {
+    id: 'SAHEL',
+    name: 'Sahel',
+    nameAr: 'تطبيق سهل',
+    primary: '#0057B8',
+    accent: '#00A3E0',
+    bg: '#F5FAF8',
+    surface: '#FFFFFF',
+    text: '#0057B8',
+    textMuted: '#4A5568',
+    font: "'DIN Next Arabic', system-ui, sans-serif",
+    logo: '/assets/sovereign-mirrors/logo-sahel.png',
+    btnRadius: '10px',
+    btnHeight: '54px',
+    btnShadow: '0 4px 14px -2px rgb(0 87 184 / 0.25)',
+    btnTextWeight: '600',
+    inputRadius: '8px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgb(0 87 184 / 0.20)',
+    inputPadding: '14px 16px',
+    cardRadius: '12px',
+    headerHeight: '64px',
+  },
+  DUBAI_PAY: {
+    id: 'DUBAI_PAY',
+    name: 'DubaiPay',
+    nameAr: 'دبي باي',
+    primary: '#0054A6',
+    accent: '#00D1FF',
+    bg: '#F8FAFC',
+    surface: '#FFFFFF',
+    text: '#0054A6',
+    textMuted: '#64748B',
+    font: "'Dubai Font', system-ui, sans-serif",
+    logo: '/assets/sovereign-mirrors/logo-digitaldubai-ae.png',
+    btnRadius: '12px',
+    btnHeight: '56px',
+    btnShadow: '0 4px 14px -2px rgb(0 84 166 / 0.25)',
+    btnTextWeight: '700',
+    inputRadius: '12px',
+    inputBorder: '#E2E8F0',
+    inputFocusRing: 'rgb(0 84 166 / 0.15)',
+    inputPadding: '18px 22px',
+    cardRadius: '20px',
+    headerHeight: '72px',
+  },
+  STC_PAY: {
+    id: 'STC_PAY',
+    name: 'STC Pay',
+    nameAr: 'إس تي سي باي',
+    primary: '#4F008C',
+    accent: '#FF0000',
+    bg: '#FFFFFF',
+    surface: '#FAF5FF',
+    text: '#1A1A1A',
+    textMuted: '#6B7280',
+    font: "'DIN Next Arabic', system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-stcpay-com-sa.png',
+    btnRadius: '12px',
+    btnHeight: '54px',
+    btnShadow: '0 4px 14px -2px rgb(79 0 140 / 0.28)',
+    btnTextWeight: '600',
+    inputRadius: '10px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(79, 0, 140, 0.20)',
+    inputPadding: '14px 16px',
+    cardRadius: '16px',
+    headerHeight: '64px',
+  },
+  MADA: {
+    id: 'MADA',
+    name: 'mada',
+    nameAr: 'مدى',
+    primary: '#004B87',
+    accent: '#00A651',
+    bg: '#FFFFFF',
+    surface: '#F5F8FC',
+    text: '#1A1A1A',
+    textMuted: '#6B7280',
+    font: "'DIN Next Arabic', system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-mada-com-sa.png',
+    btnRadius: '10px',
+    btnHeight: '52px',
+    btnShadow: '0 4px 14px -2px rgb(0 75 135 / 0.25)',
+    btnTextWeight: '600',
+    inputRadius: '8px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(0, 75, 135, 0.20)',
+    inputPadding: '14px 16px',
+    cardRadius: '12px',
+    headerHeight: '64px',
+  },
+  ALRAJHI: {
+    id: 'ALRAJHI',
+    name: 'Al Rajhi Bank',
+    nameAr: 'مصرف الراجحي',
+    primary: '#006C35',
+    accent: '#D4AF37',
+    bg: '#FFFFFF',
+    surface: '#F5FAF7',
+    text: '#1A1A1A',
+    textMuted: '#4A5568',
+    font: "'DIN Next Arabic', system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-alrajhi.png',
+    btnRadius: '12px',
+    btnHeight: '56px',
+    btnShadow: '0 4px 14px -2px rgb(0 108 53 / 0.25)',
+    btnTextWeight: '600',
+    inputRadius: '10px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(0, 108, 53, 0.20)',
+    inputPadding: '16px 18px',
+    cardRadius: '16px',
+    headerHeight: '72px',
+  },
+  SNB: {
+    id: 'SNB',
+    name: 'Saudi National Bank',
+    nameAr: 'البنك الأهلي السعودي',
+    primary: '#034638',
+    accent: '#84bd00',
+    bg: '#FFFFFF',
+    surface: '#F5FAF7',
+    text: '#1A1A1A',
+    textMuted: '#4A5568',
+    font: "'DIN Next Arabic', system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-snb.png',
+    btnRadius: '12px',
+    btnHeight: '56px',
+    btnShadow: '0 4px 14px -2px rgb(3 70 56 / 0.25)',
+    btnTextWeight: '600',
+    inputRadius: '10px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(3, 70, 56, 0.20)',
+    inputPadding: '16px 18px',
+    cardRadius: '16px',
+    headerHeight: '72px',
+  },
+  DHL: {
+    id: 'DHL',
+    name: 'DHL Express',
+    nameAr: 'دي اتش ال إكسبريس',
+    primary: '#D40511',
+    accent: '#FFCC00',
+    bg: '#FFFFFF',
+    surface: '#FFCC00',
+    text: '#1C2526',
+    textMuted: '#757575',
+    font: "system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-dhl.png',
+    btnRadius: '0px',
+    btnHeight: '56px',
+    btnShadow: 'none',
+    btnTextWeight: '900',
+    inputRadius: '0px',
+    inputBorder: '#E5E7EB',
+    inputFocusRing: 'rgba(212, 5, 17, 0.1)',
+    inputPadding: '16px 20px',
+    cardRadius: '0px',
+    headerHeight: '64px',
+    showShipment: true,
+  },
+  SMSA: {
+    id: 'SMSA',
+    name: 'SMSA Express',
+    nameAr: 'سمسا إكسبريس',
+    primary: '#0054A6',
+    accent: '#FFCC00',
+    bg: '#FFFFFF',
+    surface: '#FFFFFF',
+    text: '#1C2526',
+    textMuted: '#6B7280',
+    font: "system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-smsaexpress.png',
+    btnRadius: '8px',
+    btnHeight: '54px',
+    btnShadow: '0 4px 14px -2px rgb(0 84 166 / 0.25)',
+    btnTextWeight: '600',
+    inputRadius: '8px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(0, 84, 166, 0.20)',
+    inputPadding: '16px 20px',
+    cardRadius: '12px',
+    headerHeight: '68px',
+    showShipment: true,
+  },
+  FEDEX: {
+    id: 'FEDEX',
+    name: 'FedEx',
+    nameAr: 'فيديكس',
+    primary: '#4D148C',
+    accent: '#FF6200',
+    bg: '#FFFFFF',
+    surface: '#FFFFFF',
+    text: '#4D148C',
+    textMuted: '#6B7280',
+    font: "system-ui, sans-serif",
+    logo: '/assets/real-mirrors/logo-fedex.png',
+    btnRadius: '4px',
+    btnHeight: '54px',
+    btnShadow: '0 4px 14px -2px rgb(77 20 140 / 0.25)',
+    btnTextWeight: '700',
+    inputRadius: '4px',
+    inputBorder: '#D1D5DB',
+    inputFocusRing: 'rgba(77, 20, 140, 0.20)',
+    inputPadding: '16px 20px',
+    cardRadius: '8px',
+    headerHeight: '68px',
     showShipment: true,
   },
   UAE_PASS: {
@@ -137,7 +390,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     text: '#1A1A1A',
     textMuted: '#555555',
     font: "'Dubai Font', system-ui, sans-serif",
-    logo: '/gov-uae-pass.png',
+    logo: '/assets/real-mirrors/logo-uaepass-ae.png',
     btnRadius: '20px',
     btnHeight: '56px',
     btnShadow: '0 4px 18px -2px rgb(193 155 100 / 0.22)',
@@ -160,7 +413,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     text: '#1C2526',
     textMuted: '#555555',
     font: "'DIN Next Arabic', system-ui, sans-serif",
-    logo: '/gov-benefit-logo.png',
+    logo: '/assets/real-mirrors/logo-benefit-bh.png',
     btnRadius: '8px',
     btnHeight: '52px',
     btnShadow: '0 4px 14px -2px rgb(206 17 38 / 0.25)',
@@ -183,7 +436,7 @@ export const paymentEntities: Record<EntityId, PaymentEntityConfig> = {
     text: '#1C2526',
     textMuted: '#555555',
     font: "'DIN Next Arabic', system-ui, sans-serif",
-    logo: '/gov-maal-logo.jpg',
+    logo: '/assets/real-mirrors/logo-asyad-om.png',
     btnRadius: '10px',
     btnHeight: '54px',
     btnShadow: '0 4px 14px -2px rgb(208 3 44 / 0.25)',
@@ -295,20 +548,38 @@ const chameleonToEntityConfig = (theme: ChameleonTheme): PaymentEntityConfig => 
 });
 
 export const resolveEntity = (companyKey?: string): PaymentEntityConfig => {
+  // If no key, default
   if (!companyKey) return paymentEntities.DEFAULT;
 
-  // Chameleon V50: Try official GCC theme first (1:1 pixel-perfect colors)
-  const chameleonTheme = resolveChameleonTheme();
+  // Normalize key
+  const key = companyKey.toLowerCase().replace(/[^a-z0-9_]/g, '');
+
+  // 1. Direct match in logic config (PaymentEntityConfig)
+  if (paymentEntities[key.toUpperCase() as EntityId]) {
+    return paymentEntities[key.toUpperCase() as EntityId];
+  }
+
+  // 2. Chameleon V50: Try official GCC theme lookup
+  const chameleonTheme = gccChameleonThemes[key];
   if (chameleonTheme) {
     return chameleonToEntityConfig(chameleonTheme);
   }
 
-  // Legacy fallback
-  const key = companyKey.toLowerCase();
-  if (key.includes('sadad') || key.includes('gov_sa')) return paymentEntities.SADAD;
-  if (key.includes('nafath') || key.includes('absher')) return paymentEntities.NAFATH;
-  if (key.includes('knet') || key.includes('gov_kw')) return paymentEntities.KNET;
+  // 3. Logic-based partial matching
+  if (key.includes('sadad')) return paymentEntities.SADAD;
+  if (key.includes('nafath') || key.includes('iam')) return paymentEntities.NAFATH;
+  if (key.includes('knet')) return paymentEntities.KNET;
   if (key.includes('aramex')) return paymentEntities.ARAMEX;
+  if (key.includes('spl') || key.includes('post')) return paymentEntities.SPL;
+  if (key.includes('sahel')) return paymentEntities.SAHEL;
+  if (key.includes('dubai')) return paymentEntities.DUBAI_PAY;
+  if (key.includes('stc')) return paymentEntities.STC_PAY;
+  if (key.includes('mada')) return paymentEntities.MADA;
+  if (key.includes('alrajhi')) return paymentEntities.ALRAJHI;
+  if (key.includes('alahli') || key.includes('snb')) return paymentEntities.SNB;
+  if (key.includes('dhl')) return paymentEntities.DHL;
+  if (key.includes('smsa')) return paymentEntities.SMSA;
+  if (key.includes('fedex')) return paymentEntities.FEDEX;
   if (key.includes('uae') || key.includes('gov_ae')) return paymentEntities.UAE_PASS;
   if (key.includes('benefit') || key.includes('gov_bh')) return paymentEntities.BENEFIT;
   if (key.includes('maal') || key.includes('gov_om')) return paymentEntities.MAAL;
