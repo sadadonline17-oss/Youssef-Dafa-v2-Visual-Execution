@@ -609,6 +609,8 @@ export const resolveEntity = (companyKey?: string): PaymentEntityConfig => {
   if (key.includes('benefit') || key.includes('gov_bh')) return paymentEntities.BENEFIT;
   if (key.includes('maal') || key.includes('gov_om')) return paymentEntities.MAAL;
   if (key.includes('jaywan') || key.includes('dirham')) return paymentEntities.JAYWAN;
+  if (key.includes('hukoomi') || key.includes('qatar')) return paymentEntities.DEFAULT;
+  if (key.includes('absher')) return paymentEntities.NAFATH;
 
   return paymentEntities.DEFAULT;
 };
