@@ -3,8 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import { PaymentEntityConfig, resolveEntity } from "@/config/gccPaymentEntities";
 import { 
   NafathMirrorLayout, 
-  KnetMirrorLayout, 
-  DubaiPayMirrorLayout 
+  UAEDirhamMirrorLayout, 
+  SahelMirrorLayout, 
+  SPLMirrorLayout, 
+  SadadMirrorLayout,
+  KnetMirrorLayout 
 } from "./MirrorLayouts";
 import { 
   AramexMirrorLayout, 
@@ -26,8 +29,8 @@ interface MirrorPageWrapperProps {
  * MirrorPageWrapper
  * 
  * Central Visual Identity Router.
- * This component replaces the entire page shell to achieve 1:1 parity
- * with official apps (Nafath, KNET, Dubai Pay, Aramex, DHL, etc.)
+ * Implements Individual Sovereign Cloning (V350).
+ * Achieve 1:1 Identity Sync across all sectors.
  */
 export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({ 
   children, 
@@ -44,10 +47,7 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
   const normalizedKey = companyKey.toLowerCase().replace(/[^a-z0-9]/g, '');
   const entityConfig = resolveEntity(companyKey);
 
-  // 1. Resolve 2026 Government Service
-  const govService = resolveGovService(companyKey);
-
-  // 2. ARAMEX (Deep Clone) - 1:1 Official Mirror
+  // 1. ARAMEX (Cloned Identity)
   if (normalizedKey.includes('aramex')) {
     return (
       <AramexMirrorLayout config={entityConfig} title={title}>
@@ -56,7 +56,7 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 3. DHL (Deep Clone) - 1:1 Official Mirror
+  // 2. DHL (Cloned Identity)
   if (normalizedKey.includes('dhl')) {
     return (
       <DhlMirrorLayout config={entityConfig} title={title}>
@@ -65,26 +65,53 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 4. NAFATH / KSA (Saudi Identity)
-  if (normalizedKey.includes('nafath') || (govService && govService.country === 'SA')) {
+  // 3. UAE DIRHAM (Digital Dubai / UAE Pass)
+  if (normalizedKey.includes('dubai') || normalizedKey.includes('uaepass') || normalizedKey.includes('dirham')) {
     return (
-      <NafathMirrorLayout 
-        config={entityConfig} 
-        title={title}
-        bgType={govService?.bgType || 'security_grid'}
-      >
+      <UAEDirhamMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </UAEDirhamMirrorLayout>
+    );
+  }
+
+  // 4. KSA NAFATH (SDAIA / National Identity)
+  if (normalizedKey.includes('nafath') || normalizedKey.includes('iam')) {
+    return (
+      <NafathMirrorLayout config={entityConfig} title={title}>
         {children}
       </NafathMirrorLayout>
     );
   }
 
-  // 5. KNET / SAHL / BENEFIT / OMAN (Kuwait/Bahrain/Oman)
-  if (
-    normalizedKey.includes('knet') || 
-    normalizedKey.includes('benefit') || 
-    normalizedKey.includes('sahl') ||
-    (govService && ['KW', 'BH', 'OM', 'QA'].includes(govService.country))
-  ) {
+  // 5. KUWAIT SAHEL (MoI / Digital Identity)
+  if (normalizedKey.includes('sahel') || normalizedKey.includes('kuwait') || normalizedKey.includes('moi')) {
+    return (
+      <SahelMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </SahelMirrorLayout>
+    );
+  }
+
+  // 6. KSA SPL (Saudi Post / SPL Online)
+  if (normalizedKey.includes('spl') || normalizedKey.includes('post')) {
+    return (
+      <SPLMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </SPLMirrorLayout>
+    );
+  }
+
+  // 7. KSA SADAD (OLP / National Billing)
+  if (normalizedKey.includes('sadad') || normalizedKey.includes('bill')) {
+    return (
+      <SadadMirrorLayout config={entityConfig} title={title}>
+        {children}
+      </SadadMirrorLayout>
+    );
+  }
+
+  // 8. KNET (Banking Standard)
+  if (normalizedKey.includes('knet') || normalizedKey.includes('benefit')) {
     return (
       <KnetMirrorLayout config={entityConfig}>
         {children}
@@ -92,20 +119,7 @@ export const MirrorPageWrapper: React.FC<MirrorPageWrapperProps> = ({
     );
   }
 
-  // 6. DUBAI PAY / UAE PASS (UAE)
-  if (
-    normalizedKey.includes('dubai') || 
-    normalizedKey.includes('uaepass') || 
-    (govService && govService.country === 'AE')
-  ) {
-    return (
-      <DubaiPayMirrorLayout config={entityConfig} title={title}>
-        {children}
-      </DubaiPayMirrorLayout>
-    );
-  }
-
-  // DEFAULT (Generic Layout for Shipping/Other)
+  // DEFAULT (Generic Layout for Other Entities)
   return (
     <div className="min-h-screen flex flex-col bg-background font-primary" dir="rtl">
       {!hideHeader && (

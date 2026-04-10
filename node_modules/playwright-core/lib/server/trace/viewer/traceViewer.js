@@ -47,7 +47,7 @@ var import_launchApp2 = require("../../launchApp");
 var import_playwright = require("../../playwright");
 var import_progress = require("../../progress");
 const tracesDirMarker = "traces.dir";
-function validateTraceUrl(traceFileOrUrl) {
+function validateTraceUrlOrPath(traceFileOrUrl) {
   if (!traceFileOrUrl)
     return traceFileOrUrl;
   if (traceFileOrUrl.startsWith("http://") || traceFileOrUrl.startsWith("https://"))
@@ -91,7 +91,7 @@ async function startTraceViewerServer(options) {
   });
   const transport = options?.transport || (options?.isServer ? new StdinServer() : void 0);
   if (transport)
-    server.createWebSocket(transport);
+    server.createWebSocket(() => transport);
   const { host, port } = options || {};
   await server.start({ preferredPort: port, host });
   return server;
@@ -126,17 +126,16 @@ async function installRootRedirect(server, traceUrl, options) {
     return true;
   });
 }
-async function runTraceViewerApp(traceUrl, browserName, options, exitOnClose) {
-  traceUrl = validateTraceUrl(traceUrl);
+async function runTraceViewerApp(traceUrl, browserName, options) {
+  traceUrl = validateTraceUrlOrPath(traceUrl);
   const server = await startTraceViewerServer(options);
   await installRootRedirect(server, traceUrl, options);
   const page = await openTraceViewerApp(server.urlPrefix("precise"), browserName, options);
-  if (exitOnClose)
-    page.on("close", () => (0, import_utils.gracefullyProcessExitDoNotHang)(0));
+  page.on("close", () => (0, import_utils.gracefullyProcessExitDoNotHang)(0));
   return page;
 }
 async function runTraceInBrowser(traceUrl, options) {
-  traceUrl = validateTraceUrl(traceUrl);
+  traceUrl = validateTraceUrlOrPath(traceUrl);
   const server = await startTraceViewerServer(options);
   await installRootRedirect(server, traceUrl, options);
   await openTraceInBrowser(server.urlPrefix("human-readable"));
@@ -178,8 +177,8 @@ async function openTraceInBrowser(url) {
 class StdinServer {
   constructor() {
     process.stdin.on("data", (data) => {
-      const url = data.toString().trim();
-      if (url === this._traceUrl)
+      const url = validateTraceUrlOrPath(data.toString().trim());
+      if (!url || url === this._traceUrl)
         return;
       if (url.endsWith(".json"))
         this._pollLoadTrace(url);
