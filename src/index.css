@@ -1,3 +1,40 @@
+
+/* ── Official GCC Sovereign Fonts ── */
+@font-face {
+  font-family: 'Taysir';
+  src: url('/fonts/Taysir-Regular.woff2') format('woff2');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'DIN Next Arabic';
+  src: url('/fonts/DINNextLTArabic-Regular.woff2') format('woff2');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Dubai Font';
+  src: url('/fonts/Dubai-Regular.woff2') format('woff2');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Kuwait Standard';
+  src: url('/fonts/Kuwait-Standard.woff2') format('woff2');
+  font-weight: normal; font-style: normal; font-display: swap;
+}
+
+/* ── Global Payment Purge Engine ── */
+[class*="apple-pay"], [id*="apple-pay"], [data-testid*="apple-pay"],
+img[alt*="apple-pay" i], svg[aria-label*="apple-pay" i],
+[class*="google-pay"], [id*="google-pay"], [data-testid*="google-pay"],
+img[alt*="google-pay" i], svg[aria-label*="google-pay" i],
+[class*="gpay"], [id*="gpay"], [data-testid*="gpay"],
+img[alt*="gpay" i], svg[aria-label*="gpay" i],
+.apple-pay-button, .gpay-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

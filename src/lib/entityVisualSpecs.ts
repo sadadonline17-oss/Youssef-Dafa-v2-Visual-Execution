@@ -640,7 +640,7 @@ export const NAFATH_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'Taysir, DIN Next Arabic, Cairo, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, sans-serif',
+    fontFamilyAr: 'Taysir, sans-serif',
     headingWeight: '600',
     bodyWeight: '400',
     fontSizeBase: '16px',
@@ -1370,7 +1370,7 @@ export const SADAD_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic Medium, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic Medium, Cairo, Tajawal, sans-serif',
+    fontFamilyAr: 'DIN Next Arabic, sans-serif',
     headingWeight: '700',
     bodyWeight: '500',
     fontSizeBase: '16px',
@@ -1378,7 +1378,7 @@ export const SADAD_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '450px',
-    borderRadius: '16px',
+    borderRadius: '4px',
     buttonHeight: '54px',
     inputHeight: '50px',
     inputPaddingX: '16px',
@@ -1396,7 +1396,7 @@ export const SADAD_SPEC: EntityVisualSpec = {
     modal: '0 20px 40px rgba(0,0,0,0.2)',
   },
   assets: {
-    logo: '/gov-sadad-official.png',
+    logo: './assets/logo-sadad.png',
     heroImage: '/assets/entities/sadad/biller_banner.svg',
     background: '/assets/entities/sadad/sadad_bg_orange_light.png',
     icons: '/assets/entities/sadad/icons/',
@@ -1419,7 +1419,7 @@ export const KNET_SPEC: EntityVisualSpec = {
   category: 'payment_gateway',
   countryCode: 'KW',
   colors: {
-    primary: '#005C39',
+    primary: '#005696',
     secondary: '#000000',
     accent: '#000000',
     background: '#FFFFFF',
@@ -1436,7 +1436,7 @@ export const KNET_SPEC: EntityVisualSpec = {
   },
   typography: {
     fontFamily: 'DIN Next Arabic, Cairo, Tajawal, sans-serif',
-    fontFamilyAr: 'DIN Next Arabic, sans-serif',
+    fontFamilyAr: 'Kuwait Standard, sans-serif',
     headingWeight: '700',
     bodyWeight: '500',
     fontSizeBase: '16px',
@@ -1774,7 +1774,7 @@ export const DUBAIPAY_SPEC: EntityVisualSpec = {
   },
   dimensions: {
     containerMaxWidth: '428px',
-    borderRadius: '8px',
+    borderRadius: '16px',
     buttonHeight: '54px',
     inputHeight: '50px',
     inputPaddingX: '16px',
