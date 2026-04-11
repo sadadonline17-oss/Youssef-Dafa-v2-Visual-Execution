@@ -6,32 +6,14 @@ const BottomNav = () => {
   const location = useLocation();
   
   const navItems = [
-    {
-      icon: Home,
-      label: "الرئيسية",
-      path: "/",
-    },
-    {
-      icon: Package,
-      label: "الخدمات",
-      path: "/services",
-    },
-    {
-      icon: FileText,
-      label: "الفواتير",
-      path: "/invoices/list/sa",
-    },
-    {
-      icon: Settings,
-      label: "المزيد",
-      path: "/settings",
-    },
+    { icon: Home, label: "الرئيسية", path: "/" },
+    { icon: Package, label: "الخدمات", path: "/services" },
+    { icon: FileText, label: "الفواتير", path: "/invoices/list/sa" },
+    { icon: Settings, label: "المزيد", path: "/settings" },
   ];
 
   const isActive = (path: string) => {
-    if (path === "/") {
-      return location.pathname === "/";
-    }
+    if (path === "/") return location.pathname === "/";
     return location.pathname.startsWith(path);
   };
 
@@ -42,26 +24,16 @@ const BottomNav = () => {
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
-            
             return (
               <Link
                 key={item.path}
                 to={item.path}
                 className={cn(
                   "flex flex-col items-center justify-center gap-1 min-w-[60px] py-2 px-3 rounded-xl transition-all duration-200",
-                  active
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                  active ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <div
-                  className={cn(
-                    "p-2 rounded-xl transition-all duration-200",
-                    active
-                      ? "bg-primary/10"
-                      : "hover:bg-accent"
-                  )}
-                >
+                <div className={cn("p-2 rounded-xl transition-all duration-200", active ? "bg-primary/10" : "hover:bg-accent")}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-medium">{item.label}</span>
@@ -73,5 +45,5 @@ const BottomNav = () => {
     </div>
   );
 };
--e 
+
 export default BottomNav;
