@@ -8,7 +8,7 @@ interface BackButtonProps {
   label?: string;
 }
 
-const BackButton = ({ className, label = "رجوع" }: BackButtonProps) => {
+export const BackButton = ({ className, label = "رجوع" }: BackButtonProps) => {
   const navigate = useNavigate();
 
   return (
@@ -24,4 +24,4 @@ const BackButton = ({ className, label = "رجوع" }: BackButtonProps) => {
   );
 };
 
-export default BackButton;
+
