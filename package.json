@@ -1,5 +1,6 @@
 {
   "name": "vite_react_shadcn_ts",
+  "engines": { "node": "20" },
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -68,6 +69,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.24.0",
     "@eslint/js": "^9.32.0",
     "@playwright/test": "^1.58.1",
     "@tailwindcss/typography": "^0.5.16",
