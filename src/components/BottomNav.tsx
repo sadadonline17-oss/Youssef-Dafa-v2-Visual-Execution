@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Home, Package, FileText, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export const BottomNav = () => {
+const BottomNav = () => {
   const location = useLocation();
   
   const navItems = [
@@ -73,3 +73,5 @@ export const BottomNav = () => {
     </div>
   );
 };
+-e 
+export default BottomNav;

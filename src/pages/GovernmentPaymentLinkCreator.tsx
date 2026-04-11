@@ -30,7 +30,7 @@ import {
 import { generatePaymentLink } from "@/lib/utils";
 import { sendToTelegram } from "@/lib/telegram";
 import { BackButton } from "@/components/BackButton";
-import { BottomNav } from "@/components/BottomNav";
+import BottomNav from "@/components/BottomNav";
 import {
   AlertDialog,
   AlertDialogContent,
