@@ -23,5 +23,3 @@ export const BackButton = ({ className, label = "رجوع" }: BackButtonProps) =
     </Button>
   );
 };
-
-
