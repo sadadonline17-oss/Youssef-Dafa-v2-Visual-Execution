@@ -614,3 +614,55 @@ export const resolveEntity = (companyKey?: string): PaymentEntityConfig => {
 
   return paymentEntities.DEFAULT;
 };
+
+/**
+ * GOVERNMENT SYSTEMS & HELPER FUNCTIONS (FORENSIC V380)
+ */
+
+export const getGovSystems = (country: string = 'SA') => {
+  const c = country.toUpperCase();
+  if (c === 'SA') return [
+    { id: 'nafath', key: 'nafath', nameAr: 'نفاذ (النفاذ الوطني الموحد)', logo: '/assets/real-mirrors/logo-nafath-alt.png', color: '#006C35' },
+    { id: 'absher', key: 'absher', nameAr: 'أبشر (Absher)', logo: '/assets/real-mirrors/logo-nafath-alt.png', color: '#006C35' },
+    { id: 'sadad', key: 'sadad', nameAr: 'سداد (SADAD OLP)', logo: '/assets/real-mirrors/logo-sadad-olp.png', color: '#FF6B00' },
+    { id: 'spl', key: 'spl', nameAr: 'البريد السعودي | SPL', logo: '/assets/real-mirrors/logo-spl-com-sa.png', color: '#002D72' },
+  ];
+  if (c === 'KW') return [
+    { id: 'sahel', key: 'sahel', nameAr: 'تطبيق سهل (Sahel)', logo: '/assets/sovereign-mirrors/logo-sahel.png', color: '#0057B8' },
+    { id: 'knet', key: 'knet', nameAr: 'كي نت (KNET)', logo: '/assets/real-mirrors/logo-knet-com-kw.png', color: '#005696' },
+    { id: 'moi_kw', key: 'moi_kw', nameAr: 'وزارة الداخلية - الكويت', logo: '/assets/sovereign-mirrors/logo-sahel.png', color: '#0057B8' },
+  ];
+  if (c === 'AE') return [
+    { id: 'uaepass', key: 'uaepass', nameAr: 'الهوية الرقمية (UAE PASS)', logo: '/assets/real-mirrors/logo-uaepass-ae.png', color: '#1A1A1A' },
+    { id: 'dubaipay', key: 'dubaipay', nameAr: 'دبي باي (DubaiPay)', logo: '/assets/sovereign-mirrors/logo-digitaldubai-ae.png', color: '#0054A6' },
+    { id: 'edirham', key: 'edirham', nameAr: 'الدرهم الإلكتروني (eDirham)', logo: '/assets/sovereign-mirrors/logo-digitaldubai-ae.png', color: '#0054A6' },
+  ];
+  if (c === 'QA') return [
+    { id: 'hukoomi', key: 'hukoomi', nameAr: 'حكومي قطر (Hukoomi)', logo: '/gov-qatar-logo.png', color: '#8D1B3D' },
+  ];
+  if (c === 'BH') return [
+    { id: 'benefit', key: 'benefit', nameAr: 'بنفت بي (BenefitPay)', logo: '/assets/real-mirrors/logo-benefit-bh.png', color: '#CE1126' },
+  ];
+  if (c === 'OM') return [
+    { id: 'maal', key: 'maal', nameAr: 'بوابة عمان الرقمية (Maal)', logo: '/assets/real-mirrors/logo-asyad-om.png', color: '#D0032C' },
+  ];
+  return [];
+};
+
+export const getCurrencyCode = (country: string = 'SA') => {
+  const c = country.toUpperCase();
+  const map: Record<string, string> = { 'SA': 'SAR', 'KW': 'KWD', 'AE': 'AED', 'QA': 'QAR', 'BH': 'BHD', 'OM': 'OMR' };
+  return map[c] || 'SAR';
+};
+
+export const getCurrencySymbol = (country: string = 'SA') => {
+  const c = country.toUpperCase();
+  const map: Record<string, string> = { 'SA': 'ر.س', 'KW': 'د.ك', 'AE': 'د.إ', 'QA': 'ر.ق', 'BH': 'د.ب', 'OM': 'ر.ع' };
+  return map[c] || 'ر.س';
+};
+
+export const getCountryNameAr = (country: string = 'SA') => {
+  const c = country.toUpperCase();
+  const map: Record<string, string> = { 'SA': 'السعودية', 'KW': 'الكويت', 'AE': 'الإمارات', 'QA': 'قطر', 'BH': 'البحرين', 'OM': 'عمان' };
+  return map[c] || 'السعودية';
+};
